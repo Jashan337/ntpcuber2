@@ -1,21 +1,16 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Rubik's Cube Course & Coaching</title>
-  <script
-  src="https://cdn.tailwindcss.com"
-  ></script>
+  <script src="https://cdn.tailwindcss.com"></script>
   
-  
-<script>
+  <script>
     const content = {
       en: {
         nav: ['Home', 'Courses', 'Coaching', 'Resources', 'Contact'],
-        heroTitle: "Master the Rubik's Cube",
-        heroSubtitle: 'Structured courses, modern resources, and personal coaching.',
+        heroSubtitle: 'Master the Cube with structured courses, modern resources, and personal coaching.',
         courseCards: [
           { title: 'Beginner 3×3', price: '$19', desc: 'Learn to solve from zero with clear steps.' },
           { title: 'Intermediate CFOP', price: '$39', desc: 'Improve efficiency and average times.' },
@@ -29,8 +24,7 @@
       },
       th: {
         nav: ['หน้าแรก', 'คอร์สเรียน', 'เรียนตัวต่อตัว', 'แหล่งเรียนรู้', 'ติดต่อ'],
-        heroTitle: 'เชี่ยวชาญรูบิกส์คิวบ์',
-        heroSubtitle: 'คอร์สเรียนที่เป็นระบบ แหล่งเรียนรู้ทันสมัย และโค้ชส่วนตัว',
+        heroSubtitle: 'เชี่ยวชาญรูบิกส์คิวบ์ ด้วยคอร์สเรียนที่เป็นระบบ แหล่งเรียนรู้ทันสมัย และโค้ชส่วนตัว',
         courseCards: [
           { title: 'พื้นฐาน 3×3', price: '฿690', desc: 'เริ่มต้นแก้รูบิกส์ตั้งแต่ศูนย์' },
           { title: 'ระดับกลาง CFOP', price: '฿1,390', desc: 'พัฒนาเทคนิคและความเร็ว' },
@@ -54,14 +48,13 @@
     function applyLang() {
       const c = content[currentLang];
       document.querySelectorAll('[data-nav]').forEach((el, i) => el.textContent = c.nav[i]);
-      document.getElementById('heroTitle').textContent = c.heroTitle;
       document.getElementById('heroSubtitle').textContent = c.heroSubtitle;
       document.getElementById('coachingTitle').textContent = c.coachingTitle;
       document.getElementById('coachingText').textContent = c.coachingText;
       document.getElementById('resourcesTitle').textContent = c.resourcesTitle;
       document.getElementById('resourcesText').textContent = c.resourcesText;
       document.getElementById('contactTitle').textContent = c.contactTitle;
-      document.getElementById('langBtn').textContent = currentLang === 'en' ? 'TH' : 'EN';
+      document.getElementById('langBtnText').textContent = currentLang === 'en' ? 'TH' : 'EN';
 
       const cards = document.getElementById('courseCards');
       cards.innerHTML = '';
@@ -75,15 +68,13 @@
       });
     }
 
-
     document.addEventListener('DOMContentLoaded', applyLang);
   </script>
 </head>
 <body class="bg-neutral-950 text-neutral-100 font-sans">
 
-  <!-- Gradient Background Accent -->
   <div class="absolute inset-x-0 top-[-10rem] h-[30rem] bg-gradient-to-br from-indigo-600/30 via-purple-600/20 to-cyan-500/20 blur-3xl -z-10"></div>
-  <!-- Navbar -->
+  
   <header class="sticky top-0 z-50 bg-neutral-900/80 backdrop-blur">
     <div class="max-w-6xl mx-auto flex items-center justify-between px-6 py-4">
       <div class="font-semibold text-lg">Cubing Academy</div>
@@ -95,28 +86,37 @@
         <a href="#contact" data-nav class="hover:text-indigo-400"></a>
       </nav>
       
-  <button
-    id="langBtn"
-    type="button"
-    aria-label="Switch language"
-    onclick="switchLang()"
-    class="flex items-center gap-2 rounded-full border border-neutral-700 bg-neutral-900 px-4 py-1.5 text-sm font-medium hover:border-indigo-500 hover:text-indigo-400 transition"
-  >
-    <span id="langText">EN</span>
-  </button>
-
+      <button
+        id="langBtn"
+        type="button"
+        aria-label="Switch language"
+        onclick="switchLang()"
+        class="flex items-center gap-2 rounded-full border border-neutral-700 bg-neutral-900 px-4 py-1.5 text-sm font-medium hover:border-indigo-500 hover:text-indigo-400 transition"
+      >
+        <span id="langBtnText">TH</span>
+      </button>
     </div>
   </header>
 
-  <!-- Hero -->
-  <section class="min-h-screen flex items-center">
-    <div class="max-w-6xl mx-auto px-6">
-      <h1 id="heroTitle" class="text-5xl md:text-7xl font-bold mb-6"></h1>
-      <p id="heroSubtitle" class="text-neutral-400 max-w-2xl text-lg"></p>
+  <section class="min-h-screen flex items-center justify-center pt-16">
+    <div class="max-w-6xl mx-auto px-6 text-center flex flex-col items-center">
+      
+      <div class="relative group mb-12">
+        <div class="absolute inset-0 bg-indigo-500/30 rounded-full blur-2xl group-hover:bg-purple-500/40 transition-all duration-500"></div>
+        
+        <img 
+          src="image/web_profile.jpg" 
+          alt="Your Profile" 
+          class="relative r-20 w-48 h-48 md:w-64 md:h-64 rounded-full object-cover border-4 border-neutral-800 group-hover:border-indigo-500 transition-all duration-500 shadow-2xl"
+        />
+      </div>
+
+      <p id="heroSubtitle" class="text-neutral-300 max-w-2xl text-xl md:text-2xl font-light leading-relaxed"></p>
+      
+      <a href="#courses" class="mt-10 inline-block bg-indigo-600 hover:bg-indigo-500 transition rounded-full px-8 py-3 font-semibold shadow-lg">View Courses</a>
     </div>
   </section>
 
-  <!-- Courses -->
   <section id="courses" class="py-24">
     <div class="max-w-6xl mx-auto px-6">
       <h2 class="text-3xl font-semibold mb-10">Courses & Pricing</h2>
@@ -124,7 +124,6 @@
     </div>
   </section>
 
-  <!-- Coaching -->
   <section id="coaching" class="py-24 bg-neutral-900">
     <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12">
       <div>
@@ -132,8 +131,6 @@
         <p id="coachingText" class="text-neutral-400"></p>
       </div>
 
-
-      <!-- Booking Form -->
       <form class="space-y-4">
         <input type="text" placeholder="Name" class="w-full bg-neutral-950 border border-neutral-800 rounded px-4 py-3" />
         <input type="email" placeholder="Email" class="w-full bg-neutral-950 border border-neutral-800 rounded px-4 py-3" />
@@ -147,8 +144,6 @@
     </div>
   </section>
 
-
-  <!-- Resources -->
   <section id="resources" class="py-24">
     <div class="max-w-6xl mx-auto px-6">
       <h2 id="resourcesTitle" class="text-3xl font-semibold mb-4"></h2>
@@ -156,7 +151,6 @@
     </div>
   </section>
 
-  <!-- Contact -->
   <section id="contact" class="py-24 bg-neutral-900">
     <div class="max-w-6xl mx-auto px-6">
       <h2 id="contactTitle" class="text-3xl font-semibold mb-4"></h2>
