@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cubing Resources</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-neutral-950 text-neutral-100 font-sans">
+
+  <!-- Gradient Accent -->
+  <div class="absolute inset-x-0 top-[-12rem] h-[32rem] bg-gradient-to-br from-indigo-600/30 via-purple-600/20 to-cyan-500/20 blur-3xl -z-10"></div>
+
+  <!-- Navbar -->
+  <header class="sticky top-0 z-50 bg-neutral-900/80 backdrop-blur">
+    <div class="max-w-6xl mx-auto flex items-center justify-between px-6 py-4">
+      <div class="font-semibold text-lg">Cubing Academy</div>
+      <nav class="hidden md:flex gap-8 text-sm">
+        <a href="index.html" class="hover:text-indigo-400 transition">Home</a>
+        <a href="resources.html" class="text-indigo-400">Resources</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="pt-32 pb-20">
+    <div class="max-w-6xl mx-auto px-6">
+      <h1 class="text-4xl md:text-6xl font-bold mb-6">Cubing Resources</h1>
+      <p class="text-neutral-400 max-w-2xl text-lg">Algorithm sets organized by event and difficulty, designed for efficient practice.</p>
+    </div>
+  </section>
+
+  <!-- 2x2 Section -->
+  <section class="py-20">
+    <div class="max-w-6xl mx-auto px-6">
+      <h2 class="text-3xl font-semibold mb-10">2×2 Cube</h2>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="bg-neutral-900 rounded-xl p-6 border border-neutral-800 hover:border-indigo-500 transition">
+          <h3 class="text-xl font-semibold mb-2">CLL</h3>
+          <p class="text-neutral-400">Corners last layer algorithms for advanced 2×2 solving.</p>
+          <a href="algorithms/2x2/cll.html" class="block bg-neutral-900 rounded-xl p-6 border border-neutral-800 hover:border-indigo-500 transition"></a>
+        </div>
+        <div class="bg-neutral-900 rounded-xl p-6 border border-neutral-800 hover:border-indigo-500 transition">
+          <h3 class="text-xl font-semibold mb-2">EG-1</h3>
+          <p class="text-neutral-400">Solve last layer with oriented bottom layer.</p>
+        </div>
+        <div class="bg-neutral-900 rounded-xl p-6 border border-neutral-800 hover:border-indigo-500 transition">
+          <h3 class="text-xl font-semibold mb-2">EG-2</h3>
+          <p class="text-neutral-400">Solve last layer with misoriented bottom layer.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3x3 Section -->
+  <section class="py-20 bg-neutral-900">
+    <div class="max-w-6xl mx-auto px-6">
+      <h2 class="text-3xl font-semibold mb-10">3×3 Cube</h2>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="bg-neutral-950 rounded-xl p-6 border border-neutral-800 hover:border-indigo-500 transition">
+          <h3 class="text-xl font-semibold mb-2">OLL</h3>
+          <p class="text-neutral-400">Orient the last layer in one step.</p>
+        </div>
+        <div class="bg-neutral-950 rounded-xl p-6 border border-neutral-800 hover:border-indigo-500 transition">
+          <h3 class="text-xl font-semibold mb-2">PLL</h3>
+          <p class="text-neutral-400">Permute the last layer.</p>
+        </div>
+        <div class="bg-neutral-950 rounded-xl p-6 border border-neutral-800 hover:border-indigo-500 transition">
+          <h3 class="text-xl font-semibold mb-2">ZBLL</h3>
+          <p class="text-neutral-400">Full last layer algorithms for advanced speedcubing.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-10 text-center text-neutral-600 text-sm border-t border-neutral-800">
+    © 2026 Cubing Academy
+  </footer>
+
+</body>
+</html>
