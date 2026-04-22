@@ -3,10 +3,26 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Rubik's Cube Course & Coaching</title>
+  <title>NTP Cuber | Rubik's Cube Course & Coaching</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Sarabun:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
+
   <script src="https://cdn.tailwindcss.com"></script>
   
   <script>
+    // Configure Tailwind to use our new fonts
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'Sarabun', 'ui-sans-serif', 'system-ui'],
+          },
+        },
+      },
+    }
+
     const content = {
       en: {
         nav: ['Home', 'Courses', 'Coaching', 'Resources', 'Contact'],
@@ -60,7 +76,7 @@
       cards.innerHTML = '';
       c.courseCards.forEach(card => {
         cards.innerHTML += `
-          <div class="bg-neutral-900 rounded-xl p-6 border border-neutral-800 hover:border-indigo-500 transition">
+          <div class="bg-neutral-900 rounded-xl p-6 border border-neutral-800 hover:border-indigo-500 transition-all duration-300">
             <h3 class="text-xl font-semibold mb-2">${card.title}</h3>
             <p class="text-neutral-400 mb-4">${card.desc}</p>
             <div class="text-2xl font-bold text-indigo-400">${card.price}</div>
@@ -71,95 +87,93 @@
     document.addEventListener('DOMContentLoaded', applyLang);
   </script>
 </head>
-<body class="bg-neutral-950 text-neutral-100 font-sans">
+<body class="bg-neutral-950 text-neutral-100 font-sans tracking-tight">
 
   <div class="absolute inset-x-0 top-[-10rem] h-[30rem] bg-gradient-to-br from-indigo-600/30 via-purple-600/20 to-cyan-500/20 blur-3xl -z-10"></div>
   
-  <header class="sticky top-0 z-50 bg-neutral-900/80 backdrop-blur">
+  <header class="sticky top-0 z-50 bg-neutral-900/80 backdrop-blur-md border-b border-neutral-800/50">
     <div class="max-w-6xl mx-auto flex items-center justify-between px-6 py-4">
-      <div class="font-semibold text-lg">NTP Cuber Official Site</div>
-      <nav class="hidden md:flex gap-8 text-sm">
-        <a href="#" data-nav class="hover:text-indigo-400"></a>
-        <a href="#courses" data-nav class="hover:text-indigo-400"></a>
-        <a href="#coaching" data-nav class="hover:text-indigo-400"></a>
-        <a href="resources.html" data-nav class="hover:text-indigo-400"></a>
-        <a href="#contact" data-nav class="hover:text-indigo-400"></a>
+      <div class="font-bold text-xl tracking-tighter">NTP Cuber</div>
+      <nav class="hidden md:flex gap-8 text-sm font-medium">
+        <a href="#" data-nav class="text-neutral-400 hover:text-indigo-400 transition-colors"></a>
+        <a href="#courses" data-nav class="text-neutral-400 hover:text-indigo-400 transition-colors"></a>
+        <a href="#coaching" data-nav class="text-neutral-400 hover:text-indigo-400 transition-colors"></a>
+        <a href="resources.html" data-nav class="text-neutral-400 hover:text-indigo-400 transition-colors"></a>
+        <a href="#contact" data-nav class="text-neutral-400 hover:text-indigo-400 transition-colors"></a>
       </nav>
       
       <button
         id="langBtn"
         type="button"
-        aria-label="Switch language"
         onclick="switchLang()"
-        class="flex items-center gap-2 rounded-full border border-neutral-700 bg-neutral-900 px-4 py-1.5 text-sm font-medium hover:border-indigo-500 hover:text-indigo-400 transition"
+        class="flex items-center gap-2 rounded-full border border-neutral-700 bg-neutral-900 px-4 py-1.5 text-xs font-bold uppercase tracking-widest hover:border-indigo-500 hover:text-indigo-400 transition-all"
       >
         <span id="langBtnText">TH</span>
       </button>
     </div>
   </header>
 
-  <section class="min-h-screen flex items-center justify-center pt-16">
+  <section class="min-h-[80vh] flex items-center justify-center pt-16">
     <div class="max-w-6xl mx-auto px-6 text-center flex flex-col items-center">
       
-      <div class="relative group mb-12">
-        <div class="absolute inset-0 bg-indigo-500/30 rounded-full blur-2xl group-hover:bg-purple-500/40 transition-all duration-500"></div>
-        
+      <div class="relative group mb-10">
+        <div class="absolute inset-0 bg-indigo-500/20 rounded-full blur-3xl group-hover:bg-purple-500/30 transition-all duration-700"></div>
         <img 
           src="image/web_profile.jpg" 
-          alt="Your Profile" 
-          class="relative r-20 w-48 h-48 md:w-64 md:h-64 rounded-full object-cover border-4 border-neutral-800 group-hover:border-indigo-500 transition-all duration-500 shadow-2xl"
+          alt="NTP Cuber Profile" 
+          class="relative w-48 h-48 md:w-60 md:h-60 rounded-full object-cover border-2 border-neutral-800 p-1 group-hover:border-indigo-500 transition-all duration-500 shadow-2xl"
         />
       </div>
 
       <p id="heroSubtitle" class="text-neutral-300 max-w-2xl text-xl md:text-2xl font-light leading-relaxed"></p>
       
-      <a href="#courses" class="mt-10 inline-block bg-indigo-600 hover:bg-indigo-500 transition rounded-full px-8 py-3 font-semibold shadow-lg">View Courses</a>
+      <a href="#courses" class="mt-10 inline-block bg-indigo-600 hover:bg-indigo-500 transition rounded-full px-10 py-3.5 font-bold text-sm uppercase tracking-wider shadow-lg">View Courses</a>
     </div>
   </section>
 
   <section id="courses" class="py-24">
     <div class="max-w-6xl mx-auto px-6">
-      <h2 class="text-3xl font-semibold mb-10">Courses & Pricing</h2>
+      <h2 class="text-3xl font-bold tracking-tight mb-10">Courses & Pricing</h2>
       <div id="courseCards" class="grid md:grid-cols-3 gap-6"></div>
     </div>
   </section>
 
-  <section id="coaching" class="py-24 bg-neutral-900">
-    <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12">
+  <section id="coaching" class="py-24 bg-neutral-900/50 border-y border-neutral-800/50">
+    <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
       <div>
-        <h2 id="coachingTitle" class="text-3xl font-semibold mb-4"></h2>
-        <p id="coachingText" class="text-neutral-400"></p>
+        <h2 id="coachingTitle" class="text-4xl font-bold tracking-tight mb-6"></h2>
+        <p id="coachingText" class="text-neutral-400 text-lg"></p>
       </div>
 
-      <form class="space-y-4">
-        <input type="text" placeholder="Name" class="w-full bg-neutral-950 border border-neutral-800 rounded px-4 py-3" />
-        <input type="email" placeholder="Email" class="w-full bg-neutral-950 border border-neutral-800 rounded px-4 py-3" />
-        <select class="w-full bg-neutral-950 border border-neutral-800 rounded px-4 py-3">
+      <form class="space-y-4 bg-neutral-950 p-8 rounded-2xl border border-neutral-800 shadow-xl">
+        <input type="text" placeholder="Name" class="w-full bg-neutral-900 border border-neutral-800 rounded-lg px-4 py-3 focus:outline-none focus:border-indigo-500 transition" />
+        <input type="email" placeholder="Email" class="w-full bg-neutral-900 border border-neutral-800 rounded-lg px-4 py-3 focus:outline-none focus:border-indigo-500 transition" />
+        <select class="w-full bg-neutral-900 border border-neutral-800 rounded-lg px-4 py-3 focus:outline-none focus:border-indigo-500 transition appearance-none">
           <option>Beginner</option>
           <option>Intermediate</option>
           <option>Advanced</option>
         </select>
-        <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-500 transition rounded py-3 font-semibold">Book Session</button>
+        <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-500 transition rounded-lg py-4 font-bold uppercase tracking-widest text-sm">Book Session</button>
       </form>
     </div>
   </section>
 
   <section id="resources" class="py-24">
-    <div class="max-w-6xl mx-auto px-6">
-      <h2 id="resourcesTitle" class="text-3xl font-semibold mb-4"></h2>
-      <p id="resourcesText" class="text-neutral-400 max-w-2xl"></p>
+    <div class="max-w-6xl mx-auto px-6 text-center md:text-left">
+      <h2 id="resourcesTitle" class="text-3xl font-bold tracking-tight mb-4"></h2>
+      <p id="resourcesText" class="text-neutral-400 max-w-2xl text-lg"></p>
     </div>
   </section>
 
-  <section id="contact" class="py-24 bg-neutral-900">
-    <div class="max-w-6xl mx-auto px-6">
-      <h2 id="contactTitle" class="text-3xl font-semibold mb-4"></h2>
-      <p class="text-neutral-400">We will contact you within 24 hours.</p>
+  <section id="contact" class="py-24 bg-neutral-900/50">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+      <h2 id="contactTitle" class="text-3xl font-bold tracking-tight mb-4"></h2>
+      <p class="text-neutral-400 text-lg">We will contact you within 24 hours.</p>
     </div>
   </section>
 
-  <footer class="py-8 text-center text-neutral-600 text-sm border-t border-neutral-800">
-    © 2026 Cubing Academy
+  <footer class="py-12 text-center text-neutral-500 text-xs font-medium border-t border-neutral-800 tracking-widest uppercase">
+    © 2026 NTP Cuber Academy
   </footer>
 
 </body>
