@@ -1,0 +1,122 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rubik's Cube Course & Coaching</title>
+  https://cdn.tailwindcss.com
+  <script>
+    const content = {
+      en: {
+        nav: ['Home', 'Courses', 'Coaching', 'Resources', 'Contact'],
+        heroTitle: "Master the Rubik's Cube",
+        heroSubtitle: 'Structured courses, modern resources, and personal coaching.',
+        coursesTitle: 'Courses',
+        coursesText: 'Step-by-step courses from beginner to advanced speedcubing.',
+        coachingTitle: '1-on-1 Coaching',
+        coachingText: 'Personalized coaching sessions tailored to your goals.',
+        resourcesTitle: 'Free Resources',
+        resourcesText: 'Algorithms, practice plans, and solving tips.',
+        contactTitle: 'Get in Touch',
+        contactText: 'Contact us to start your cubing journey today.'
+      },
+      th: {
+        nav: ['หน้าแรก', 'คอร์สเรียน', 'โค้ชชิ่ง', 'แหล่งเรียนรู้', 'ติดต่อ'],
+        heroTitle: 'เชี่ยวชาญรูบิกส์คิวบ์',
+        heroSubtitle: 'คอร์สเรียนที่เป็นระบบ แหล่งเรียนรู้ทันสมัย และโค้ชส่วนตัว',
+        coursesTitle: 'คอร์สเรียน',
+        coursesText: 'คอร์สเรียนตั้งแต่ระดับเริ่มต้นจนถึงการแก้ความเร็วขั้นสูง',
+        coachingTitle: 'โค้ชแบบตัวต่อตัว',
+        coachingText: 'การสอนแบบเฉพาะบุคคลตามเป้าหมายของคุณ',
+        resourcesTitle: 'แหล่งเรียนรู้ฟรี',
+        resourcesText: 'สูตรการหมุน แผนฝึกซ้อม และเทคนิคการแก้',
+        contactTitle: 'ติดต่อเรา',
+        contactText: 'ติดต่อเราเพื่อเริ่มต้นเส้นทางรูบิกส์ของคุณวันนี้'
+      }
+    };
+
+    let currentLang = 'en';
+
+    function switchLang() {
+      currentLang = currentLang === 'en' ? 'th' : 'en';
+      applyLang();
+    }
+
+    function applyLang() {
+      const c = content[currentLang];
+      document.querySelectorAll('[data-nav]').forEach((el, i) => el.textContent = c.nav[i]);
+      document.getElementById('heroTitle').textContent = c.heroTitle;
+      document.getElementById('heroSubtitle').textContent = c.heroSubtitle;
+      document.getElementById('coursesTitle').textContent = c.coursesTitle;
+      document.getElementById('coursesText').textContent = c.coursesText;
+      document.getElementById('coachingTitle').textContent = c.coachingTitle;
+      document.getElementById('coachingText').textContent = c.coachingText;
+      document.getElementById('resourcesTitle').textContent = c.resourcesTitle;
+      document.getElementById('resourcesText').textContent = c.resourcesText;
+      document.getElementById('contactTitle').textContent = c.contactTitle;
+      document.getElementById('contactText').textContent = c.contactText;
+      document.getElementById('langBtn').textContent = currentLang === 'en' ? 'TH' : 'EN';
+    }
+
+    document.addEventListener('DOMContentLoaded', applyLang);
+  </script>
+</head>
+<body class="bg-neutral-950 text-neutral-100 font-sans">
+  <!-- Navbar -->
+  <header class="sticky top-0 z-50 bg-neutral-900/80 backdrop-blur">
+    <div class="max-w-6xl mx-auto flex items-center justify-between px-4 py-3">
+      <div class="font-semibold text-lg">Cubing Academy</div>
+      <nav class="hidden md:flex gap-6">
+        <a href="#" data-nav class="hover:text-indigo-400"></a>
+        <a href="#courses" data-nav class="hover:text-indigo-400"></a>
+        <a href="#coaching" data-nav class="hover:text-indigo-400"></a>
+        <a href="#resources" data-nav class="hover:text-indigo-400"></a>
+        <a href="#contact" data-nav class="hover:text-indigo-400"></a>
+      </nav>
+      <button id="langBtn" onclick="switchLang()" class="border border-neutral-700 px-3 py-1 rounded hover:bg-neutral-800"></button>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="min-h-[70vh] flex items-center">
+    <div class="max-w-6xl mx-auto px-4">
+      <h1 id="heroTitle" class="text-4xl md:text-6xl font-bold mb-4"></h1>
+      <p id="heroSubtitle" class="text-neutral-300 max-w-xl"></p>
+    </div>
+  </section>
+
+  <!-- Sections -->
+  <section id="courses" class="py-20 bg-neutral-900">
+    <div class="max-w-6xl mx-auto px-4">
+      <h2 id="coursesTitle" class="text-3xl font-semibold mb-4"></h2>
+      <p id="coursesText" class="text-neutral-300"></p>
+    </div>
+  </section>
+
+  <section id="coaching" class="py-20">
+    <div class="max-w-6xl mx-auto px-4">
+      <h2 id="coachingTitle" class="text-3xl font-semibold mb-4"></h2>
+      <p id="coachingText" class="text-neutral-300"></p>
+    </div>
+  </section>
+
+  <section id="resources" class="py-20 bg-neutral-900">
+    <div class="max-w-6xl mx-auto px-4">
+      <h2 id="resourcesTitle" class="text-3xl font-semibold mb-4"></h2>
+      <p id="resourcesText" class="text-neutral-300"></p>
+    </div>
+  </section>
+
+  <section id="contact" class="py-20">
+    <div class="max-w-6xl mx-auto px-4">
+      <h2 id="contactTitle" class="text-3xl font-semibold mb-4"></h2>
+      <p id="contactText" class="text-neutral-300"></p>
+    </div>
+  </section>
+
+  <footer class="py-6 text-center text-neutral-500 text-sm">
+    © 2026 Cubing Academy
+  </footer>
+</body>
+</html>
