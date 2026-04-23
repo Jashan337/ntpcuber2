@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cubing Resources</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-neutral-950 text-neutral-100 font-sans">
+
+  <!-- Gradient Accent -->
+  <div class="absolute inset-x-0 top-[-12rem] h-[32rem] bg-gradient-to-br from-indigo-600/30 via-purple-600/20 to-cyan-500/20 blur-3xl -z-10"></div>
+
+  <!-- Navbar -->
+  <header class="sticky top-0 z-50 bg-neutral-900/80 backdrop-blur">
+    <div class="max-w-6xl mx-auto flex items-center justify-between px-6 py-4">
+      <div class="font-semibold text-lg">Cubing Academy</div>
+      <nav class="hidden md:flex gap-8 text-sm">
+        <a href="../../index.html" class="hover:text-indigo-400 transition">Home</a>
+        <a href="../../resources.html" class="text-indigo-400">Resources</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="pt-32 pb-20">
+    <div class="max-w-6xl mx-auto px-6">
+      <h1 class="text-4xl md:text-6xl font-bold mb-6">2x2 EG-1</h1>
+      <p class="text-neutral-400 max-w-2xl text-lg">An algorithm set where first layer is fully solved.</p>
+    </div>
+  </section>
+
+  <!-- EG-1 Sune -->
+  <section class="py-20">
+  <div class="max-w-6xl mx-auto px-6">
+    <h2 class="text-3xl font-semibold mb-10">EG-1 Sune</h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      
+      <!-- Card 1 -->
+      <div class="group bg-neutral-900 rounded-xl border border-neutral-800 overflow-hidden hover:border-indigo-500 transition">
+        <div class="bg-neutral-950 aspect-square flex items-center justify-center">
+          <img src="images/2x2/eg1-sune-01.png" alt="" class="w-48 h-48 object-contain" />
+        </div>
+        <div class="p-4">
+          <p class="font-mono text-sm mb-1">R U R' U R U2' R'</p>
+          <p class="font-mono text-xs text-neutral-400">alt: [U'] R' U2' R U R' U R</p>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="group bg-neutral-900 rounded-xl border border-neutral-800 overflow-hidden hover:border-indigo-500 transition">
+        <div class="bg-neutral-950 aspect-square flex items-center justify-center">
+          <img src="images/2x2/eg1-sune-02.png" alt="" class="w-48 h-48 object-contain" />
+        </div>
+        <div class="p-4">
+          <p class="font-mono text-sm mb-1">[U'] R' F R2 F' U' R' U' R2 U R'</p>
+          <p class="font-mono text-xs text-neutral-400">alt: [U2] R U R' U R' F R F' R U2' R'</p>
+        </div>
+      </div>
+      
+      <!-- Card 3 -->
+      <div class="group bg-neutral-900 rounded-xl border border-neutral-800 overflow-hidden hover:border-indigo-500 transition">
+        <div class="bg-neutral-950 aspect-square flex items-center justify-center">
+          <img src="images/2x2/eg1-sune-03.png" alt="" class="w-48 h-48 object-contain" />
+        </div>
+        <div class="p-4">
+          <p class="font-mono text-sm mb-1">F R' F' R U2 R U2' R'</p>
+          <!-- <p class="font-mono text-xs text-neutral-400">alt: R U2 R' U' R U' R'</p> -->
+        </div>
+      </div>
+      
+      <!-- Card 4 -->
+      <div class="group bg-neutral-900 rounded-xl border border-neutral-800 overflow-hidden hover:border-indigo-500 transition">
+        <div class="bg-neutral-950 aspect-square flex items-center justify-center">
+          <img src="images/2x2/eg1-sune-04.png" alt="" class="w-48 h-48 object-contain" />
+        </div>
+        <div class="p-4">
+          <p class="font-mono text-sm mb-1">R U' R' F R' F' R</p>
+          <!-- <p class="font-mono text-xs text-neutral-400">alt: R U2 R' U' R U' R'</p> -->
+        </div>
+      </div>
+      
+      <!-- Card 5 -->
+      <div class="group bg-neutral-900 rounded-xl border border-neutral-800 overflow-hidden hover:border-indigo-500 transition">
+        <div class="bg-neutral-950 aspect-square flex items-center justify-center">
+          <img src="images/2x2/eg1-sune-05.png" alt="" class="w-48 h-48 object-contain" />
+        </div>
+        <div class="p-4">
+          <p class="font-mono text-sm mb-1">R' F2 R U2' R U' R' F</p>
+          <!-- <p class="font-mono text-xs text-neutral-400">alt: R U2 R' U' R U' R'</p> -->
+        </div>
+      </div>
+      
+      <!-- Card 6 -->
+      <div class="group bg-neutral-900 rounded-xl border border-neutral-800 overflow-hidden hover:border-indigo-500 transition">
+        <div class="bg-neutral-950 aspect-square flex items-center justify-center">
+          <img src="images/2x2/eg1-sune-06.png" alt="" class="w-48 h-48 object-contain" />
+        </div>
+        <div class="p-4">
+          <p class="font-mono text-sm mb-1">R U R' U' R' F R F' R U R' U R U2' R'</p>
+          <p class="font-mono text-xs text-neutral-400">alt: [U2] R U' R U' R' U R' U' F R' F'</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+  <!-- EG-1 Antisune -->
+  <section class="py-20 bg-neutral-900">
+    <div class="max-w-6xl mx-auto px-6">
+    <h2 class="text-3xl font-semibold mb-10">EG-1 Antisune</h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      
+      <!-- Card 1 -->
+      <div class="group bg-neutral-900 rounded-xl border border-neutral-800 overflow-hidden hover:border-indigo-500 transition">
+        <div class="bg-neutral-950 aspect-square flex items-center justify-center">
+          <img src="images/2x2/eg1-sune-01.png" alt="" class="w-48 h-48 object-contain" />
+        </div>
+        <div class="p-4">
+          <p class="font-mono text-sm mb-1">R U R' U R U2' R'</p>
+          <p class="font-mono text-xs text-neutral-400">alt: [U'] R' U2' R U R' U R</p>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="group bg-neutral-900 rounded-xl border border-neutral-800 overflow-hidden hover:border-indigo-500 transition">
+        <div class="bg-neutral-950 aspect-square flex items-center justify-center">
+          <img src="images/2x2/eg1-sune-02.png" alt="" class="w-48 h-48 object-contain" />
+        </div>
+        <div class="p-4">
+          <p class="font-mono text-sm mb-1">[U'] R' F R2 F' U' R' U' R2 U R'</p>
+          <p class="font-mono text-xs text-neutral-400">alt: [U2] R U R' U R' F R F' R U2' R'</p>
+        </div>
+      </div>
+      
+      <!-- Card 3 -->
+      <div class="group bg-neutral-900 rounded-xl border border-neutral-800 overflow-hidden hover:border-indigo-500 transition">
+        <div class="bg-neutral-950 aspect-square flex items-center justify-center">
+          <img src="images/2x2/eg1-sune-03.png" alt="" class="w-48 h-48 object-contain" />
+        </div>
+        <div class="p-4">
+          <p class="font-mono text-sm mb-1">F R' F' R U2 R U2' R'</p>
+          <!-- <p class="font-mono text-xs text-neutral-400">alt: R U2 R' U' R U' R'</p> -->
+        </div>
+      </div>
+      
+      <!-- Card 4 -->
+      <div class="group bg-neutral-900 rounded-xl border border-neutral-800 overflow-hidden hover:border-indigo-500 transition">
+        <div class="bg-neutral-950 aspect-square flex items-center justify-center">
+          <img src="images/2x2/eg1-sune-04.png" alt="" class="w-48 h-48 object-contain" />
+        </div>
+        <div class="p-4">
+          <p class="font-mono text-sm mb-1">R U' R' F R' F' R</p>
+          <!-- <p class="font-mono text-xs text-neutral-400">alt: R U2 R' U' R U' R'</p> -->
+        </div>
+      </div>
+      
+      <!-- Card 5 -->
+      <div class="group bg-neutral-900 rounded-xl border border-neutral-800 overflow-hidden hover:border-indigo-500 transition">
+        <div class="bg-neutral-950 aspect-square flex items-center justify-center">
+          <img src="images/2x2/eg1-sune-05.png" alt="" class="w-48 h-48 object-contain" />
+        </div>
+        <div class="p-4">
+          <p class="font-mono text-sm mb-1">R' F2 R U2' R U' R' F</p>
+          <!-- <p class="font-mono text-xs text-neutral-400">alt: R U2 R' U' R U' R'</p> -->
+        </div>
+      </div>
+      
+      <!-- Card 6 -->
+      <div class="group bg-neutral-900 rounded-xl border border-neutral-800 overflow-hidden hover:border-indigo-500 transition">
+        <div class="bg-neutral-950 aspect-square flex items-center justify-center">
+          <img src="images/2x2/eg1-sune-06.png" alt="" class="w-48 h-48 object-contain" />
+        </div>
+        <div class="p-4">
+          <p class="font-mono text-sm mb-1">R U R' U' R' F R F' R U R' U R U2' R'</p>
+          <p class="font-mono text-xs text-neutral-400">alt: [U2] R U' R U' R' U R' U' F R' F'</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+   <!-- EG-1 T -->
+  <section class="py-20">
+  <div class="max-w-6xl mx-auto px-6">
+    <h2 class="text-3xl font-semibold mb-10">EG-1 T</h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      
+      <!-- Card 1 -->
+      <div class="group bg-neutral-900 rounded-xl border border-neutral-800 overflow-hidden hover:border-indigo-500 transition">
+        <div class="bg-neutral-950 aspect-square flex items-center justify-center">
+          <img src="images/2x2/eg1-sune-01.png" alt="" class="w-48 h-48 object-contain" />
+        </div>
+        <div class="p-4">
+          <p class="font-mono text-sm mb-1">R U R' U R U2' R'</p>
+          <p class="font-mono text-xs text-neutral-400">alt: [U'] R' U2' R U R' U R</p>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="group bg-neutral-900 rounded-xl border border-neutral-800 overflow-hidden hover:border-indigo-500 transition">
+        <div class="bg-neutral-950 aspect-square flex items-center justify-center">
+          <img src="images/2x2/eg1-sune-02.png" alt="" class="w-48 h-48 object-contain" />
+        </div>
+        <div class="p-4">
+          <p class="font-mono text-sm mb-1">[U'] R' F R2 F' U' R' U' R2 U R'</p>
+          <p class="font-mono text-xs text-neutral-400">alt: [U2] R U R' U R' F R F' R U2' R'</p>
+        </div>
+      </div>
+      
+      <!-- Card 3 -->
+      <div class="group bg-neutral-900 rounded-xl border border-neutral-800 overflow-hidden hover:border-indigo-500 transition">
+        <div class="bg-neutral-950 aspect-square flex items-center justify-center">
+          <img src="images/2x2/eg1-sune-03.png" alt="" class="w-48 h-48 object-contain" />
+        </div>
+        <div class="p-4">
+          <p class="font-mono text-sm mb-1">F R' F' R U2 R U2' R'</p>
+          <!-- <p class="font-mono text-xs text-neutral-400">alt: R U2 R' U' R U' R'</p> -->
+        </div>
+      </div>
+      
+      <!-- Card 4 -->
+      <div class="group bg-neutral-900 rounded-xl border border-neutral-800 overflow-hidden hover:border-indigo-500 transition">
+        <div class="bg-neutral-950 aspect-square flex items-center justify-center">
+          <img src="images/2x2/eg1-sune-04.png" alt="" class="w-48 h-48 object-contain" />
+        </div>
+        <div class="p-4">
+          <p class="font-mono text-sm mb-1">R U' R' F R' F' R</p>
+          <!-- <p class="font-mono text-xs text-neutral-400">alt: R U2 R' U' R U' R'</p> -->
+        </div>
+      </div>
+      
+      <!-- Card 5 -->
+      <div class="group bg-neutral-900 rounded-xl border border-neutral-800 overflow-hidden hover:border-indigo-500 transition">
+        <div class="bg-neutral-950 aspect-square flex items-center justify-center">
+          <img src="images/2x2/eg1-sune-05.png" alt="" class="w-48 h-48 object-contain" />
+        </div>
+        <div class="p-4">
+          <p class="font-mono text-sm mb-1">R' F2 R U2' R U' R' F</p>
+          <!-- <p class="font-mono text-xs text-neutral-400">alt: R U2 R' U' R U' R'</p> -->
+        </div>
+      </div>
+      
+      <!-- Card 6 -->
+      <div class="group bg-neutral-900 rounded-xl border border-neutral-800 overflow-hidden hover:border-indigo-500 transition">
+        <div class="bg-neutral-950 aspect-square flex items-center justify-center">
+          <img src="images/2x2/eg1-sune-06.png" alt="" class="w-48 h-48 object-contain" />
+        </div>
+        <div class="p-4">
+          <p class="font-mono text-sm mb-1">R U R' U' R' F R F' R U R' U R U2' R'</p>
+          <p class="font-mono text-xs text-neutral-400">alt: [U2] R U' R U' R' U R' U' F R' F'</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+   <!-- EG-1 U -->
+  <section class="py-20 bg-neutral-900">
+    <div class="max-w-6xl mx-auto px-6">
+    <h2 class="text-3xl font-semibold mb-10">EG-1 U</h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      
+      <!-- Card 1 -->
+      <div class="group bg-neutral-900 rounded-xl border border-neutral-800 overflow-hidden hover:border-indigo-500 transition">
+        <div class="bg-neutral-950 aspect-square flex items-center justify-center">
+          <img src="images/2x2/eg1-sune-01.png" alt="" class="w-48 h-48 object-contain" />
+        </div>
+        <div class="p-4">
+          <p class="font-mono text-sm mb-1">R U R' U R U2' R'</p>
+          <p class="font-mono text-xs text-neutral-400">alt: [U'] R' U2' R U R' U R</p>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="group bg-neutral-900 rounded-xl border border-neutral-800 overflow-hidden hover:border-indigo-500 transition">
+        <div class="bg-neutral-950 aspect-square flex items-center justify-center">
+          <img src="images/2x2/eg1-sune-02.png" alt="" class="w-48 h-48 object-contain" />
+        </div>
+        <div class="p-4">
+          <p class="font-mono text-sm mb-1">[U'] R' F R2 F' U' R' U' R2 U R'</p>
+          <p class="font-mono text-xs text-neutral-400">alt: [U2] R U R' U R' F R F' R U2' R'</p>
+        </div>
+      </div>
+      
+      <!-- Card 3 -->
+      <div class="group bg-neutral-900 rounded-xl border border-neutral-800 overflow-hidden hover:border-indigo-500 transition">
+        <div class="bg-neutral-950 aspect-square flex items-center justify-center">
+          <img src="images/2x2/eg1-sune-03.png" alt="" class="w-48 h-48 object-contain" />
+        </div>
+        <div class="p-4">
+          <p class="font-mono text-sm mb-1">F R' F' R U2 R U2' R'</p>
+          <!-- <p class="font-mono text-xs text-neutral-400">alt: R U2 R' U' R U' R'</p> -->
+        </div>
+      </div>
+      
+      <!-- Card 4 -->
+      <div class="group bg-neutral-900 rounded-xl border border-neutral-800 overflow-hidden hover:border-indigo-500 transition">
+        <div class="bg-neutral-950 aspect-square flex items-center justify-center">
+          <img src="images/2x2/eg1-sune-04.png" alt="" class="w-48 h-48 object-contain" />
+        </div>
+        <div class="p-4">
+          <p class="font-mono text-sm mb-1">R U' R' F R' F' R</p>
+          <!-- <p class="font-mono text-xs text-neutral-400">alt: R U2 R' U' R U' R'</p> -->
+        </div>
+      </div>
+      
+      <!-- Card 5 -->
+      <div class="group bg-neutral-900 rounded-xl border border-neutral-800 overflow-hidden hover:border-indigo-500 transition">
+        <div class="bg-neutral-950 aspect-square flex items-center justify-center">
+          <img src="images/2x2/eg1-sune-05.png" alt="" class="w-48 h-48 object-contain" />
+        </div>
+        <div class="p-4">
+          <p class="font-mono text-sm mb-1">R' F2 R U2' R U' R' F</p>
+          <!-- <p class="font-mono text-xs text-neutral-400">alt: R U2 R' U' R U' R'</p> -->
+        </div>
+      </div>
+      
+      <!-- Card 6 -->
+      <div class="group bg-neutral-900 rounded-xl border border-neutral-800 overflow-hidden hover:border-indigo-500 transition">
+        <div class="bg-neutral-950 aspect-square flex items-center justify-center">
+          <img src="images/2x2/eg1-sune-06.png" alt="" class="w-48 h-48 object-contain" />
+        </div>
+        <div class="p-4">
+          <p class="font-mono text-sm mb-1">R U R' U' R' F R F' R U R' U R U2' R'</p>
+          <p class="font-mono text-xs text-neutral-400">alt: [U2] R U' R U' R' U R' U' F R' F'</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+  
+   <!-- EG-1 L -->
+  <section class="py-20">
+    <div class="max-w-6xl mx-auto px-6">
+    <h2 class="text-3xl font-semibold mb-10">EG-1 L</h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      
+      <!-- Card 1 -->
+      <div class="group bg-neutral-900 rounded-xl border border-neutral-800 overflow-hidden hover:border-indigo-500 transition">
+        <div class="bg-neutral-950 aspect-square flex items-center justify-center">
+          <img src="images/2x2/eg1-sune-01.png" alt="" class="w-48 h-48 object-contain" />
+        </div>
+        <div class="p-4">
+          <p class="font-mono text-sm mb-1">R U R' U R U2' R'</p>
+          <p class="font-mono text-xs text-neutral-400">alt: [U'] R' U2' R U R' U R</p>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="group bg-neutral-900 rounded-xl border border-neutral-800 overflow-hidden hover:border-indigo-500 transition">
+        <div class="bg-neutral-950 aspect-square flex items-center justify-center">
+          <img src="images/2x2/eg1-sune-02.png" alt="" class="w-48 h-48 object-contain" />
+        </div>
+        <div class="p-4">
+          <p class="font-mono text-sm mb-1">[U'] R' F R2 F' U' R' U' R2 U R'</p>
+          <p class="font-mono text-xs text-neutral-400">alt: [U2] R U R' U R' F R F' R U2' R'</p>
+        </div>
+      </div>
+      
+      <!-- Card 3 -->
+      <div class="group bg-neutral-900 rounded-xl border border-neutral-800 overflow-hidden hover:border-indigo-500 transition">
+        <div class="bg-neutral-950 aspect-square flex items-center justify-center">
+          <img src="images/2x2/eg1-sune-03.png" alt="" class="w-48 h-48 object-contain" />
+        </div>
+        <div class="p-4">
+          <p class="font-mono text-sm mb-1">F R' F' R U2 R U2' R'</p>
+          <!-- <p class="font-mono text-xs text-neutral-400">alt: R U2 R' U' R U' R'</p> -->
+        </div>
+      </div>
+      
+      <!-- Card 4 -->
+      <div class="group bg-neutral-900 rounded-xl border border-neutral-800 overflow-hidden hover:border-indigo-500 transition">
+        <div class="bg-neutral-950 aspect-square flex items-center justify-center">
+          <img src="images/2x2/eg1-sune-04.png" alt="" class="w-48 h-48 object-contain" />
+        </div>
+        <div class="p-4">
+          <p class="font-mono text-sm mb-1">R U' R' F R' F' R</p>
+          <!-- <p class="font-mono text-xs text-neutral-400">alt: R U2 R' U' R U' R'</p> -->
+        </div>
+      </div>
+      
+      <!-- Card 5 -->
+      <div class="group bg-neutral-900 rounded-xl border border-neutral-800 overflow-hidden hover:border-indigo-500 transition">
+        <div class="bg-neutral-950 aspect-square flex items-center justify-center">
+          <img src="images/2x2/eg1-sune-05.png" alt="" class="w-48 h-48 object-contain" />
+        </div>
+        <div class="p-4">
+          <p class="font-mono text-sm mb-1">R' F2 R U2' R U' R' F</p>
+          <!-- <p class="font-mono text-xs text-neutral-400">alt: R U2 R' U' R U' R'</p> -->
+        </div>
+      </div>
+      
+      <!-- Card 6 -->
+      <div class="group bg-neutral-900 rounded-xl border border-neutral-800 overflow-hidden hover:border-indigo-500 transition">
+        <div class="bg-neutral-950 aspect-square flex items-center justify-center">
+          <img src="images/2x2/eg1-sune-06.png" alt="" class="w-48 h-48 object-contain" />
+        </div>
+        <div class="p-4">
+          <p class="font-mono text-sm mb-1">R U R' U' R' F R F' R U R' U R U2' R'</p>
+          <p class="font-mono text-xs text-neutral-400">alt: [U2] R U' R U' R' U R' U' F R' F'</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+   <!-- EG-1 Pi -->
+  <section class="py-20 bg-neutral-900">
+    <div class="max-w-6xl mx-auto px-6">
+    <h2 class="text-3xl font-semibold mb-10">EG-1 Pi</h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      
+      <!-- Card 1 -->
+      <div class="group bg-neutral-900 rounded-xl border border-neutral-800 overflow-hidden hover:border-indigo-500 transition">
+        <div class="bg-neutral-950 aspect-square flex items-center justify-center">
+          <img src="images/2x2/eg1-sune-01.png" alt="" class="w-48 h-48 object-contain" />
+        </div>
+        <div class="p-4">
+          <p class="font-mono text-sm mb-1">R U R' U R U2' R'</p>
+          <p class="font-mono text-xs text-neutral-400">alt: [U'] R' U2' R U R' U R</p>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="group bg-neutral-900 rounded-xl border border-neutral-800 overflow-hidden hover:border-indigo-500 transition">
+        <div class="bg-neutral-950 aspect-square flex items-center justify-center">
+          <img src="images/2x2/eg1-sune-02.png" alt="" class="w-48 h-48 object-contain" />
+        </div>
+        <div class="p-4">
+          <p class="font-mono text-sm mb-1">[U'] R' F R2 F' U' R' U' R2 U R'</p>
+          <p class="font-mono text-xs text-neutral-400">alt: [U2] R U R' U R' F R F' R U2' R'</p>
+        </div>
+      </div>
+      
+      <!-- Card 3 -->
+      <div class="group bg-neutral-900 rounded-xl border border-neutral-800 overflow-hidden hover:border-indigo-500 transition">
+        <div class="bg-neutral-950 aspect-square flex items-center justify-center">
+          <img src="images/2x2/eg1-sune-03.png" alt="" class="w-48 h-48 object-contain" />
+        </div>
+        <div class="p-4">
+          <p class="font-mono text-sm mb-1">F R' F' R U2 R U2' R'</p>
+          <!-- <p class="font-mono text-xs text-neutral-400">alt: R U2 R' U' R U' R'</p> -->
+        </div>
+      </div>
+      
+      <!-- Card 4 -->
+      <div class="group bg-neutral-900 rounded-xl border border-neutral-800 overflow-hidden hover:border-indigo-500 transition">
+        <div class="bg-neutral-950 aspect-square flex items-center justify-center">
+          <img src="images/2x2/eg1-sune-04.png" alt="" class="w-48 h-48 object-contain" />
+        </div>
+        <div class="p-4">
+          <p class="font-mono text-sm mb-1">R U' R' F R' F' R</p>
+          <!-- <p class="font-mono text-xs text-neutral-400">alt: R U2 R' U' R U' R'</p> -->
+        </div>
+      </div>
+      
+      <!-- Card 5 -->
+      <div class="group bg-neutral-900 rounded-xl border border-neutral-800 overflow-hidden hover:border-indigo-500 transition">
+        <div class="bg-neutral-950 aspect-square flex items-center justify-center">
+          <img src="images/2x2/eg1-sune-05.png" alt="" class="w-48 h-48 object-contain" />
+        </div>
+        <div class="p-4">
+          <p class="font-mono text-sm mb-1">R' F2 R U2' R U' R' F</p>
+          <!-- <p class="font-mono text-xs text-neutral-400">alt: R U2 R' U' R U' R'</p> -->
+        </div>
+      </div>
+      
+      <!-- Card 6 -->
+      <div class="group bg-neutral-900 rounded-xl border border-neutral-800 overflow-hidden hover:border-indigo-500 transition">
+        <div class="bg-neutral-950 aspect-square flex items-center justify-center">
+          <img src="images/2x2/eg1-sune-06.png" alt="" class="w-48 h-48 object-contain" />
+        </div>
+        <div class="p-4">
+          <p class="font-mono text-sm mb-1">R U R' U' R' F R F' R U R' U R U2' R'</p>
+          <p class="font-mono text-xs text-neutral-400">alt: [U2] R U' R U' R' U R' U' F R' F'</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+   <!-- EG-1 H -->
+  <section class="py-20">
+    <div class="max-w-6xl mx-auto px-6">
+    <h2 class="text-3xl font-semibold mb-10">EG-1 H</h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-4 gap-6">
+      
+      <!-- Card 1 -->
+      <div class="group bg-neutral-900 rounded-xl border border-neutral-800 overflow-hidden hover:border-indigo-500 transition">
+        <div class="bg-neutral-950 aspect-square flex items-center justify-center">
+          <img src="images/2x2/eg1-sune-01.png" alt="" class="w-48 h-48 object-contain" />
+        </div>
+        <div class="p-4">
+          <p class="font-mono text-sm mb-1">R U R' U R U2' R'</p>
+          <p class="font-mono text-xs text-neutral-400">alt: [U'] R' U2' R U R' U R</p>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="group bg-neutral-900 rounded-xl border border-neutral-800 overflow-hidden hover:border-indigo-500 transition">
+        <div class="bg-neutral-950 aspect-square flex items-center justify-center">
+          <img src="images/2x2/eg1-sune-02.png" alt="" class="w-48 h-48 object-contain" />
+        </div>
+        <div class="p-4">
+          <p class="font-mono text-sm mb-1">[U'] R' F R2 F' U' R' U' R2 U R'</p>
+          <p class="font-mono text-xs text-neutral-400">alt: [U2] R U R' U R' F R F' R U2' R'</p>
+        </div>
+      </div>
+      
+      <!-- Card 3 -->
+      <div class="group bg-neutral-900 rounded-xl border border-neutral-800 overflow-hidden hover:border-indigo-500 transition">
+        <div class="bg-neutral-950 aspect-square flex items-center justify-center">
+          <img src="images/2x2/eg1-sune-03.png" alt="" class="w-48 h-48 object-contain" />
+        </div>
+        <div class="p-4">
+          <p class="font-mono text-sm mb-1">F R' F' R U2 R U2' R'</p>
+          <!-- <p class="font-mono text-xs text-neutral-400">alt: R U2 R' U' R U' R'</p> -->
+        </div>
+      </div>
+      
+      <!-- Card 4 -->
+      <div class="group bg-neutral-900 rounded-xl border border-neutral-800 overflow-hidden hover:border-indigo-500 transition">
+        <div class="bg-neutral-950 aspect-square flex items-center justify-center">
+          <img src="images/2x2/eg1-sune-04.png" alt="" class="w-48 h-48 object-contain" />
+        </div>
+        <div class="p-4">
+          <p class="font-mono text-sm mb-1">R U' R' F R' F' R</p>
+          <!-- <p class="font-mono text-xs text-neutral-400">alt: R U2 R' U' R U' R'</p> -->
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+  <!-- Footer -->
+  <footer class="py-10 text-center text-neutral-600 text-sm border-t border-neutral-800">
+    © 2026 Cubing Academy
+  </footer>
+
+</body>
+</html>
