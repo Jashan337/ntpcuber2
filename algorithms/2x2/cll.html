@@ -3,10 +3,89 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cubing Resources</title>
+  <title>NTP Cuber | Rubik's Cube Course & Coaching</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Sarabun:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
 
-  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
+  
+  <script>
+    // Configure Tailwind to use our new fonts
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'Sarabun', 'ui-sans-serif', 'system-ui'],
+          },
+        },
+      },
+    }
+
+    const content = {
+      en: {
+        nav: ['Home', 'Courses', 'Coaching', 'Resources', 'Contact'],
+        heroSubtitle: 'Master the Cube with structured courses, modern resources, and personal coaching.',
+        courseCards: [
+          { title: 'Beginner 3×3', price: '$19', desc: 'Learn to solve from zero with clear steps.' },
+          { title: 'Intermediate CFOP', price: '$39', desc: 'Improve efficiency and average times.' },
+          { title: 'Advanced Speedcubing', price: '$79', desc: 'Full CFOP, lookahead, and TPS training.' }
+        ],
+        coachingTitle: '1-on-1 Coaching',
+        coachingText: 'Book a private session tailored to your goals.',
+        resourcesTitle: 'Free Resources',
+        resourcesText: 'Algorithms, practice plans, and solving tips.',
+        contactTitle: 'Book a Coaching Session'
+      },
+      th: {
+        nav: ['หน้าแรก', 'คอร์สเรียน', 'เรียนตัวต่อตัว', 'แหล่งเรียนรู้', 'ติดต่อ'],
+        heroSubtitle: 'เชี่ยวชาญรูบิกส์คิวบ์ ด้วยคอร์สเรียนที่เป็นระบบ แหล่งเรียนรู้ทันสมัย และโค้ชส่วนตัว',
+        courseCards: [
+          { title: 'พื้นฐาน 3×3', price: '฿690', desc: 'เริ่มต้นแก้รูบิกส์ตั้งแต่ศูนย์' },
+          { title: 'ระดับกลาง CFOP', price: '฿1,390', desc: 'พัฒนาเทคนิคและความเร็ว' },
+          { title: 'ขั้นสูง Speedcubing', price: '฿2,790', desc: 'เทคนิคแข่งขันและการพัฒนาความเร็วการหมุน' }
+        ],
+        coachingTitle: 'โค้ชแบบตัวต่อตัว',
+        coachingText: 'จองเวลาสอนส่วนตัวตามเป้าหมายของคุณ',
+        resourcesTitle: 'แหล่งเรียนรู้ฟรี',
+        resourcesText: 'สูตรการหมุน แผนฝึก และเทคนิค',
+        contactTitle: 'จองคลาสโค้ช'
+      }
+    };
+
+    let currentLang = 'en';
+
+    function switchLang() {
+      currentLang = currentLang === 'en' ? 'th' : 'en';
+      applyLang();
+    }
+
+    function applyLang() {
+      const c = content[currentLang];
+      document.querySelectorAll('[data-nav]').forEach((el, i) => el.textContent = c.nav[i]);
+      document.getElementById('heroSubtitle').textContent = c.heroSubtitle;
+      document.getElementById('coachingTitle').textContent = c.coachingTitle;
+      document.getElementById('coachingText').textContent = c.coachingText;
+      document.getElementById('resourcesTitle').textContent = c.resourcesTitle;
+      document.getElementById('resourcesText').textContent = c.resourcesText;
+      document.getElementById('contactTitle').textContent = c.contactTitle;
+      document.getElementById('langBtnText').textContent = currentLang === 'en' ? 'TH' : 'EN';
+
+      const cards = document.getElementById('courseCards');
+      cards.innerHTML = '';
+      c.courseCards.forEach(card => {
+        cards.innerHTML += `
+          <div class="bg-neutral-900 rounded-xl p-6 border border-neutral-800 hover:border-indigo-500 transition-all duration-300">
+            <h3 class="text-xl font-semibold mb-2">${card.title}</h3>
+            <p class="text-neutral-400 mb-4">${card.desc}</p>
+            <div class="text-2xl font-bold text-indigo-400">${card.price}</div>
+          </div>`;
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', applyLang);
+  </script>
 </head>
 <body class="bg-neutral-950 text-neutral-100 font-sans">
 
