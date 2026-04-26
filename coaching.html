@@ -24,13 +24,15 @@
         const translations = {
             en: {
                 title: "Elite Speedcubing Coaching",
-                subtitle: "Master advanced methods like EO to ZB, X-cross, and Domino Reduction with personalized training.",
+                subtitle: "Master advanced methods like EO to ZB, X-cross, and Domino Reduction.",
                 pricingTitle: "Coaching Options",
                 bookTitle: "Reserve Your Session",
                 formName: "Full Name",
                 formEmail: "Email Address",
                 formService: "Select Service",
                 formButton: "Confirm Booking",
+                sending: "Sending...",
+                success: "Success! Check your email soon.",
                 services: [
                     { name: "Solve Critique (Video Analysis)", price: "฿160", desc: "Detailed breakdown of 5 recorded solves." },
                     { name: "Live 1-on-1 Session (1 Hour)", price: "฿400", desc: "Interactive coaching via video call." },
@@ -39,13 +41,15 @@
             },
             th: {
                 title: "สอนรูบิกส์ระดับมืออาชีพ",
-                subtitle: "ฝึกฝนเทคนิคขั้นสูง เช่น EO to ZB, X-cross และ Domino Reduction ด้วยการสอนส่วนตัว",
+                subtitle: "ฝึกฝนเทคนิคขั้นสูง เช่น EO to ZB, X-cross และ Domino Reduction",
                 pricingTitle: "แพ็กเกจการสอน",
                 bookTitle: "จองเวลาเรียนของคุณ",
                 formName: "ชื่อ-นามสกุล",
                 formEmail: "อีเมล",
                 formService: "เลือกบริการ",
                 formButton: "ยืนยันการจอง",
+                sending: "กำลังส่ง...",
+                success: "สำเร็จ! โปรดรอการติดต่อกลับทางอีเมล",
                 services: [
                     { name: "ตรวจการแก้ (Video Analysis)", price: "฿160", desc: "วิเคราะห์การแก้ 5 รอบอย่างละเอียด" },
                     { name: "สอนสดตัวต่อตัว (1 ชั่วโมง)", price: "฿400", desc: "เรียนสดผ่านวิดีโอคอลแบบโต้ตอบ" },
@@ -55,10 +59,47 @@
         };
 
         let currentLang = 'en';
+        const SCRIPT_URL = 'YOUR_SCRIPT_URL_HERE'; // 👈 PASTE YOUR URL HERE
 
         function toggleLang() {
             currentLang = currentLang === 'en' ? 'th' : 'en';
             render();
+        }
+
+        async function handleSubmit(event) {
+            event.preventDefault();
+            const btn = document.getElementById('submit-btn');
+            const content = translations[currentLang];
+            
+            const data = {
+                name: document.getElementById('input-name').value,
+                email: document.getElementById('input-email').value,
+                service: document.getElementById('service-select').value
+            };
+
+            btn.disabled = true;
+            btn.innerText = content.sending;
+
+            try {
+                // We use no-cors to avoid Google Apps Script CORS issues, 
+                // but we check result via Sheets manually or use a simple success message.
+                await fetch(SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors', 
+                    cache: 'no-cache',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                
+                alert(content.success);
+                event.target.reset();
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Error connecting to server.');
+            } finally {
+                btn.disabled = false;
+                btn.innerText = content.formButton;
+            }
         }
 
         function render() {
@@ -122,14 +163,14 @@
     <section id="book" class="py-24 px-6 bg-neutral-950 border-t border-neutral-900">
         <div class="max-w-3xl mx-auto">
             <h2 id="booking-title" class="text-3xl font-bold mb-12 text-center"></h2>
-            <form class="space-y-6">
+            <form onsubmit="handleSubmit(event)" class="space-y-6">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <input type="text" id="input-name" required class="bg-neutral-900 border border-neutral-800 p-4 rounded-xl focus:outline-none focus:border-blue-500 transition" />
-                    <input type="email" id="input-email" required class="bg-neutral-900 border border-neutral-800 p-4 rounded-xl focus:outline-none focus:border-blue-500 transition" />
+                    <input type="text" id="input-name" name="name" required class="bg-neutral-900 border border-neutral-800 p-4 rounded-xl focus:outline-none focus:border-blue-500 transition" />
+                    <input type="email" id="input-email" name="email" required class="bg-neutral-900 border border-neutral-800 p-4 rounded-xl focus:outline-none focus:border-blue-500 transition" />
                 </div>
-                <select id="service-select" required class="w-full bg-neutral-900 border border-neutral-800 p-4 rounded-xl focus:outline-none focus:border-blue-500 transition">
+                <select id="service-select" name="service" required class="w-full bg-neutral-900 border border-neutral-800 p-4 rounded-xl focus:outline-none focus:border-blue-500 transition">
                 </select>
-                <button type="submit" id="submit-btn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-xl transition"></button>
+                <button type="submit" id="submit-btn" class="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-neutral-700 text-white font-bold py-4 rounded-xl transition"></button>
             </form>
         </div>
     </section>
