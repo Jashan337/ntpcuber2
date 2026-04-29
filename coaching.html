@@ -231,13 +231,38 @@
 </head>
 <body class="bg-black text-white">
 
+    <!-- Navbar -->
+  <header class="sticky top-0 z-50 bg-neutral-900/80 backdrop-blur-md border-b border-neutral-800/50">
+    <div class="max-w-6xl mx-auto flex items-center justify-between px-6 py-4">
+      <div class="font-bold text-xl tracking-tighter">NTP Cuber <span class="text-blue-500">Academy</span></div>
+      <nav class="hidden md:flex gap-8 text-sm font-medium">
+        <a href="index.html" data-nav class="text-neutral-400 hover:text-indigo-400 transition-colors"></a>
+        <a href="#courses" data-nav class="text-neutral-400 hover:text-indigo-400 transition-colors"></a>
+        <a href="#coaching" data-nav class="text-neutral-400 hover:text-indigo-400 transition-colors"></a>
+        <a href="resources.html" data-nav class="text-neutral-400 hover:text-indigo-400 transition-colors"></a>
+        <a href="#contact" data-nav class="text-neutral-400 hover:text-indigo-400 transition-colors"></a>
+      </nav>
+      
+      <button
+        id="langBtn"
+        type="button"
+        onclick="switchLang()"
+        class="flex items-center gap-2 rounded-full border border-neutral-700 bg-neutral-900 px-4 py-1.5 text-xs font-bold uppercase tracking-widest hover:border-indigo-500 hover:text-indigo-400 transition-all"
+      >
+        <span id="langBtnText">TH</span>
+      </button>
+    </div>
+  </header>
+    
+    <!-- Comment out
     <nav class="sticky top-0 z-50 bg-black/80 backdrop-blur-md border-b border-neutral-900 px-6 py-4">
         <div class="max-w-6xl mx-auto flex justify-between items-center">
             <div class="text-xl font-bold tracking-tighter uppercase">NTP Cuber<span class="text-blue-500">Academy</span></div>
             <button onclick="toggleLang()" id="lang-btn" class="bg-neutral-800 hover:bg-neutral-700 px-4 py-1 rounded-full text-xs font-bold transition">TH</button>
         </div>
     </nav>
-
+    -->
+    
     <section class="relative pt-32 pb-24 px-6 text-center">
         <div class="absolute inset-x-0 top-0 h-96 bg-blue-600/10 blur-[120px] rounded-full -z-10"></div>
         <div class="max-w-4xl mx-auto">
