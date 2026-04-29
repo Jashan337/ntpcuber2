@@ -102,7 +102,7 @@
             const content = translations[currentLang];
             
             const selectedDays = Array.from(document.querySelectorAll('#available-date input:checked')).map(el => el.value);
-
+            
             const data = {
                 name: document.getElementById('input-name').value,
                 email: document.getElementById('input-email').value,
@@ -112,8 +112,18 @@
                 secondaryTime: document.getElementById('secondary-time').value,
                 videoLink: document.getElementById('video-link').value,
                 wcaEvent: document.getElementById('wca-event').value
+        
         };
-
+        if (data.service.includes('Solve Critique')) {
+            data.availableDate = ""
+            data.preferredTime = ""
+            data.secondaryTime = ""
+            data.videoLink = ""
+            data.wcaEvent = ""
+        }
+        else {
+            data.videoLink = ""
+        }
 
             btn.disabled = true;
             btn.innerText = content.sending;
@@ -178,7 +188,7 @@
             const select = document.getElementById(selectId);
             select.innerHTML = '<option value="">Select time</option>';
 
-            for (let h = 0; h <= 24; h++) {
+            for (let h = 0; h <= 23; h++) {
                 for (let m of [0, 30]) {
                     if (h === 24 && m === 30) continue;
 
