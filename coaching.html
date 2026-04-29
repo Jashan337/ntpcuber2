@@ -34,7 +34,7 @@
                 sending: "Sending...",
                 success: "Success! Check your email soon.",
                 services: [
-                    { name: "Solve Critique (Video Analysis)", price: "฿160", desc: "Detailed breakdown of 5 recorded solves." },
+                    { name: "Solve Critique (Video Analysis)", price: "฿200", desc: "Detailed breakdown of 5 recorded solves." },
                     { name: "Live 1-on-1 Session (1 Hour)", price: "฿400", desc: "Interactive coaching via video call." },
                     { name: "Mastery Pack (4 Sessions)", price: "฿1,440", desc: "Comprehensive progression with custom drills." }
                 ]
@@ -80,7 +80,9 @@
                 availableDate: selectedDays,
                 preferredTime: document.getElementById('preferred-time').value,
                 secondaryTime: document.getElementById('secondary-time').value
-            };
+                videoLink: document.getElementById('video-link').value,
+                wcaEvent: document.getElementById('wca-event').value
+        };
 
 
             btn.disabled = true;
@@ -182,37 +184,42 @@
 
         function setupServiceLogic() {
             const serviceSelect = document.getElementById('service-select');
+
             const availability = document.getElementById('availability-group');
             const timeGroup = document.getElementById('time-group');
+            const videoGroup = document.getElementById('video-group');
+            const wcaGroup = document.getElementById('wca-group');
 
-            // Always start hidden (extra safety)
+            // Force all hidden on load (safe default)
             availability.classList.add('hidden');
             timeGroup.classList.add('hidden');
+            videoGroup.classList.add('hidden');
+            wcaGroup.classList.add('hidden');
 
             function updateVisibility() {
                 const selected = serviceSelect.value.toLowerCase();
 
-                // If nothing selected → stay hidden
-                if (!selected) {
-                    availability.classList.add('hidden');
-                    timeGroup.classList.add('hidden');
-                    return;
-                }
+                // Reset all hidden
+                availability.classList.add('hidden');
+                timeGroup.classList.add('hidden');
+                videoGroup.classList.add('hidden');
+                wcaGroup.classList.add('hidden');
 
-                // If NOT solve critique → show
-                if (!selected.includes('solve critique')) {
+                if (!selected) return;
+
+                if (selected.includes('solve critique')) {
+                    // Show ONLY video input
+                    videoGroup.classList.remove('hidden');
+                } else {
+                    // Show normal booking fields
                     availability.classList.remove('hidden');
                     timeGroup.classList.remove('hidden');
-                } 
-                else {
-                    availability.classList.add('hidden');
-                    timeGroup.classList.add('hidden');
+                    wcaGroup.classList.remove('hidden');
                 }
             }
 
             serviceSelect.addEventListener('change', updateVisibility);
         }
-
 
         document.addEventListener('DOMContentLoaded', () => {
             render();
@@ -227,7 +234,7 @@
 
     <nav class="sticky top-0 z-50 bg-black/80 backdrop-blur-md border-b border-neutral-900 px-6 py-4">
         <div class="max-w-6xl mx-auto flex justify-between items-center">
-            <div class="text-xl font-bold tracking-tighter uppercase">NTP<span class="text-blue-500">Cuber</span></div>
+            <div class="text-xl font-bold tracking-tighter uppercase">NTP Cuber<span class="text-blue-500">Academy</span></div>
             <button onclick="toggleLang()" id="lang-btn" class="bg-neutral-800 hover:bg-neutral-700 px-4 py-1 rounded-full text-xs font-bold transition">TH</button>
         </div>
     </nav>
@@ -257,9 +264,42 @@
                 </div>
                 <select id="service-select" name="service" required class="w-full bg-neutral-900 border border-neutral-800 p-4 rounded-xl focus:outline-none focus:border-blue-500 transition">
                 </select>
+                
+                <!-- Video Link (only for Solve Critique) -->
+                <div id="video-group" class="hidden">
+                  <label class="block mb-2">🔗 Video Link</label>
+                  <input 
+                    type="url" 
+                    id="video-link"
+                    placeholder="Paste your solve video link here"
+                    class="w-full bg-neutral-900 border border-neutral-800 p-4 rounded-xl focus:outline-none focus:border-blue-500 transition"
+                  />
+                </div>
+
+                <!-- WCA Event -->
+                <div id="wca-group" class="hidden">
+                  <label class="block mb-2">🏆 WCA Event</label>
+                  <select id="wca-event" class="w-full bg-neutral-900 border border-neutral-800 p-4 rounded-xl">
+                    <option value="">Select event</option>
+                    <option>3x3</option>
+                    <option>2x2</option>
+                    <option>4x4</option>
+                    <option>5x5</option>
+                    <option>6x6</option>
+                    <option>7x7</option>
+                    <option>OH (One-Handed)</option>
+                    <option>Blindfolded</option>
+                    <option>Skewb</option>
+                    <option>Pyraminx</option>
+                    <option>Square-1</option>
+                    <option>Clock</option>
+                    <option>Megaminx</option>
+                  </select>
+                </div>
+
                 <!-- Available Date -->
                 <div id="availability-group" class="hidden">
-                  <label class="block mb-3">Available Date</label>
+                  <label class="block mb-3">&#128198 Available Date</label>
                   <div id="available-date" class="flex flex-wrap gap-3">
     
                     <label class="cursor-pointer">
@@ -299,18 +339,17 @@
 
                   </div>
                 </div>
-                ``
 
                 <div id="time-group" class="hidden space-y-6">
                 <!-- Primary -->
                   <div>
-                    <label class="block mb-2">Most Preferred Starting Time</label>
+                    <label class="block mb-2">⏰ Most Preferred Starting Time</label>
                     <select id="preferred-time" class="w-full bg-neutral-900 border border-neutral-800 p-4 rounded-xl"></select>
                   </div>
 
                   <!-- Secondary -->
                   <div>
-                    <label class="block mb-2">Secondary Preferred Starting Time</label>
+                    <label class="block mb-2">🕰️ Secondary Preferred Starting Time</label>
                     <select id="secondary-time" class="w-full bg-neutral-900 border border-neutral-800 p-4 rounded-xl"></select>
                   </div>
                 </div>
