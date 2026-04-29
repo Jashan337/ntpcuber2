@@ -79,7 +79,7 @@
                 service: document.getElementById('service-select').value,
                 availableDate: selectedDays,
                 preferredTime: document.getElementById('preferred-time').value,
-                secondaryTime: document.getElementById('secondary-time').value
+                secondaryTime: document.getElementById('secondary-time').value,
                 videoLink: document.getElementById('video-link').value,
                 wcaEvent: document.getElementById('wca-event').value
         };
@@ -184,7 +184,6 @@
 
         function setupServiceLogic() {
             const serviceSelect = document.getElementById('service-select');
-
             const availability = document.getElementById('availability-group');
             const timeGroup = document.getElementById('time-group');
             const videoGroup = document.getElementById('video-group');
