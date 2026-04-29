@@ -20,7 +20,7 @@
                 },
             },
         }
-        const content = {
+        const cnt = {
             en: {
                 nav: ['Home', 'Courses (Coming Soon)', 'Coaching', 'Resources', 'Contact'],
                 heroSubtitle: 'Master the Cube with structured courses, modern resources, and personal coaching.',
@@ -141,6 +141,9 @@
         }
 
         function render() {
+            const c = cnt[currentLang];
+            document.querySelectorAll('[data-nav]').forEach((el, i) => el.textContent = c.nav[i]);
+            
             const content = translations[currentLang];
             document.getElementById('main-title').innerText = content.title;
             document.getElementById('main-subtitle').innerText = content.subtitle;
