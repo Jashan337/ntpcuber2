@@ -88,187 +88,203 @@
             }
         };
 
-        let currentLang = 'en';
-        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwwqbpCMgiHXTgaCYfqt2z3WWfIdE6AEpUcf5pvsYHh5ZMF7a5lzWJYP8W0NFjsT4B0/exec'; // 👈 PASTE YOUR URL HERE
+        // ... (Keep your 'cnt' and 'translations' objects exactly as they are) ...
 
-        function toggleLang() {
-            currentLang = currentLang === 'en' ? 'th' : 'en';
-            render();
-        }
+            let currentLang = 'en';
+            const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwwqbpCMgiHXTgaCYfqt2z3WWfIdE6AEpUcf5pvsYHh5ZMF7a5lzWJYP8W0NFjsT4B0/exec';
 
-        async function handleSubmit(event) {
-            event.preventDefault();
-            const btn = document.getElementById('submit-btn');
-            const content = translations[currentLang];
-            
-            const selectedDays = Array.from(document.querySelectorAll('#available-date input:checked')).map(el => el.value);
-            
-            const data = {
-                name: document.getElementById('input-name').value,
-                email: document.getElementById('input-email').value,
-                service: document.getElementById('service-select').value,
-                availableDate: selectedDays,
-                preferredTime: document.getElementById('preferred-time').value,
-                secondaryTime: document.getElementById('secondary-time').value,
-                videoLink: document.getElementById('video-link').value,
-                wcaEvent: document.getElementById('wca-event').value
-        
-        };
-        if (data.service.includes('Solve Critique')) {
-            data.availableDate = ""
-            data.preferredTime = ""
-            data.secondaryTime = ""
-            data.wcaEvent = ""
-        }
-        else {
-            data.videoLink = ""
-        }
+            function toggleLang() {
+                currentLang = currentLang === 'en' ? 'th' : 'en';
+                render();
+                // Re-run visibility logic after re-rendering options to ensure required states stay in sync
+                const serviceSelect = document.getElementById('service-select');
+                serviceSelect.dispatchEvent(new Event('change'));
+            }
 
-            btn.disabled = true;
-            btn.innerText = content.sending;
-
-            try {
-                // We use no-cors to avoid Google Apps Script CORS issues, 
-                // but we check result via Sheets manually or use a simple success message.
-                await fetch(SCRIPT_URL, {
-                    method: 'POST',
-                    mode: 'no-cors', 
-                    cache: 'no-cache',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(data)
-                });
+            async function handleSubmit(event) {
+                event.preventDefault();
+                const btn = document.getElementById('submit-btn');
+                const content = translations[currentLang];
                 
-                alert(content.success);
-                event.target.reset();
-            } catch (error) {
-                console.error('Error:', error);
-                alert('Error connecting to server.');
-            } finally {
-                btn.disabled = false;
-                btn.innerText = content.formButton;
-            }
-        }
-
-        function render() {
-            const c = cnt[currentLang];
-            document.querySelectorAll('[data-nav]').forEach((el, i) => el.textContent = c.nav[i]);
-            
-            const content = translations[currentLang];
-            document.getElementById('main-title').innerText = content.title;
-            document.getElementById('main-subtitle').innerText = content.subtitle;
-            document.getElementById('pricing-title').innerText = content.pricingTitle;
-            document.getElementById('booking-title').innerText = content.bookTitle;
-            document.getElementById('lang-btn').innerText = currentLang === 'en' ? 'TH' : 'EN';
-            
-            const grid = document.getElementById('pricing-grid');
-            grid.innerHTML = '';
-            content.services.forEach(s => {
-                grid.innerHTML += `
-                    <div class="bg-neutral-900 border border-neutral-800 p-8 rounded-2xl hover:border-blue-500 transition duration-300">
-                        <h3 class="text-xl font-bold text-white mb-2">${s.name}</h3>
-                        <p class="text-neutral-400 text-sm mb-6">${s.desc}</p>
-                        <div class="text-3xl font-bold text-blue-500">${s.price}</div>
-                    </div>
-                `;
-            });
-
-            const select = document.getElementById('service-select');
-            select.innerHTML = `<option value="" disabled selected>${content.formService}</option>`;
-            content.services.forEach(s => {
-                select.innerHTML += `<option value="${s.name}">${s.name} - ${s.price}</option>`;
-            });
-
-            document.getElementById('input-name').placeholder = content.formName;
-            document.getElementById('input-email').placeholder = content.formEmail;
-            document.getElementById('submit-btn').innerText = content.formButton;
-        }
-
-        function generateTimeOptions(selectId) {
-            const select = document.getElementById(selectId);
-            select.innerHTML = '<option value="">Select time</option>';
-
-            for (let h = 0; h <= 23; h++) {
-                for (let m of [0, 30]) {
-                    if (h === 24 && m === 30) continue;
-
-                    let hour = String(h).padStart(2, '0');
-                    let min = String(m).padStart(2, '0');
-
-                    let value = `${hour}:${min}`;
-
-                    let option = document.createElement('option');
-                    option.value = value;
-                    option.textContent = value;
-
-                    select.appendChild(option);
+                const serviceValue = document.getElementById('service-select').value.toLowerCase();
+                const selectedDays = Array.from(document.querySelectorAll('#available-date input:checked')).map(el => el.value);
+                
+                // VALIDATION: If it's not a critique, ensure at least one day is picked
+                if (!serviceValue.includes('solve critique') && selectedDays.length === 0) {
+                    alert(currentLang === 'en' ? 'Please select at least one available day.' : 'กรุณาเลือกวันที่คุณสะดวกอย่างน้อย 1 วัน');
+                    return; // Stop the form from sending
                 }
-            }
-        }
+                
+                const data = {
+                    name: document.getElementById('input-name').value,
+                    email: document.getElementById('input-email').value,
+                    service: document.getElementById('service-select').value,
+                    availableDate: selectedDays,
+                    preferredTime: document.getElementById('preferred-time').value,
+                    secondaryTime: document.getElementById('secondary-time').value,
+                    videoLink: document.getElementById('video-link').value,
+                    wcaEvent: document.getElementById('wca-event').value
+                };
 
-        function preventSameTime() {
-            const primary = document.getElementById('preferred-time');
-            const secondary = document.getElementById('secondary-time');
-
-            primary.addEventListener('change', () => {
-                if (primary.value === secondary.value) {
-                    alert('Primary and secondary time cannot be the same');
-                    primary.value = '';
-                }
-            });
-
-            secondary.addEventListener('change', () => {
-                if (primary.value === secondary.value) {
-                    alert('Primary and secondary time cannot be the same');
-                    secondary.value = '';
-                }
-            });
-        }
-
-        function setupServiceLogic() {
-            const serviceSelect = document.getElementById('service-select');
-            const availability = document.getElementById('availability-group');
-            const timeGroup = document.getElementById('time-group');
-            const videoGroup = document.getElementById('video-group');
-            const wcaGroup = document.getElementById('wca-group');
-
-            // Force all hidden on load (safe default)
-            availability.classList.add('hidden');
-            timeGroup.classList.add('hidden');
-            videoGroup.classList.add('hidden');
-            wcaGroup.classList.add('hidden');
-
-            function updateVisibility() {
-                const selected = serviceSelect.value.toLowerCase();
-
-                // Reset all hidden
-                availability.classList.add('hidden');
-                timeGroup.classList.add('hidden');
-                videoGroup.classList.add('hidden');
-                wcaGroup.classList.add('hidden');
-
-                if (!selected) return;
-
-                if (selected.includes('solve critique')) {
-                    // Show ONLY video input
-                    videoGroup.classList.remove('hidden');
+                // Clean data before sending based on service type
+                if (serviceValue.includes('solve critique')) {
+                    data.availableDate = "";
+                    data.preferredTime = "";
+                    data.secondaryTime = "";
+                    data.wcaEvent = "";
                 } else {
-                    // Show normal booking fields
-                    availability.classList.remove('hidden');
-                    timeGroup.classList.remove('hidden');
-                    wcaGroup.classList.remove('hidden');
+                    data.videoLink = "";
+                }
+
+                btn.disabled = true;
+                btn.innerText = content.sending;
+
+                try {
+                    await fetch(SCRIPT_URL, {
+                        method: 'POST',
+                        mode: 'no-cors', 
+                        cache: 'no-cache',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(data)
+                    });
+                    
+                    alert(content.success);
+                    event.target.reset();
+                    // Reset visibility after form reset
+                    document.getElementById('service-select').dispatchEvent(new Event('change'));
+                } catch (error) {
+                    console.error('Error:', error);
+                    alert('Error connecting to server.');
+                } finally {
+                    btn.disabled = false;
+                    btn.innerText = content.formButton;
                 }
             }
 
-            serviceSelect.addEventListener('change', updateVisibility);
-        }
+            function render() {
+                const c = cnt[currentLang];
+                document.querySelectorAll('[data-nav]').forEach((el, i) => el.textContent = c.nav[i]);
+                
+                const content = translations[currentLang];
+                document.getElementById('main-title').innerText = content.title;
+                document.getElementById('main-subtitle').innerText = content.subtitle;
+                document.getElementById('pricing-title').innerText = content.pricingTitle;
+                document.getElementById('booking-title').innerText = content.bookTitle;
+                document.getElementById('lang-btn').innerText = currentLang === 'en' ? 'TH' : 'EN';
+                
+                const grid = document.getElementById('pricing-grid');
+                grid.innerHTML = '';
+                content.services.forEach(s => {
+                    grid.innerHTML += `
+                        <div class="bg-neutral-900 border border-neutral-800 p-8 rounded-2xl hover:border-blue-500 transition duration-300">
+                            <h3 class="text-xl font-bold text-white mb-2">${s.name}</h3>
+                            <p class="text-neutral-400 text-sm mb-6">${s.desc}</p>
+                            <div class="text-3xl font-bold text-blue-500">${s.price}</div>
+                        </div>
+                    `;
+                });
 
-        document.addEventListener('DOMContentLoaded', () => {
-            render();
-            generateTimeOptions('preferred-time');
-            generateTimeOptions('secondary-time');
-            preventSameTime();
-            setupServiceLogic();
-        });
+                const select = document.getElementById('service-select');
+                const currentValue = select.value; // Save selection before re-rendering
+                select.innerHTML = `<option value="" disabled selected>${content.formService}</option>`;
+                content.services.forEach(s => {
+                    select.innerHTML += `<option value="${s.name}">${s.name} - ${s.price}</option>`;
+                });
+                if(currentValue) select.value = currentValue;
+
+                document.getElementById('input-name').placeholder = content.formName;
+                document.getElementById('input-email').placeholder = content.formEmail;
+                document.getElementById('submit-btn').innerText = content.formButton;
+            }
+
+            function generateTimeOptions(selectId) {
+                const select = document.getElementById(selectId);
+                select.innerHTML = '<option value="">Select time</option>';
+                // Loop until 23:30
+                for (let h = 0; h <= 23; h++) {
+                    for (let m of [0, 30]) {
+                        let hour = String(h).padStart(2, '0');
+                        let min = String(m).padStart(2, '0');
+                        let value = `${hour}:${min}`;
+                        let option = document.createElement('option');
+                        option.value = value;
+                        option.textContent = value;
+                        select.appendChild(option);
+                    }
+                }
+            }
+
+            function setupServiceLogic() {
+                const serviceSelect = document.getElementById('service-select');
+                
+                // Select all groups
+                const groups = {
+                    video: document.getElementById('video-group'),
+                    availability: document.getElementById('availability-group'),
+                    time: document.getElementById('time-group'),
+                    wca: document.getElementById('wca-group')
+                };
+
+                function updateVisibility() {
+                    const selected = serviceSelect.value.toLowerCase();
+
+                    // Step 1: Hide EVERYTHING and strip ALL required attributes
+                    Object.values(groups).forEach(group => {
+                        group.classList.add('hidden');
+                        // This finds every input, select, and textarea inside the group
+                        const inputs = group.querySelectorAll('input, select, textarea');
+                        inputs.forEach(input => {
+                            input.required = false;
+                            // Optional: Clear values of hidden inputs so they don't send old data
+                            // if (input.type !== 'checkbox') input.value = ''; 
+                        });
+                    });
+
+                    if (!selected) return;
+
+                    // Step 2: Enable only what we need
+                    if (selected.includes('solve critique')) {
+                        groups.video.classList.remove('hidden');
+                        groups.video.querySelector('input').required = true;
+                    } else {
+                        // Show normal booking fields
+                        groups.availability.classList.remove('hidden');
+                        groups.time.classList.remove('hidden');
+                        groups.wca.classList.remove('hidden');
+
+                        // 1. Make WCA Event required
+                        groups.wca.querySelector('select').required = true;
+
+                        // 2. Make Time Selects required
+                        groups.time.querySelectorAll('select').forEach(s => s.required = true);
+                            
+                        // 3. For Checkboxes: We don't use the 'required' attribute 
+                        // because it forces the user to check EVERY box. 
+                        // We will validate this in the handleSubmit function instead.
+                        }
+                }
+
+                serviceSelect.addEventListener('change', updateVisibility);
+            }
+
+            document.addEventListener('DOMContentLoaded', () => {
+                render();
+                generateTimeOptions('preferred-time');
+                generateTimeOptions('secondary-time');
+                setupServiceLogic();
+                
+                // Prevent same time selection
+                const primary = document.getElementById('preferred-time');
+                const secondary = document.getElementById('secondary-time');
+                [primary, secondary].forEach(el => {
+                    el.addEventListener('change', () => {
+                        if (primary.value && secondary.value && primary.value === secondary.value) {
+                            alert('Primary and secondary time cannot be the same');
+                            el.value = '';
+                        }
+                    });
+                });
+            });
     </script>
 </head>
 <body class="bg-black text-white">
@@ -335,6 +351,7 @@
                 <div id="video-group" class="hidden">
                   <label class="block mb-2">🔗 Video Link</label>
                   <input 
+                    required
                     type="url" 
                     id="video-link"
                     placeholder="Paste your solve video link here"
@@ -365,7 +382,7 @@
 
                 <!-- Available Date -->
                 <div id="availability-group" class="hidden">
-                  <label class="block mb-3">&#128198 Available Date</label>
+                  <label class="block mb-3">&#128198 Available Day</label>
                   <div id="available-date" class="flex flex-wrap gap-3">
     
                     <label class="cursor-pointer">
@@ -424,5 +441,20 @@
         </div>
     </section>
 
+    <script>
+        function toggleInput(show) {
+            const vidInput = document.getElementById('video-link');
+            const vidWrapper = document.getElementById('video-group');
+
+            if (show) {
+                vidWrapper.style.display = 'block';
+                vidInput.required = true;
+            } 
+            else {
+                vidWrapper.style.display = 'none';
+                vidInput.required = false; // This prevents the validation error
+            }
+        }
+    </script>
 </body>
 </html>
