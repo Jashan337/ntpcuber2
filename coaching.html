@@ -185,21 +185,32 @@
             const availability = document.getElementById('availability-group');
             const timeGroup = document.getElementById('time-group');
 
+            // Always start hidden (extra safety)
+            availability.classList.add('hidden');
+            timeGroup.classList.add('hidden');
+
             function updateVisibility() {
                 const selected = serviceSelect.value.toLowerCase();
 
-                if (selected.includes('solve critique (video analysis)')) {
+                // If nothing selected → stay hidden
+                if (!selected) {
                     availability.classList.add('hidden');
                     timeGroup.classList.add('hidden');
-                } 
-                else {
+                    return;
+                }
+
+                // If NOT solve critique → show
+                if (!selected.includes('solve critique')) {
                     availability.classList.remove('hidden');
                     timeGroup.classList.remove('hidden');
+                } 
+                else {
+                    availability.classList.add('hidden');
+                    timeGroup.classList.add('hidden');
                 }
             }
 
             serviceSelect.addEventListener('change', updateVisibility);
-            updateVisibility();
         }
 
 
