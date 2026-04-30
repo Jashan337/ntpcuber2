@@ -41,7 +41,10 @@
         resourcesTitle: 'Free Resources',
         resourcesTitle: 'Free Resources',
         resourcesText: 'Algorithms, practice plans, and solving tips.',
-        contactTitle: 'Book a Coaching Session'
+        contactTitle: 'Book a Coaching Session',
+        introTitle: 'About Me',
+        introText1: 'Hi, I’m Natthaphat Mahtani. I am a competitive speedcuber dedicated to helping others break their personal records through structured, logic-based, and fun training.',
+        introText2: 'This website provides a complete ecosystem for cubers: from beginner courses to advanced techniques like Domino Reduction and ZBLL, plus 1-on-1 coaching to refine your hardware and execution.'
       },
       th: {
         nav: ['หน้าแรก', 'คอร์สเรียน', 'เรียนตัวต่อตัว', 'แหล่งเรียนรู้', 'ติดต่อ'],
@@ -55,7 +58,10 @@
         coachingText: 'จองเวลาสอนส่วนตัวตามเป้าหมายของคุณ',
         resourcesTitle: 'แหล่งเรียนรู้ฟรี',
         resourcesText: 'สูตรการหมุน แผนฝึก และเทคนิค',
-        contactTitle: 'จองคลาสโค้ช'
+        contactTitle: 'จองคลาสโค้ช',
+        introTitle: 'เกี่ยวกับผม',
+        introText1: 'สวัสดีครับผมณัฐภัทร มาทานี ผมเป็นนักแข่งรูบิกที่มุ่งเน้นการช่วยให้ทุกคนทำลายสถิติส่วนตัวด้วยการฝึกฝนอย่างเป็นระบบและมีความสนุกไปกับการฝึก',
+        introText2: 'เว็บไซต์นี้เป็นแหล่งรวมทุกอย่างสำหรับผู้ที่สนใจพัฒนาความสามารถด้านรูบิก ตั้งแต่คอร์สพื้นฐานไปจนถึงเทคนิคขั้นสูงอย่าง Domino Reduction และ ZBLL พร้อมคลาสสอนแบบตัวต่อตัวเพื่อพัฒนาทั้งทักษะและวิธีคิดของคุณ'
       }
     };
 
@@ -75,6 +81,9 @@
       document.getElementById('resourcesTitle').textContent = c.resourcesTitle;
       document.getElementById('resourcesText').textContent = c.resourcesText;
       document.getElementById('contactTitle').textContent = c.contactTitle;
+      document.getElementById('introTitle').textContent = c.introTitle;
+      document.getElementById('introText1').textContent = c.introText1;
+      document.getElementById('introText2').textContent = c.introText2;
       document.getElementById('langBtnText').textContent = currentLang === 'en' ? 'TH' : 'EN';
 
       const cards = document.getElementById('courseCards');
@@ -115,6 +124,55 @@
       <p id="heroSubtitle" class="text-neutral-300 max-w-3xl text-xl md:text-3xl font-light leading-relaxed"></p>
       
       <a href="#courses" class="mt-12 inline-block bg-indigo-600 hover:bg-indigo-500 transition rounded-full px-12 py-4 font-bold text-sm uppercase tracking-wider shadow-lg">View Courses</a>
+    </div>
+  </section>
+
+  <!-- About Me / Introduction Section -->
+  <section id="about" class="py-24 relative overflow-hidden">
+    <!-- Subtle background glow -->
+    <div class="absolute top-1/2 left-0 -translate-y-1/2 w-64 h-64 bg-indigo-600/10 blur-[120px] -z-10"></div>
+
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="grid md:grid-cols-2 gap-16 items-center">
+        
+        <!-- Image Placeholder Container -->
+        <div class="relative aspect-square md:aspect-auto md:h-[500px] bg-neutral-900 rounded-3xl border border-neutral-800 overflow-hidden group">
+          <!-- SVG Placeholder for when image is missing -->
+          <div class="absolute inset-0 flex items-center justify-center bg-neutral-900 group-hover:scale-105 transition-transform duration-700">
+            <span class="text-neutral-700 font-bold uppercase tracking-widest">Action Shot Placeholder</span>
+            <!-- Replace the div above with an <img> tag when ready -->
+            <!-- <img src="path/to/your-action-photo.jpg" class="w-full h-full object-cover" /> -->
+          </div>
+          <!-- Decorative Border Overlay -->
+          <div class="absolute inset-0 border-2 border-indigo-500/20 rounded-3xl pointer-events-none"></div>
+        </div>
+
+        <!-- Text Content -->
+        <div class="space-y-8">
+          <div>
+            <h2 id="introTitle" class="text-4xl md:text-5xl font-bold tracking-tight text-white mb-6"></h2>
+            <div class="h-1.5 w-20 bg-indigo-600 rounded-full"></div>
+          </div>
+          
+          <div class="space-y-6 text-lg leading-relaxed text-neutral-300">
+            <p id="introText1"></p>
+            <p id="introText2"></p>
+          </div>
+
+          <!-- Mini Stats/Features -->
+          <div class="grid grid-cols-2 gap-4 pt-4">
+            <div class="p-4 bg-neutral-900/50 border border-neutral-800 rounded-xl">
+              <span class="block text-indigo-400 font-bold text-xl">Expert</span>
+              <span class="text-sm text-neutral-500 uppercase tracking-wide">Instruction</span>
+            </div>
+            <div class="p-4 bg-neutral-900/50 border border-neutral-800 rounded-xl">
+              <span class="block text-indigo-400 font-bold text-xl">Modern</span>
+              <span class="text-sm text-neutral-500 uppercase tracking-wide">Resources</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
     </div>
   </section>
 
