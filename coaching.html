@@ -100,9 +100,11 @@
                 sending: "กำลังส่ง...",
                 success: "สำเร็จ! โปรดรอการติดต่อกลับทางอีเมล",
                 services: [
-                    { name: "ตรวจการแก้ (Video Analysis)", price: "฿160", desc: "วิเคราะห์การแก้ 5 รอบอย่างละเอียด" },
-                    { name: "สอนสดตัวต่อตัว (1 ชั่วโมง)", price: "฿400", desc: "เรียนสดผ่านวิดีโอคอลแบบโต้ตอบ" },
-                    { name: "แพ็กเกจเชี่ยวชาญ (4 ครั้ง)", price: "฿1,440", desc: "พัฒนาอย่างต่อเนื่องพร้อมตารางฝึกส่วนตัว" }
+                    { name: "ตรวจการแก้ (Video Analysis)", price: "฿160", desc: ["วิเคราะห์การแก้ 5 รอบอย่างละเอียด"] },
+                    { name: "สอนสดตัวต่อตัว (1 ชั่วโมง)", price: "฿400", desc: ["เรียนสดผ่านวิดีโอคอลแบบโต้ตอบ"] },
+                    { name: "แพ็กเกจเชี่ยวชาญ (4 ครั้ง)", price: "฿1,440", desc: ["พัฒนาอย่างต่อเนื่องพร้อมตารางฝึกส่วนตัว"] },
+                    { name: "สอนสดตัวต่อตัว (1 ชั่วโมง)", price: "฿400", desc: ["เรียนสดผ่านวิดีโอคอลแบบโต้ตอบ"] },
+                    { name: "แพ็กเกจเชี่ยวชาญ (4 ครั้ง)", price: "฿1,440", desc: ["พัฒนาอย่างต่อเนื่องพร้อมตารางฝึกส่วนตัว"] }
                 ]
             }
         };
@@ -189,10 +191,18 @@
                 document.getElementById('main-subtitle').innerText = content.subtitle;
                 document.getElementById('pricing-title').innerText = content.pricingTitle;
                 document.getElementById('booking-title').innerText = content.bookTitle;
-                document.getElementById('lang-btn').innerText = currentLang === 'en' ? 'TH' : 'EN';
+                //document.getElementById('lang-btn').innerText = currentLang === 'en' ? 'TH' : 'EN';
                 
+                const navbar = document.querySelector('my-navbar');
+                if (navbar && navbar.updateLanguageDisplay) {
+                    navbar.updateLanguageDisplay();
+                }
+
                 const grid = document.getElementById('pricing-grid');
                 grid.innerHTML = '';
+
+                console.log("Rendering cards for:", currentLang); // Debug line
+
                 content.services.forEach((s, index) => {
                     // We will target the second card (index 1) as 'Most Popular'
                     const isPopular = index === 1; 
