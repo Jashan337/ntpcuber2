@@ -12,6 +12,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
 
     <!-- Footer Template -->
+    <script src='navbar.js' defer></script>
     <script src='footer.js' defer></script>
     
     <script>
@@ -192,27 +193,40 @@
                 
                 const grid = document.getElementById('pricing-grid');
                 grid.innerHTML = '';
-                content.services.forEach(s => {
-                  // const features = s.desc.split('. ').filter(item => item);
+                content.services.forEach((s, index) => {
+                    // We will target the second card (index 1) as 'Most Popular'
+                    const isPopular = index === 1; 
 
-                  grid.innerHTML += `
-                    <div class="bg-neutral-900 border border-neutral-800 p-8 rounded-2xl hover:border-blue-500 transition duration-300 flex flex-col justify-between h-full">
-                      <div class="flex flex-col h-full">
-                          <div>
-                              <h3 class="text-xl font-bold text-white mb-4 min-h-[64px]">${s.name}</h3>
-                              <ul class="text-neutral-400 text-sm mb-6 space-y-2">
-                                ${s.desc.map(f => `
-                                  <li class="flex items-start gap-2">
-                                    <span class="text-blue-500 font-bold mt-[2px]">✔</span>
-                                    <span>${f}</span>
-                                  </li>
-                                `).join('')}
-                              </ul>
-                          </div>
-                          <div class="text-3xl font-bold text-blue-500 mt-auto">${s.price}</div>
+                    grid.innerHTML += `
+                    <div class="relative bg-neutral-900 border ${isPopular ? 'border-blue-500 shadow-[0_0_20px_rgba(59,130,246,0.2)]' : 'border-neutral-800'} p-8 rounded-2xl hover:border-blue-500 transition duration-300 flex flex-col justify-between h-full">
+                        
+                        ${isPopular ? `
+                            <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-blue-600 text-white text-[10px] font-bold uppercase tracking-widest py-1 px-3 rounded-full shadow-lg">
+                                Most Popular
+                            </div>
+                        ` : ''}
+
+                        <div class="flex flex-col h-full">
+                            <div>
+                                <h3 class="text-xl font-bold text-white mb-4 min-h-[64px]">${s.name}</h3>
+                                <ul class="text-neutral-400 text-sm mb-6 space-y-2">
+                                    ${Array.isArray(s.desc) ? s.desc.map(f => `
+                                        <li class="flex items-start gap-2">
+                                            <span class="text-blue-500 font-bold mt-[2px]">✔</span>
+                                            <span>${f}</span>
+                                        </li>
+                                    `).join('') : `
+                                        <li class="flex items-start gap-2">
+                                            <span class="text-blue-500 font-bold mt-[2px]">✔</span>
+                                            <span>${s.desc}</span>
+                                        </li>
+                                    `}
+                                </ul>
+                            </div>
+                            <div class="text-3xl font-bold text-blue-500 mt-auto">${s.price}</div>
                         </div>
                     </div>
-                  `;
+                    `;
                 });
 
                 const select = document.getElementById('service-select');
@@ -321,27 +335,7 @@
 <body class="bg-black text-white">
 
     <!-- Navbar -->
-  <header class="sticky top-0 z-50 bg-neutral-900/80 backdrop-blur-md border-b border-neutral-800/50">
-    <div class="max-w-6xl mx-auto flex items-center justify-between px-6 py-4">
-      <div class="font-bold text-xl tracking-tighter">NTP Cuber <span class="text-blue-500">Academy</span></div>
-      <nav class="hidden md:flex gap-8 text-sm font-medium">
-        <a href="index.html" data-nav class="text-neutral-400 hover:text-indigo-400 transition-colors"></a>
-        <a href="#courses" data-nav class="text-neutral-400 hover:text-indigo-400 transition-colors"></a>
-        <a href="coaching.html" data-nav class="text-neutral-400 hover:text-indigo-400 transition-colors"></a>
-        <a href="resources.html" data-nav class="text-neutral-400 hover:text-indigo-400 transition-colors"></a>
-        <a href="#contact" data-nav class="text-neutral-400 hover:text-indigo-400 transition-colors"></a>
-      </nav>
-      
-      <button
-        id="lang-btn"
-        type="button"
-        onclick="toggleLang()"
-        class="flex items-center gap-2 rounded-full border border-neutral-700 bg-neutral-900 px-4 py-1.5 text-xs font-bold uppercase tracking-widest hover:border-indigo-500 hover:text-indigo-400 transition-all"
-      >
-        <span id="langBtnText">TH</span>
-      </button>
-    </div>
-  </header>
+  <my-navbar></my-navbar>
     
     <!-- Comment out
     <nav class="sticky top-0 z-50 bg-black/80 backdrop-blur-md border-b border-neutral-900 px-6 py-4">
