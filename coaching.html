@@ -145,7 +145,7 @@
                 };
 
                 // Clean data before sending based on service type
-                if (serviceValue.includes('solve critique')) {
+                if (serviceValue.includes('critique')) {
                     data.availableDate = "";
                     data.preferredTime = "";
                     data.secondaryTime = "";
@@ -271,7 +271,7 @@
                     if (!selected) return;
 
                     // Step 2: Enable only what we need
-                    if (selected.includes('solve critique')) {
+                    if (selected.includes('critique')) {
                         groups.video.classList.remove('hidden');
                         groups.video.querySelector('input').required = true;
                     } else {
