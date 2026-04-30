@@ -68,7 +68,8 @@
                 sending: "Sending...",
                 success: "Success! Check your email soon.",
                 services: [
-                    { name: "Solve Critique (Video Analysis)", price: "฿200", desc: "Detailed breakdown of 5 recorded solves." },
+                    { name: "Solve Critique (Video Analysis)", price: "฿200", desc: ["Detailed breakdown of 5 recorded solves."
+                                                                                     "Written Critique"]},
                     { name: "Live 1-on-1 Session (1 Hour)", price: "฿400", desc: "Interactive coaching via video call." },
                     { name: "Mastery Pack (4 Sessions)", price: "฿1,440", desc: "Comprehensive progression with custom drills." }
                 ]
@@ -179,13 +180,23 @@
                 const grid = document.getElementById('pricing-grid');
                 grid.innerHTML = '';
                 content.services.forEach(s => {
-                    grid.innerHTML += `
-                        <div class="bg-neutral-900 border border-neutral-800 p-8 rounded-2xl hover:border-blue-500 transition duration-300">
-                            <h3 class="text-xl font-bold text-white mb-2">${s.name}</h3>
-                            <p class="text-neutral-400 text-sm mb-6">${s.desc}</p>
-                            <div class="text-3xl font-bold text-blue-500">${s.price}</div>
-                        </div>
-                    `;
+                  const features = s.desc.split('. ').filter(item => item);
+
+                  grid.innerHTML += `
+                    <div class="bg-neutral-900 border border-neutral-800 p-8 rounded-2xl hover:border-blue-500 transition duration-300">
+                      <h3 class="text-xl font-bold text-white mb-4">${s.name}</h3>
+                      <ul class="text-neutral-400 text-sm mb-6 space-y-2">
+                        ${features.map(f => `
+                          <li class="flex items-start gap-2">
+                            <span class="text-blue-500 font-bold">✔</span>
+                            <span>${f}</span>
+                          </li>
+                        `).join('')}
+                      </ul>
+
+                      <div class="text-3xl font-bold text-blue-500">${s.price}</div>
+                    </div>
+                  `;
                 });
 
                 const select = document.getElementById('service-select');
