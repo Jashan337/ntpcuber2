@@ -88,12 +88,27 @@
 
       const cards = document.getElementById('courseCards');
       cards.innerHTML = '';
-      c.courseCards.forEach(card => {
+      c.courseCards.forEach((card, index) => {
+        const isPremium = index === 2; // Highlights the Advanced course
         cards.innerHTML += `
-          <div class="bg-neutral-900 rounded-xl p-6 border border-neutral-800 hover:border-indigo-500 transition-all duration-300">
-            <h3 class="text-xl font-semibold mb-2">${card.title}</h3>
-            <p class="text-neutral-400 mb-4">${card.desc}</p>
-            <div class="text-2xl font-bold text-indigo-400">${card.price}</div>
+          <div class="relative group bg-neutral-900 border ${isPremium ? 'border-indigo-500/50' : 'border-neutral-800'} rounded-3xl p-8 hover:bg-neutral-800/50 transition-all duration-500 flex flex-col h-full">
+            ${isPremium ? '<div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-indigo-600 text-[10px] font-bold uppercase tracking-widest px-4 py-1 rounded-full shadow-lg shadow-indigo-600/20">Most Advanced</div>' : ''}
+            
+            <div class="mb-8">
+              <h3 class="text-2xl font-bold text-white mb-2">${card.title}</h3>
+              <p class="text-neutral-400 text-sm leading-relaxed">${card.desc}</p>
+            </div>
+
+            <div class="mt-auto">
+              <div class="flex items-baseline gap-1 mb-6">
+                <span class="text-4xl font-bold text-white">${card.price}</span>
+                <span class="text-neutral-500 text-sm">/ course</span>
+              </div>
+              
+              <a href="courses.html" class="block text-center w-full py-4 rounded-xl font-bold text-sm uppercase tracking-wider transition-all ${isPremium ? 'bg-indigo-600 hover:bg-indigo-500 shadow-lg shadow-indigo-600/20' : 'bg-neutral-800 hover:bg-neutral-700'}">
+                Get Started
+              </a>
+            </div>
           </div>`;
       });
     }
@@ -176,37 +191,142 @@
     </div>
   </section>
 
-  <section id="courses" class="py-24">
+  <!-- Enhanced Courses & Pricing Section -->
+  <section id="courses" class="py-24 relative">
     <div class="max-w-6xl mx-auto px-6">
-      <h2 class="text-3xl font-bold tracking-tight mb-10">Courses & Pricing</h2>
-      <div id="courseCards" class="grid md:grid-cols-3 gap-6"></div>
-    </div>
-  </section>
-
-  <section id="coaching" class="py-24 bg-neutral-900/50 border-y border-neutral-800/50">
-    <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
-      <div>
-        <h2 id="coachingTitle" class="text-4xl font-bold tracking-tight mb-6"></h2>
-        <p id="coachingText" class="text-neutral-400 text-lg"></p>
+      
+      <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+        <div class="text-center md:text-left">
+          <h2 class="text-4xl md:text-5xl font-bold tracking-tight text-white mb-4">Available Courses</h2>
+          <p class="text-neutral-400 max-w-xl text-lg">Structured learning paths designed to take you from your first solve to sub-10 speeds.</p>
+        </div>
+        <a href="courses.html" class="group flex items-center gap-2 text-indigo-400 font-semibold hover:text-indigo-300 transition-colors">
+          View All Courses 
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg>
+        </a>
       </div>
 
-      <form class="space-y-4 bg-neutral-950 p-8 rounded-2xl border border-neutral-800 shadow-xl">
-        <input type="text" placeholder="Name" class="w-full bg-neutral-900 border border-neutral-800 rounded-lg px-4 py-3 focus:outline-none focus:border-indigo-500 transition" />
-        <input type="email" placeholder="Email" class="w-full bg-neutral-900 border border-neutral-800 rounded-lg px-4 py-3 focus:outline-none focus:border-indigo-500 transition" />
-        <select class="w-full bg-neutral-900 border border-neutral-800 rounded-lg px-4 py-3 focus:outline-none focus:border-indigo-500 transition appearance-none">
-          <option>Beginner</option>
-          <option>Intermediate</option>
-          <option>Advanced</option>
-        </select>
-        <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-500 transition rounded-lg py-4 font-bold uppercase tracking-widest text-sm">Book Session</button>
-      </form>
+      <!-- Course Cards Grid -->
+      <div id="courseCards" class="grid md:grid-cols-3 gap-8">
+        <!-- Cards are injected via JavaScript -->
+      </div>
     </div>
   </section>
 
-  <section id="resources" class="py-24">
-    <div class="max-w-6xl mx-auto px-6 text-center md:text-left">
-      <h2 id="resourcesTitle" class="text-3xl font-bold tracking-tight mb-4"></h2>
-      <p id="resourcesText" class="text-neutral-400 max-w-2xl text-lg"></p>
+  <!-- Coaching Section with Sample Cards -->
+  <section id="coaching" class="py-24 bg-neutral-900/50 border-y border-neutral-800/50 relative overflow-hidden">
+    <div class="absolute -right-20 top-0 w-96 h-96 bg-indigo-600/5 blur-[120px] rounded-full"></div>
+
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+        <div class="text-center md:text-left">
+          <h2 id="coachingTitle" class="text-4xl md:text-5xl font-bold tracking-tight text-white mb-4"></h2>
+          <p id="coachingText" class="text-neutral-400 max-w-xl text-lg"></p>
+        </div>
+        <a href="coaching.html" class="group flex items-center gap-2 text-indigo-400 font-semibold hover:text-indigo-300 transition-colors">
+          View All Plans 
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg>
+        </a>
+      </div>
+
+      <!-- Coaching Sample Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Card 1: Standard Session -->
+        <div class="bg-neutral-950 p-8 rounded-3xl border border-neutral-800 hover:border-indigo-500/50 transition-all group relative overflow-hidden">
+          <div class="absolute top-0 right-0 p-4">
+            <span class="text-xs font-bold uppercase tracking-widest text-indigo-400 bg-indigo-400/10 px-3 py-1 rounded-full">Popular</span>
+          </div>
+          <h3 class="text-2xl font-bold mb-2 text-white">1-on-1 Strategy Session</h3>
+          <p class="text-neutral-400 mb-6 text-sm">A 60-minute deep dive into your current solving habits, efficiency leaks, and personalized hardware setup.</p>
+          <ul class="space-y-3 mb-8 text-sm text-neutral-300">
+            <li class="flex items-center gap-2">
+              <svg class="w-4 h-4 text-indigo-500" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg>
+              Live Solve Critiques
+            </li>
+            <li class="flex items-center gap-2">
+              <svg class="w-4 h-4 text-indigo-500" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg>
+              Personalized Drill Plan
+            </li>
+          </ul>
+          <a href="coaching.html" class="block text-center bg-neutral-900 group-hover:bg-indigo-600 transition-colors py-3 rounded-xl font-bold text-sm">Learn More</a>
+        </div>
+
+        <!-- Card 2: Advanced Technical -->
+        <div class="bg-neutral-950 p-8 rounded-3xl border border-neutral-800 hover:border-purple-500/50 transition-all group relative overflow-hidden">
+          <h3 class="text-2xl font-bold mb-2 text-white">Advanced Techniques</h3>
+          <p class="text-neutral-400 mb-6 text-sm">Master complex methods like ZBLL, Domino Reduction, or Megaminx optimization with high-level logic.</p>
+          <ul class="space-y-3 mb-8 text-sm text-neutral-300">
+            <li class="flex items-center gap-2">
+              <svg class="w-4 h-4 text-purple-500" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg>
+              Algorithm Logic Breakdown
+            </li>
+            <li class="flex items-center gap-2">
+              <svg class="w-4 h-4 text-purple-500" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg>
+              Competition Mindset Prep
+            </li>
+          </ul>
+          <a href="coaching.html" class="block text-center bg-neutral-900 group-hover:bg-purple-600 transition-colors py-3 rounded-xl font-bold text-sm">Learn More</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Free Resources Section -->
+  <section id="resources" class="py-24 relative overflow-hidden">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+        <div class="text-center md:text-left">
+          <h2 id="resourcesTitle" class="text-4xl md:text-5xl font-bold tracking-tight text-white mb-4"></h2>
+          <p id="resourcesText" class="text-neutral-400 max-w-xl text-lg"></p>
+        </div>
+        <a href="resources.html" class="group flex items-center gap-2 text-indigo-400 font-semibold hover:text-indigo-300 transition-colors">
+          Explore All Resources 
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg>
+        </a>
+      </div>
+
+      <!-- Resource Feature Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Feature 1: Algorithms -->
+        <div class="bg-neutral-900/40 border border-neutral-800 p-8 rounded-2xl hover:bg-neutral-900/60 transition-all group">
+          <div class="w-12 h-12 bg-indigo-600/20 rounded-lg flex items-center justify-center text-indigo-400 mb-6 group-hover:scale-110 transition-transform">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Algorithm Sheets</h3>
+          <p class="text-neutral-500 text-sm leading-relaxed">Printable PDF guides for 2-Look OLL, PLL, and advanced Megaminx sets.</p>
+        </div>
+
+        <!-- Feature 2: Practice Plans -->
+        <div class="bg-neutral-900/40 border border-neutral-800 p-8 rounded-2xl hover:bg-neutral-900/60 transition-all group">
+          <div class="w-12 h-12 bg-purple-600/20 rounded-lg flex items-center justify-center text-purple-400 mb-6 group-hover:scale-110 transition-transform">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Training Plans</h3>
+          <p class="text-neutral-500 text-sm leading-relaxed">Structured schedules to improve your TPS, look-ahead, and cross efficiency.</p>
+        </div>
+
+        <!-- Feature 3: Video Tips -->
+        <div class="bg-neutral-900/40 border border-neutral-800 p-8 rounded-2xl hover:bg-neutral-900/60 transition-all group">
+          <div class="w-12 h-12 bg-cyan-600/20 rounded-lg flex items-center justify-center text-cyan-400 mb-6 group-hover:scale-110 transition-transform">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Solving Tips</h3>
+          <p class="text-neutral-500 text-sm leading-relaxed">Quick video breakdowns of finger tricks and advanced logic-based solves.</p>
+        </div>
+      </div>
     </div>
   </section>
 

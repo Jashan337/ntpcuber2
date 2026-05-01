@@ -12,10 +12,10 @@ class MyNavbar extends HTMLElement {
                 </div>
                 
                 <nav class="hidden md:flex gap-8 text-sm font-medium">
-                    <a href="index.html" class="nav-link text-neutral-400 hover:text-indigo-400 transition-colors" data-en="Home" data-th="หน้าแรก">Home</a>
-                    <a href="index.html#courses" class="nav-link text-neutral-400 hover:text-indigo-400 transition-colors" data-en="Courses (Coming Soon)" data-th="คอร์สเรียน (เร็ว ๆ นี้)">Courses</a>
-                    <a href="coaching.html" class="nav-link text-neutral-400 hover:text-indigo-400 transition-colors" data-en="Coaching" data-th="เรียนตัวต่อตัว">Coaching</a>
-                    <a href="resources.html" class="nav-link text-neutral-400 hover:text-indigo-400 transition-colors" data-en="Resources" data-th="แหล่งเรียนรู้">Resources</a>
+                    <a href="/index.html" class="nav-link text-neutral-400 hover:text-indigo-400 transition-colors" data-en="Home" data-th="หน้าแรก">Home</a>
+                    <a href="/courses.html" class="nav-link text-neutral-400 hover:text-indigo-400 transition-colors" data-en="Courses (Coming Soon)" data-th="คอร์สเรียน (เร็ว ๆ นี้)">Courses</a>
+                    <a href="/coaching.html" class="nav-link text-neutral-400 hover:text-indigo-400 transition-colors" data-en="Coaching" data-th="เรียนตัวต่อตัว">Coaching</a>
+                    <a href="/resources.html" class="nav-link text-neutral-400 hover:text-indigo-400 transition-colors" data-en="Resources" data-th="แหล่งเรียนรู้">Resources</a>
                 </nav>
                 
                 <button
