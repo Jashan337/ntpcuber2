@@ -11,7 +11,6 @@
 
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Footer Template -->
     <script src='navbar.js' defer></script>
     <script src='footer.js' defer></script>
     
@@ -25,35 +24,28 @@
                 },
             },
         }
+
         const cnt = {
             en: {
                 nav: ['Home', 'Courses (Coming Soon)', 'Coaching', 'Resources', 'Contact'],
-                heroSubtitle: 'Master the Cube with structured courses, modern resources, and personal coaching.',
-                courseCards: [
-                  { title: 'Beginner 3×3', price: '$19', desc: 'Learn to solve from zero with clear steps.' },
-                  { title: 'Intermediate CFOP', price: '$39', desc: 'Improve efficiency and average times.' },
-                  { title: 'Advanced Speedcubing', price: '$79', desc: 'Full CFOP, lookahead, and TPS training.' }
-                ],
-                coachingTitle: '1-on-1 Coaching',
-                coachingText: 'Book a private session tailored to your goals.',
-                resourcesTitle: 'Free Resources',
-                resourcesText: 'Algorithms, practice plans, and solving tips.',
-                contactTitle: 'Book a Coaching Session'
-              },
-          th: {
+                whyMeTitle: "Why me?",
+                whyMeBenefits: [
+                    { title: "Multi-Event Specialist", desc: "Expertise across various WCA events." },
+                    { title: "Identify & Strengthen", desc: "Personalized analysis of your weaknesses." },
+                    { title: "Standardize Foundation", desc: "Refining fundamental techniques." },
+                    { title: "Taylor-made Advice", desc: "Custom drills for your turning style." }
+                ]
+            },
+            th: {
                 nav: ['หน้าแรก', 'คอร์สเรียน', 'เรียนตัวต่อตัว', 'แหล่งเรียนรู้', 'ติดต่อ'],
-                heroSubtitle: 'เชี่ยวชาญรูบิกส์คิวบ์ ด้วยคอร์สเรียนที่เป็นระบบ แหล่งเรียนรู้ทันสมัย และโค้ชส่วนตัว',
-                courseCards: [
-                  { title: 'พื้นฐาน 3×3', price: '฿690', desc: 'เริ่มต้นแก้รูบิกส์ตั้งแต่ศูนย์' },
-                  { title: 'ระดับกลาง CFOP', price: '฿1,390', desc: 'พัฒนาเทคนิคและความเร็ว' },
-                  { title: 'ขั้นสูง Speedcubing', price: '฿2,790', desc: 'เทคนิคแข่งขันและการพัฒนาความเร็วการหมุน' }
-                ],
-                coachingTitle: 'โค้ชแบบตัวต่อตัว',
-                coachingText: 'จองเวลาสอนส่วนตัวตามเป้าหมายของคุณ',
-                resourcesTitle: 'แหล่งเรียนรู้ฟรี',
-                resourcesText: 'สูตรการหมุน แผนฝึก และเทคนิค',
-                contactTitle: 'จองคลาสโค้ช'
-          }
+                whyMeTitle: "ทำไมต้องเรียนกับผม?",
+                whyMeBenefits: [
+                    { title: "เชี่ยวชาญหลายประเภท", desc: "มีประสบการณ์แข่ง WCA หลากหลายประเภท" },
+                    { title: "วิเคราะห์จุดอ่อน", desc: "วิเคราะห์และแก้ไขจุดอ่อนรายบุคคล" },
+                    { title: "ปรับพื้นฐานให้แน่น", desc: "เสริมสร้างเทคนิคพื้นฐานเพื่อความเร็วที่ยั่งยืน" },
+                    { title: "คำแนะนำเฉพาะตัว", desc: "แบบฝึกหัดที่ออกแบบมาเพื่อสไตล์การหมุนของคุณ" }
+                ]
+            }
         };
         
         const translations = {
@@ -66,26 +58,17 @@
                 formEmail: "Email Address",
                 formService: "Select Service",
                 formButton: "Confirm Booking",
+                paymentInstruction: "Scan QR to Pay",
+                receiptLabel: "Upload Payment Receipt (Required)",
+                confirmCheckbox: "I have completed the payment and uploaded the receipt.",
                 sending: "Sending...",
                 success: "Success! Check your email soon.",
                 services: [
-                    { name: "Written Critique (Video Analysis)", price: "฿120", desc: ["Detailed breakdown of 5 recorded solves.",
-                                                                                     "Identify strengths and inefficiencies",
-                                                                                     "Lookahead and turning analysis",
-                                                                                     "Personalized feedback and improvement guide"
-                                                                                      ]},
-                    { name: "Video Critique (Video Analysis)", price: "฿200", desc: ["Detailed breakdown of 5 recorded solves.",
-                                                                                     "Identify strengths and inefficiencies",
-                                                                                     "Lookahead and turning analysis",
-                                                                                     "Ergonomics suggestions",
-                                                                                     "Personalized feedback and improvement tips"
-                                                                                    ]},
-                    { name: "Live 1-on-1 Session (30-Min)", price: "฿250", desc: ["Interactive coaching via video call."
-                                                                                  ]},
-                    { name: "Live 1-on-1 Session (1 Hour)", price: "฿400", desc: ["Interactive coaching via video call."
-                                                                                  ]},
-                    { name: "Mastery Pack (4 Sessions)", price: "฿1,440", desc: ["Comprehensive progression with custom drills."
-                                                                                 ]}
+                    { name: "Written Critique (Video Analysis)", price: "฿120", desc: ["Detailed breakdown of 5 recorded solves.", "Identify strengths and inefficiencies", "Lookahead analysis"]},
+                    { name: "Video Critique (Video Analysis)", price: "฿200", desc: ["Full video breakdown of 5 solves.", "Ergonomics suggestions", "Improvement tips"]},
+                    { name: "Live 1-on-1 Session (30-Min)", price: "฿250", desc: ["Interactive coaching via video call."]},
+                    { name: "Live 1-on-1 Session (1 Hour)", price: "฿400", desc: ["Comprehensive 1-on-1 coaching."]},
+                    { name: "Mastery Pack (4 Sessions)", price: "฿1,440", desc: ["Custom drills and long-term progression."]}
                 ]
             },
             th: {
@@ -97,45 +80,58 @@
                 formEmail: "อีเมล",
                 formService: "เลือกบริการ",
                 formButton: "ยืนยันการจอง",
+                paymentInstruction: "สแกน QR เพื่อชำระเงิน",
+                receiptLabel: "แนบหลักฐานการโอนเงิน (จำเป็น)",
+                confirmCheckbox: "ฉันได้ชำระเงินและแนบหลักฐานเรียบร้อยแล้ว",
                 sending: "กำลังส่ง...",
                 success: "สำเร็จ! โปรดรอการติดต่อกลับทางอีเมล",
                 services: [
-                    { name: "ตรวจการแก้ (Video Analysis)", price: "฿160", desc: ["วิเคราะห์การแก้ 5 รอบอย่างละเอียด"] },
-                    { name: "สอนสดตัวต่อตัว (1 ชั่วโมง)", price: "฿400", desc: ["เรียนสดผ่านวิดีโอคอลแบบโต้ตอบ"] },
-                    { name: "แพ็กเกจเชี่ยวชาญ (4 ครั้ง)", price: "฿1,440", desc: ["พัฒนาอย่างต่อเนื่องพร้อมตารางฝึกส่วนตัว"] },
-                    { name: "สอนสดตัวต่อตัว (1 ชั่วโมง)", price: "฿400", desc: ["เรียนสดผ่านวิดีโอคอลแบบโต้ตอบ"] },
-                    { name: "แพ็กเกจเชี่ยวชาญ (4 ครั้ง)", price: "฿1,440", desc: ["พัฒนาอย่างต่อเนื่องพร้อมตารางฝึกส่วนตัว"] }
+                    { name: "ตรวจการแก้แบบเขียน (Video Analysis)", price: "฿120", desc: ["วิเคราะห์การแก้ 5 รอบแบบละเอียด"] },
+                    { name: "ตรวจการแก้แบบวิดีโอ (Video Analysis)", price: "฿200", desc: ["วิดีโอวิเคราะห์พร้อมคำแนะนำการหมุน"] },
+                    { name: "สอนสดตัวต่อตัว (30 นาที)", price: "฿250", desc: ["เรียนสดผ่านวิดีโอคอล"] },
+                    { name: "สอนสดตัวต่อตัว (1 ชั่วโมง)", price: "฿400", desc: ["เรียนสดเน้นเนื้อหาเจาะลึก"] },
+                    { name: "แพ็กเกจเชี่ยวชาญ (4 ครั้ง)", price: "฿1,440", desc: ["พัฒนาต่อเนื่องพร้อมตารางฝึกส่วนตัว"] }
                 ]
             }
         };
 
-        // ... (Keep your 'cnt' and 'translations' objects exactly as they are) ...
+        let currentLang = 'en';
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwwqbpCMgiHXTgaCYfqt2z3WWfIdE6AEpUcf5pvsYHh5ZMF7a5lzWJYP8W0NFjsT4B0/exec';
 
-            let currentLang = 'en';
-            const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwwqbpCMgiHXTgaCYfqt2z3WWfIdE6AEpUcf5pvsYHh5ZMF7a5lzWJYP8W0NFjsT4B0/exec';
+        function toggleLang() {
+            currentLang = currentLang === 'en' ? 'th' : 'en';
+            render();
+            document.getElementById('service-select').dispatchEvent(new Event('change'));
+        }
 
-            function toggleLang() {
-                currentLang = currentLang === 'en' ? 'th' : 'en';
-                render();
-                // Re-run visibility logic after re-rendering options to ensure required states stay in sync
-                const serviceSelect = document.getElementById('service-select');
-                serviceSelect.dispatchEvent(new Event('change'));
+        const toBase64 = file => new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = () => resolve(reader.result.split(',')[1]);
+            reader.onerror = error => reject(error);
+        });
+
+        async function handleSubmit(event) {
+            event.preventDefault();
+            const btn = document.getElementById('submit-btn');
+            const content = translations[currentLang];
+            
+            const serviceValue = document.getElementById('service-select').value.toLowerCase();
+            const selectedDays = Array.from(document.querySelectorAll('#available-date input:checked')).map(el => el.value);
+            const receiptFile = document.getElementById('receipt-upload').files[0];
+
+            if (!serviceValue.includes('critique') && selectedDays.length === 0) {
+                alert(currentLang === 'en' ? 'Please select at least one available day.' : 'กรุณาเลือกวันที่สะดวกอย่างน้อย 1 วัน');
+                return;
             }
+            
+            btn.disabled = true;
+            btn.innerText = content.sending;
 
-            async function handleSubmit(event) {
-                event.preventDefault();
-                const btn = document.getElementById('submit-btn');
-                const content = translations[currentLang];
-                
-                const serviceValue = document.getElementById('service-select').value.toLowerCase();
-                const selectedDays = Array.from(document.querySelectorAll('#available-date input:checked')).map(el => el.value);
-                
-                // VALIDATION: If it's not a critique, ensure at least one day is picked
-                if (!serviceValue.includes('solve critique') && selectedDays.length === 0) {
-                    alert(currentLang === 'en' ? 'Please select at least one available day.' : 'กรุณาเลือกวันที่คุณสะดวกอย่างน้อย 1 วัน');
-                    return; // Stop the form from sending
-                }
-                
+            try {
+                let base64Receipt = "";
+                if (receiptFile) base64Receipt = await toBase64(receiptFile);
+
                 const data = {
                     name: document.getElementById('input-name').value,
                     email: document.getElementById('input-email').value,
@@ -144,217 +140,167 @@
                     preferredTime: document.getElementById('preferred-time').value,
                     secondaryTime: document.getElementById('secondary-time').value,
                     videoLink: document.getElementById('video-link').value,
-                    wcaEvent: document.getElementById('wca-event').value
+                    wcaEvent: document.getElementById('wca-event').value,
+                    receiptData: base64Receipt,
+                    receiptName: receiptFile ? receiptFile.name : "receipt.png"
                 };
 
-                // Clean data before sending based on service type
                 if (serviceValue.includes('critique')) {
-                    data.availableDate = "";
-                    data.preferredTime = "";
-                    data.secondaryTime = "";
-                    data.wcaEvent = "";
+                    data.availableDate = ""; data.preferredTime = ""; data.secondaryTime = ""; data.wcaEvent = "";
                 } else {
                     data.videoLink = "";
                 }
 
-                btn.disabled = true;
-                btn.innerText = content.sending;
-
-                try {
-                    await fetch(SCRIPT_URL, {
-                        method: 'POST',
-                        mode: 'no-cors', 
-                        cache: 'no-cache',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(data)
-                    });
-                    
-                    alert(content.success);
-                    event.target.reset();
-                    // Reset visibility after form reset
-                    document.getElementById('service-select').dispatchEvent(new Event('change'));
-                } catch (error) {
-                    console.error('Error:', error);
-                    alert('Error connecting to server.');
-                } finally {
-                    btn.disabled = false;
-                    btn.innerText = content.formButton;
-                }
+                await fetch(SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors', 
+                    //cache: 'no-cache',
+                    //headers: { 'Content-Type': 'application/json' },
+                    headers: {'Content-Type': 'text/plain;charset=utf-8'},
+                    body: JSON.stringify(data)
+                });
+                
+                alert(content.success);
+                event.target.reset();
+                toggleSubmitButton();
+                document.getElementById('service-select').dispatchEvent(new Event('change'));
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Error connecting to server.');
+            } finally {
+                btn.innerText = content.formButton;
             }
+        }
 
-            function render() {
-                const c = cnt[currentLang];
-                document.querySelectorAll('[data-nav]').forEach((el, i) => el.textContent = c.nav[i]);
-                
-                const content = translations[currentLang];
-                document.getElementById('main-title').innerText = content.title;
-                document.getElementById('main-subtitle').innerText = content.subtitle;
-                document.getElementById('pricing-title').innerText = content.pricingTitle;
-                document.getElementById('booking-title').innerText = content.bookTitle;
-                //document.getElementById('lang-btn').innerText = currentLang === 'en' ? 'TH' : 'EN';
-                
-                const navbar = document.querySelector('my-navbar');
-                if (navbar && navbar.updateLanguageDisplay) {
-                    navbar.updateLanguageDisplay();
-                }
+        function toggleSubmitButton() {
+            const checkbox = document.getElementById('confirm-payment');
+            const btn = document.getElementById('submit-btn');
+            btn.disabled = !checkbox.checked;
+            btn.classList.toggle('opacity-50', !checkbox.checked);
+            btn.classList.toggle('cursor-not-allowed', !checkbox.checked);
+        }
 
-                const grid = document.getElementById('pricing-grid');
-                grid.innerHTML = '';
+        function render() {
+            const c = cnt[currentLang];
+            const trans = translations[currentLang];
 
-                console.log("Rendering cards for:", currentLang); // Debug line
+            // Nav & Hero
+            document.querySelectorAll('[data-nav]').forEach((el, i) => el.textContent = c.nav[i]);
+            document.getElementById('main-title').innerText = trans.title;
+            document.getElementById('main-subtitle').innerText = trans.subtitle;
 
-                content.services.forEach((s, index) => {
-                    // We will target the second card (index 1) as 'Most Popular'
-                    const isPopular = index === 1; 
-
-                    grid.innerHTML += `
-                    <div class="relative bg-neutral-900 border ${isPopular ? 'border-blue-500 shadow-[0_0_20px_rgba(59,130,246,0.2)]' : 'border-neutral-800'} p-8 rounded-2xl hover:border-blue-500 transition duration-300 flex flex-col justify-between h-full">
-                        
-                        ${isPopular ? `
-                            <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-blue-600 text-white text-[10px] font-bold uppercase tracking-widest py-1 px-3 rounded-full shadow-lg">
-                                Most Popular
-                            </div>
-                        ` : ''}
-
-                        <div class="flex flex-col h-full">
-                            <div>
-                                <h3 class="text-xl font-bold text-white mb-4 min-h-[64px]">${s.name}</h3>
-                                <ul class="text-neutral-400 text-sm mb-6 space-y-2">
-                                    ${Array.isArray(s.desc) ? s.desc.map(f => `
-                                        <li class="flex items-start gap-2">
-                                            <span class="text-blue-500 font-bold mt-[2px]">✔</span>
-                                            <span>${f}</span>
-                                        </li>
-                                    `).join('') : `
-                                        <li class="flex items-start gap-2">
-                                            <span class="text-blue-500 font-bold mt-[2px]">✔</span>
-                                            <span>${s.desc}</span>
-                                        </li>
-                                    `}
-                                </ul>
-                            </div>
-                            <div class="text-3xl font-bold text-blue-500 mt-auto">${s.price}</div>
-                        </div>
+            // Why Me Section
+            document.getElementById('why-me-title').innerHTML = `${c.whyMeTitle} <span class="text-blue-500">?</span>`;
+            const benefitsList = document.getElementById('benefits-list');
+            benefitsList.innerHTML = c.whyMeBenefits.map((b, i) => `
+                <div class="flex gap-6">
+                    <div class="flex-shrink-0 w-12 h-12 bg-blue-600/10 border border-blue-500/20 rounded-xl flex items-center justify-center text-blue-500 text-xl">
+                        ${['🧩', '🔍', '🏗️', '🎯'][i]}
                     </div>
-                    `;
+                    <div>
+                        <h3 class="text-xl font-bold mb-2">${b.title}</h3>
+                        <p class="text-neutral-400">${b.desc}</p>
+                    </div>
+                </div>
+            `).join('');
+
+            // Pricing & Booking
+            document.getElementById('pricing-title').innerText = trans.pricingTitle;
+            document.getElementById('booking-title').innerText = trans.bookTitle;
+            document.getElementById('payment-text').innerText = trans.paymentInstruction;
+            document.getElementById('receipt-upload-label').innerText = trans.receiptLabel;
+            document.getElementById('confirm-label').innerText = trans.confirmCheckbox;
+            document.getElementById('submit-btn').innerText = trans.formButton;
+
+            const grid = document.getElementById('pricing-grid');
+            grid.innerHTML = trans.services.map((s, index) => {
+                const isPopular = index === 1;
+                return `
+                <div class="relative bg-neutral-900 border ${isPopular ? 'border-blue-500 shadow-[0_0_20px_rgba(59,130,246,0.2)]' : 'border-neutral-800'} p-8 rounded-2xl hover:border-blue-500 transition duration-300 flex flex-col justify-between h-full">
+                    ${isPopular ? `<div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-blue-600 text-white text-[10px] font-bold uppercase tracking-widest py-1 px-3 rounded-full shadow-lg">Most Popular</div>` : ''}
+                    <div class="flex flex-col h-full">
+                        <div>
+                            <h3 class="text-xl font-bold text-white mb-4 min-h-[64px]">${s.name}</h3>
+                            <ul class="text-neutral-400 text-sm mb-6 space-y-2">
+                                ${s.desc.map(f => `<li class="flex items-start gap-2"><span class="text-blue-500 font-bold mt-[2px]">✔</span><span>${f}</span></li>`).join('')}
+                            </ul>
+                        </div>
+                        <div class="text-3xl font-bold text-blue-500 mt-auto">${s.price}</div>
+                    </div>
+                </div>`;
+            }).join('');
+
+            const select = document.getElementById('service-select');
+            const prev = select.value;
+            select.innerHTML = `<option value="" disabled selected>${trans.formService}</option>` + 
+                trans.services.map(s => `<option value="${s.name}">${s.name} - ${s.price}</option>`).join('');
+            if(prev) select.value = prev;
+
+            document.getElementById('input-name').placeholder = trans.formName;
+            document.getElementById('input-email').placeholder = trans.formEmail;
+            
+            const navbar = document.querySelector('my-navbar');
+            if (navbar?.updateLanguageDisplay) navbar.updateLanguageDisplay();
+        }
+
+        function setupServiceLogic() {
+            const serviceSelect = document.getElementById('service-select');
+            const groups = {
+                video: document.getElementById('video-group'),
+                availability: document.getElementById('availability-group'),
+                time: document.getElementById('time-group'),
+                wca: document.getElementById('wca-group'),
+                pay: document.getElementById('payment-group')
+            };
+
+            serviceSelect.addEventListener('change', () => {
+                const selected = serviceSelect.value.toLowerCase();
+                Object.values(groups).forEach(g => {
+                    g.classList.add('hidden');
+                    g.querySelectorAll('input, select').forEach(i => i.required = false);
                 });
 
-                const select = document.getElementById('service-select');
-                const currentValue = select.value; // Save selection before re-rendering
-                select.innerHTML = `<option value="" disabled selected>${content.formService}</option>`;
-                content.services.forEach(s => {
-                    select.innerHTML += `<option value="${s.name}">${s.name} - ${s.price}</option>`;
-                });
-                if(currentValue) select.value = currentValue;
+                if (!selected) return;
 
-                document.getElementById('input-name').placeholder = content.formName;
-                document.getElementById('input-email').placeholder = content.formEmail;
-                document.getElementById('submit-btn').innerText = content.formButton;
-            }
+                groups.pay.classList.remove('hidden');
+                groups.pay.querySelector('input[type="file"]').required = true;
 
-            function generateTimeOptions(selectId) {
-                const select = document.getElementById(selectId);
-                select.innerHTML = '<option value="">Select time</option>';
-                // Loop until 23:30
-                for (let h = 0; h <= 23; h++) {
-                    for (let m of [0, 30]) {
-                        let hour = String(h).padStart(2, '0');
-                        let min = String(m).padStart(2, '0');
-                        let value = `${hour}:${min}`;
-                        let option = document.createElement('option');
-                        option.value = value;
-                        option.textContent = value;
-                        select.appendChild(option);
-                    }
+                if (selected.includes('critique')) {
+                    groups.video.classList.remove('hidden');
+                    groups.video.querySelector('input').required = true;
+                } else {
+                    groups.availability.classList.remove('hidden');
+                    groups.time.classList.remove('hidden');
+                    groups.wca.classList.remove('hidden');
+                    groups.wca.querySelector('select').required = true;
+                    groups.time.querySelectorAll('select').forEach(s => s.required = true);
                 }
-            }
-
-            function setupServiceLogic() {
-                const serviceSelect = document.getElementById('service-select');
-                
-                // Select all groups
-                const groups = {
-                    video: document.getElementById('video-group'),
-                    availability: document.getElementById('availability-group'),
-                    time: document.getElementById('time-group'),
-                    wca: document.getElementById('wca-group')
-                };
-
-                function updateVisibility() {
-                    const selected = serviceSelect.value.toLowerCase();
-
-                    // Step 1: Hide EVERYTHING and strip ALL required attributes
-                    Object.values(groups).forEach(group => {
-                        group.classList.add('hidden');
-                        // This finds every input, select, and textarea inside the group
-                        const inputs = group.querySelectorAll('input, select, textarea');
-                        inputs.forEach(input => {
-                            input.required = false;
-                            // Optional: Clear values of hidden inputs so they don't send old data
-                            // if (input.type !== 'checkbox') input.value = ''; 
-                        });
-                    });
-
-                    if (!selected) return;
-
-                    // Step 2: Enable only what we need
-                    if (selected.includes('critique')) {
-                        groups.video.classList.remove('hidden');
-                        groups.video.querySelector('input').required = true;
-                    } else {
-                        // Show normal booking fields
-                        groups.availability.classList.remove('hidden');
-                        groups.time.classList.remove('hidden');
-                        groups.wca.classList.remove('hidden');
-
-                        // 1. Make WCA Event required
-                        groups.wca.querySelector('select').required = true;
-
-                        // 2. Make Time Selects required
-                        groups.time.querySelectorAll('select').forEach(s => s.required = true);
-                            
-                        // 3. For Checkboxes: We don't use the 'required' attribute 
-                        // because it forces the user to check EVERY box. 
-                        // We will validate this in the handleSubmit function instead.
-                        }
-                }
-
-                serviceSelect.addEventListener('change', updateVisibility);
-            }
-
-            document.addEventListener('DOMContentLoaded', () => {
-                render();
-                generateTimeOptions('preferred-time');
-                generateTimeOptions('secondary-time');
-                setupServiceLogic();
-                
-                // Prevent same time selection
-                const primary = document.getElementById('preferred-time');
-                const secondary = document.getElementById('secondary-time');
-                [primary, secondary].forEach(el => {
-                    el.addEventListener('change', () => {
-                        if (primary.value && secondary.value && primary.value === secondary.value) {
-                            alert('Primary and secondary time cannot be the same');
-                            el.value = '';
-                        }
-                    });
-                });
             });
+        }
+
+        function generateTimeOptions(id) {
+            const s = document.getElementById(id);
+            s.innerHTML = '<option value="">Select time</option>';
+            for (let h = 0; h <= 23; h++) {
+                for (let m of ['00', '30']) {
+                    let v = `${String(h).padStart(2, '0')}:${m}`;
+                    s.add(new Option(v, v));
+                }
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            render();
+            generateTimeOptions('preferred-time');
+            generateTimeOptions('secondary-time');
+            setupServiceLogic();
+            toggleSubmitButton();
+        });
     </script>
 </head>
-<body class="bg-black text-white">
+<body class="bg-black text-white selection:bg-blue-500/30">
 
-    <!-- Navbar -->
-  <my-navbar></my-navbar>
-    
-    <!-- Comment out
-    <nav class="sticky top-0 z-50 bg-black/80 backdrop-blur-md border-b border-neutral-900 px-6 py-4">
-        <div class="max-w-6xl mx-auto flex justify-between items-center">
-            <div class="text-xl font-bold tracking-tighter uppercase">NTP Cuber<span class="text-blue-500">Academy</span></div>
-            <button onclick="toggleLang()" id="lang-btn" class="bg-neutral-800 hover:bg-neutral-700 px-4 py-1 rounded-full text-xs font-bold transition">TH</button>
-        </div>
-    </nav>
-    -->
+    <my-navbar></my-navbar>
     
     <section class="relative pt-32 pb-24 px-6 text-center">
         <div class="absolute inset-x-0 top-0 h-96 bg-blue-600/10 blur-[120px] rounded-full -z-10"></div>
@@ -364,97 +310,35 @@
         </div>
     </section>
 
-    <!-- Why Choose Me Section -->
     <section id="why-me" class="py-24 px-6 bg-neutral-900/30">
         <div class="max-w-6xl mx-auto">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                
-                <!-- Left: Profile & Achievements -->
                 <div class="relative">
                     <div class="absolute -inset-4 bg-blue-600/20 blur-2xl rounded-full -z-10"></div>
                     <div class="bg-neutral-900 border border-neutral-800 p-2 rounded-3xl overflow-hidden">
-                        <!-- Placeholder Image -->
-                        <img src="image/coach_profile.jpg" alt="Natthaphat Mahtani" class="w-full aspect-[4/5] object-cover rounded-2xl mb-8">
-                        
+                        <img src="image/coach_profile.jpg" alt="Coach" class="w-full aspect-[4/5] object-cover rounded-2xl mb-8">
                         <div class="p-6">
                             <h2 class="text-3xl font-bold text-white mb-2">Natthaphat Mahtani</h2>
                             <p class="text-blue-500 font-semibold mb-6">Thailand’s best All-rounder</p>
-                            
                             <div class="space-y-4">
                                 <h4 class="text-sm uppercase tracking-widest text-neutral-500 font-bold">Achievement Highlights</h4>
                                 <ul class="space-y-3">
-                                    <li class="flex items-center gap-3 text-neutral-300">
-                                        <span class="text-blue-500">🏆</span> 3x3 single peak ranking 9th global
-                                    </li>
-                                    <li class="flex items-center gap-3 text-neutral-300">
-                                        <span class="text-blue-500">🏅</span> Finalist in Continental Championship
-                                    </li>
-                                    <li class="flex items-center gap-3 text-neutral-300">
-                                        <span class="text-blue-500">⏱️</span> 10+ years of competing experience
-                                    </li>
-                                    <li class="flex items-center gap-3 text-neutral-300">
-                                        <span class="text-blue-500">📜</span> Thai record holder of multiple events
-                                    </li>
+                                    <li class="flex items-center gap-3 text-neutral-300"><span class="text-blue-500">🏆</span> 3x3 single peak ranking 9th global</li>
+                                    <li class="flex items-center gap-3 text-neutral-300"><span class="text-blue-500">🏅</span> Finalist in Continental Championship</li>
+                                    <li class="flex items-center gap-3 text-neutral-300"><span class="text-blue-500">⏱️</span> 10+ years experience</li>
                                 </ul>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Right: Why Me Benefits -->
                 <div>
-                    <h2 class="text-4xl md:text-5xl font-bold mb-8" id="why-me-title">Why me<span class="text-blue-500">?</span></h2>
-                    <div class="space-y-8">
-                        <!-- Benefit 1 -->
-                        <div class="flex gap-6">
-                            <div class="flex-shrink-0 w-12 h-12 bg-blue-600/10 border border-blue-500/20 rounded-xl flex items-center justify-center text-blue-500 text-xl">
-                                🧩
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-bold mb-2">Multi-Event Specialist</h3>
-                                <p class="text-neutral-400">Expertise across various WCA events, providing a holistic understanding of cubing mechanics.</p>
-                            </div>
-                        </div>
-
-                        <!-- Benefit 2 -->
-                        <div class="flex gap-6">
-                            <div class="flex-shrink-0 w-12 h-12 bg-blue-600/10 border border-blue-500/20 rounded-xl flex items-center justify-center text-blue-500 text-xl">
-                                🔍
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-bold mb-2">Identify & Strengthen</h3>
-                                <p class="text-neutral-400">Personalized analysis to pinpoint your specific weaknesses and turn them into strengths.</p>
-                            </div>
-                        </div>
-
-                        <!-- Benefit 3 -->
-                        <div class="flex gap-6">
-                            <div class="flex-shrink-0 w-12 h-12 bg-blue-600/10 border border-blue-500/20 rounded-xl flex items-center justify-center text-blue-500 text-xl">
-                                🏗️
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-bold mb-2">Standardize Foundation</h3>
-                                <p class="text-neutral-400">Rebuilding and refining your fundamental techniques to ensure long-term speed improvement.</p>
-                            </div>
-                        </div>
-
-                        <!-- Benefit 4 -->
-                        <div class="flex gap-6">
-                            <div class="flex-shrink-0 w-12 h-12 bg-blue-600/10 border border-blue-500/20 rounded-xl flex items-center justify-center text-blue-500 text-xl">
-                                🎯
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-bold mb-2">Taylor-made Advice</h3>
-                                <p class="text-neutral-400">No "one size fits all" here. Get custom drills and suggestions based on your unique turning style.</p>
-                            </div>
-                        </div>
-                    </div>
-                    
+                    <h2 class="text-4xl md:text-5xl font-bold mb-8" id="why-me-title"></h2>
+                    <div id="benefits-list" class="space-y-8"></div>
                     <div class="mt-12 p-6 bg-blue-600/10 border border-blue-500/30 rounded-2xl inline-block">
                         <p class="text-blue-400 font-bold">Online / Onsite Sessions Available</p>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
@@ -471,25 +355,16 @@
             <h2 id="booking-title" class="text-3xl font-bold mb-12 text-center"></h2>
             <form onsubmit="handleSubmit(event)" class="space-y-6">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <input type="text" id="input-name" name="name" required class="bg-neutral-900 border border-neutral-800 p-4 rounded-xl focus:outline-none focus:border-blue-500 transition" />
-                    <input type="email" id="input-email" name="email" required class="bg-neutral-900 border border-neutral-800 p-4 rounded-xl focus:outline-none focus:border-blue-500 transition" />
+                    <input type="text" id="input-name" required class="bg-neutral-900 border border-neutral-800 p-4 rounded-xl focus:border-blue-500 outline-none" />
+                    <input type="email" id="input-email" required class="bg-neutral-900 border border-neutral-800 p-4 rounded-xl focus:border-blue-500 outline-none" />
                 </div>
-                <select id="service-select" name="service" required class="w-full bg-neutral-900 border border-neutral-800 p-4 rounded-xl focus:outline-none focus:border-blue-500 transition">
-                </select>
+                <select id="service-select" required class="w-full bg-neutral-900 border border-neutral-800 p-4 rounded-xl"></select>
                 
-                <!-- Video Link (only for Solve Critique) -->
                 <div id="video-group" class="hidden">
                   <label class="block mb-2">🔗 Video Link</label>
-                  <input 
-                    required
-                    type="url" 
-                    id="video-link"
-                    placeholder="Paste your solve video link here"
-                    class="w-full bg-neutral-900 border border-neutral-800 p-4 rounded-xl focus:outline-none focus:border-blue-500 transition"
-                  />
+                  <input type="url" id="video-link" placeholder="YouTube/Drive link" class="w-full bg-neutral-900 border border-neutral-800 p-4 rounded-xl" />
                 </div>
 
-                <!-- WCA Event -->
                 <div id="wca-group" class="hidden">
                   <label class="block mb-2">🏆 WCA Event</label>
                   <select id="wca-event" class="w-full bg-neutral-900 border border-neutral-800 p-4 rounded-xl">
@@ -510,46 +385,16 @@
                   </select>
                 </div>
 
-                <!-- Available Date -->
                 <div id="availability-group" class="hidden">
-                  <label class="block mb-3">&#128198 Available Day</label>
+                  <label class="block mb-3">📅 Available Day</label>
                   <div id="available-date" class="flex flex-wrap gap-3">
-    
-                    <label class="cursor-pointer">
-                      <input type="checkbox" value="Monday" class="hidden peer">
-                      <span class="px-4 py-2 rounded-full bg-neutral-800 peer-checked:bg-blue-600">Mon</span>
-                    </label>
-
-                    <label class="cursor-pointer">
-                      <input type="checkbox" value="Tuesday" class="hidden peer">
-                      <span class="px-4 py-2 rounded-full bg-neutral-800 peer-checked:bg-blue-600">Tue</span>
-                    </label>
-
-                    <label class="cursor-pointer">
-                      <input type="checkbox" value="Wednesday" class="hidden peer">
-                      <span class="px-4 py-2 rounded-full bg-neutral-800 peer-checked:bg-blue-600">Wed</span>
-                    </label>
-
-                    <label class="cursor-pointer">
-                      <input type="checkbox" value="Thursday" class="hidden peer">
-                      <span class="px-4 py-2 rounded-full bg-neutral-800 peer-checked:bg-blue-600">Thu</span>
-                    </label>
-
-                    <label class="cursor-pointer">
-                      <input type="checkbox" value="Friday" class="hidden peer">
-                      <span class="px-4 py-2 rounded-full bg-neutral-800 peer-checked:bg-blue-600">Fri</span>
-                    </label>
-
-                    <label class="cursor-pointer">
-                      <input type="checkbox" value="Saturday" class="hidden peer">
-                      <span class="px-4 py-2 rounded-full bg-neutral-800 peer-checked:bg-blue-600">Sat</span>
-                    </label>
-
-                    <label class="cursor-pointer">
-                      <input type="checkbox" value="Sunday" class="hidden peer">
-                      <span class="px-4 py-2 rounded-full bg-neutral-800 peer-checked:bg-blue-600">Sun</span>
-                    </label>
-
+                    <label class="cursor-pointer"><input type="checkbox" value="Mon" class="hidden peer"><span class="px-4 py-2 rounded-full bg-neutral-800 peer-checked:bg-blue-600">Mon</span></label>
+                    <label class="cursor-pointer"><input type="checkbox" value="Tue" class="hidden peer"><span class="px-4 py-2 rounded-full bg-neutral-800 peer-checked:bg-blue-600">Tue</span></label>
+                    <label class="cursor-pointer"><input type="checkbox" value="Wed" class="hidden peer"><span class="px-4 py-2 rounded-full bg-neutral-800 peer-checked:bg-blue-600">Wed</span></label>
+                    <label class="cursor-pointer"><input type="checkbox" value="Thu" class="hidden peer"><span class="px-4 py-2 rounded-full bg-neutral-800 peer-checked:bg-blue-600">Thu</span></label>
+                    <label class="cursor-pointer"><input type="checkbox" value="Fri" class="hidden peer"><span class="px-4 py-2 rounded-full bg-neutral-800 peer-checked:bg-blue-600">Fri</span></label>
+                    <label class="cursor-pointer"><input type="checkbox" value="Sat" class="hidden peer"><span class="px-4 py-2 rounded-full bg-neutral-800 peer-checked:bg-blue-600">Sat</span></label>
+                    <label class="cursor-pointer"><input type="checkbox" value="Sun" class="hidden peer"><span class="px-4 py-2 rounded-full bg-neutral-800 peer-checked:bg-blue-600">Sun</span></label>
                   </div>
                 </div>
 
@@ -566,26 +411,26 @@
                     <select id="secondary-time" class="w-full bg-neutral-900 border border-neutral-800 p-4 rounded-xl"></select>
                   </div>
                 </div>
-                <button type="submit" id="submit-btn" class="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-neutral-700 text-white font-bold py-4 rounded-xl transition"></button>
+
+                <div id="payment-group" class="hidden space-y-6">
+                    <div class="bg-neutral-900 border border-neutral-800 rounded-2xl p-8 text-center">
+                        <h3 id="payment-text" class="text-xl font-bold mb-6"></h3>
+                        <img src="image/qr_payment.jpeg" alt="QR" class="w-64 h-64 mx-auto bg-white p-2 rounded-xl object-contain">
+                    </div>
+                    <div>
+                        <label id="receipt-upload-label" class="block text-sm text-neutral-400 mb-2"></label>
+                        <input type="file" id="receipt-upload" accept="image/*" class="w-full bg-neutral-900 border border-neutral-800 p-3 rounded-xl file:bg-blue-600 file:border-0 file:rounded-full file:text-white file:px-4" />
+                    </div>
+                    <div class="flex items-start gap-3 p-4 bg-blue-600/5 border border-blue-500/20 rounded-xl">
+                        <input type="checkbox" id="confirm-payment" onchange="toggleSubmitButton()" class="mt-1 w-5 h-5 rounded border-neutral-800 bg-neutral-900" />
+                        <label for="confirm-payment" id="confirm-label" class="text-sm text-neutral-300 cursor-pointer"></label>
+                    </div>
+                </div>
+
+                <button type="submit" id="submit-btn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-xl transition shadow-lg"></button>
             </form>
         </div>
     </section>
-
-    <script>
-        function toggleInput(show) {
-            const vidInput = document.getElementById('video-link');
-            const vidWrapper = document.getElementById('video-group');
-
-            if (show) {
-                vidWrapper.style.display = 'block';
-                vidInput.required = true;
-            } 
-            else {
-                vidWrapper.style.display = 'none';
-                vidInput.required = false; // This prevents the validation error
-            }
-        }
-    </script>
 
     <my-footer></my-footer>
 </body>

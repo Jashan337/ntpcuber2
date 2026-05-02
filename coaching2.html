@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NTP Cuber | Professional Rubik's Cube Coaching</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Sarabun:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Footer Template -->
+    <script src='navbar.js' defer></script>
+    <script src='footer.js' defer></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'Sarabun', 'sans-serif'],
+                    },
+                },
+            },
+        }
+        const cnt = {
+            en: {
+                nav: ['Home', 'Courses (Coming Soon)', 'Coaching', 'Resources', 'Contact'],
+                heroSubtitle: 'Master the Cube with structured courses, modern resources, and personal coaching.',
+                courseCards: [
+                  { title: 'Beginner 3×3', price: '$19', desc: 'Learn to solve from zero with clear steps.' },
+                  { title: 'Intermediate CFOP', price: '$39', desc: 'Improve efficiency and average times.' },
+                  { title: 'Advanced Speedcubing', price: '$79', desc: 'Full CFOP, lookahead, and TPS training.' }
+                ],
+                coachingTitle: '1-on-1 Coaching',
+                coachingText: 'Book a private session tailored to your goals.',
+                resourcesTitle: 'Free Resources',
+                resourcesText: 'Algorithms, practice plans, and solving tips.',
+                contactTitle: 'Book a Coaching Session'
+              },
+          th: {
+                nav: ['หน้าแรก', 'คอร์สเรียน', 'เรียนตัวต่อตัว', 'แหล่งเรียนรู้', 'ติดต่อ'],
+                heroSubtitle: 'เชี่ยวชาญรูบิกส์คิวบ์ ด้วยคอร์สเรียนที่เป็นระบบ แหล่งเรียนรู้ทันสมัย และโค้ชส่วนตัว',
+                courseCards: [
+                  { title: 'พื้นฐาน 3×3', price: '฿690', desc: 'เริ่มต้นแก้รูบิกส์ตั้งแต่ศูนย์' },
+                  { title: 'ระดับกลาง CFOP', price: '฿1,390', desc: 'พัฒนาเทคนิคและความเร็ว' },
+                  { title: 'ขั้นสูง Speedcubing', price: '฿2,790', desc: 'เทคนิคแข่งขันและการพัฒนาความเร็วการหมุน' }
+                ],
+                coachingTitle: 'โค้ชแบบตัวต่อตัว',
+                coachingText: 'จองเวลาสอนส่วนตัวตามเป้าหมายของคุณ',
+                resourcesTitle: 'แหล่งเรียนรู้ฟรี',
+                resourcesText: 'สูตรการหมุน แผนฝึก และเทคนิค',
+                contactTitle: 'จองคลาสโค้ช'
+          }
+        };
+        
+        const translations = {
+            en: {
+                title: "Elite Speedcubing Coaching",
+                subtitle: "Master advanced methods like EO to ZB, X-cross, and Domino Reduction.",
+                pricingTitle: "Coaching Options",
+                bookTitle: "Reserve Your Session",
+                formName: "Full Name",
+                formEmail: "Email Address",
+                formService: "Select Service",
+                formButton: "Confirm Booking",
+                paymentInstruction: "Scan QR to Pay",
+                confirmCheckbox: "I have completed the payment and uploaded the receipt.",
+                sending: "Sending...",
+                success: "Success! Check your email soon.",
+                services: [
+                    { name: "Written Critique (Video Analysis)", price: "฿120", desc: ["Detailed breakdown of 5 recorded solves.", "Identify strengths and inefficiencies", "Lookahead and turning analysis", "Personalized feedback and improvement guide"]},
+                    { name: "Video Critique (Video Analysis)", price: "฿200", desc: ["Detailed breakdown of 5 recorded solves.", "Identify strengths and inefficiencies", "Lookahead and turning analysis", "Ergonomics suggestions", "Personalized feedback and improvement tips"]},
+                    { name: "Live 1-on-1 Session (30-Min)", price: "฿250", desc: ["Interactive coaching via video call."]},
+                    { name: "Live 1-on-1 Session (1 Hour)", price: "฿400", desc: ["Interactive coaching via video call."]},
+                    { name: "Mastery Pack (4 Sessions)", price: "฿1,440", desc: ["Comprehensive progression with custom drills."]}
+                ]
+            },
+            th: {
+                title: "สอนรูบิกส์ระดับมืออาชีพ",
+                subtitle: "ฝึกฝนเทคนิคขั้นสูง เช่น EO to ZB, X-cross และ Domino Reduction",
+                pricingTitle: "แพ็กเกจการสอน",
+                bookTitle: "จองเวลาเรียนของคุณ",
+                formName: "ชื่อ-นามสกุล",
+                formEmail: "อีเมล",
+                formService: "เลือกบริการ",
+                formButton: "ยืนยันการจอง",
+                paymentInstruction: "สแกน QR เพื่อชำระเงิน",
+                confirmCheckbox: "ฉันได้ชำระเงินและแนบหลักฐานเรียบร้อยแล้ว",
+                sending: "กำลังส่ง...",
+                success: "สำเร็จ! โปรดรอการติดต่อกลับทางอีเมล",
+                services: [
+                    { name: "ตรวจการแก้ (Video Analysis)", price: "฿160", desc: ["วิเคราะห์การแก้ 5 รอบอย่างละเอียด"] },
+                    { name: "สอนสดตัวต่อตัว (1 ชั่วโมง)", price: "฿400", desc: ["เรียนสดผ่านวิดีโอคอลแบบโต้ตอบ"] },
+                    { name: "แพ็กเกจเชี่ยวชาญ (4 ครั้ง)", price: "฿1,440", desc: ["พัฒนาอย่างต่อเนื่องพร้อมตารางฝึกส่วนตัว"] },
+                    { name: "สอนสดตัวต่อตัว (1 ชั่วโมง)", price: "฿400", desc: ["เรียนสดผ่านวิดีโอคอลแบบโต้ตอบ"] },
+                    { name: "แพ็กเกจเชี่ยวชาญ (4 ครั้ง)", price: "฿1,440", desc: ["พัฒนาอย่างต่อเนื่องพร้อมตารางฝึกส่วนตัว"] }
+                ]
+            }
+        };
+
+            let currentLang = 'en';
+            const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwwqbpCMgiHXTgaCYfqt2z3WWfIdE6AEpUcf5pvsYHh5ZMF7a5lzWJYP8W0NFjsT4B0/exec';
+
+            function toggleLang() {
+                currentLang = currentLang === 'en' ? 'th' : 'en';
+                render();
+                const serviceSelect = document.getElementById('service-select');
+                serviceSelect.dispatchEvent(new Event('change'));
+            }
+
+            async function handleSubmit(event) {
+                event.preventDefault();
+                const btn = document.getElementById('submit-btn');
+                const content = translations[currentLang];
+                
+                const serviceValue = document.getElementById('service-select').value.toLowerCase();
+                const selectedDays = Array.from(document.querySelectorAll('#available-date input:checked')).map(el => el.value);
+                
+                if (!serviceValue.includes('solve critique') && selectedDays.length === 0) {
+                    alert(currentLang === 'en' ? 'Please select at least one available day.' : 'กรุณาเลือกวันที่คุณสะดวกอย่างน้อย 1 วัน');
+                    return;
+                }
+                
+                const data = {
+                    name: document.getElementById('input-name').value,
+                    email: document.getElementById('input-email').value,
+                    service: document.getElementById('service-select').value,
+                    availableDate: selectedDays,
+                    preferredTime: document.getElementById('preferred-time').value,
+                    secondaryTime: document.getElementById('secondary-time').value,
+                    videoLink: document.getElementById('video-link').value,
+                    wcaEvent: document.getElementById('wca-event').value,
+                    receipt: document.getElementById('receipt-upload').value // Sending file name for log
+                };
+
+                if (serviceValue.includes('critique')) {
+                    data.availableDate = "";
+                    data.preferredTime = "";
+                    data.secondaryTime = "";
+                    data.wcaEvent = "";
+                } else {
+                    data.videoLink = "";
+                }
+
+                btn.disabled = true;
+                btn.innerText = content.sending;
+
+                try {
+                    await fetch(SCRIPT_URL, {
+                        method: 'POST',
+                        mode: 'no-cors', 
+                        cache: 'no-cache',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(data)
+                    });
+                    
+                    alert(content.success);
+                    event.target.reset();
+                    toggleSubmitButton(); // Re-disable button after reset
+                    document.getElementById('service-select').dispatchEvent(new Event('change'));
+                } catch (error) {
+                    console.error('Error:', error);
+                    alert('Error connecting to server.');
+                } finally {
+                    btn.disabled = !document.getElementById('confirm-payment').checked;
+                    btn.innerText = content.formButton;
+                }
+            }
+
+            // Function to toggle submit button based on checkbox
+            function toggleSubmitButton() {
+                const checkbox = document.getElementById('confirm-payment');
+                const btn = document.getElementById('submit-btn');
+                btn.disabled = !checkbox.checked;
+                if(checkbox.checked) {
+                    btn.classList.remove('opacity-50', 'cursor-not-allowed');
+                } else {
+                    btn.classList.add('opacity-50', 'cursor-not-allowed');
+                }
+            }
+
+            function render() {
+                const c = cnt[currentLang];
+                document.querySelectorAll('[data-nav]').forEach((el, i) => el.textContent = c.nav[i]);
+                
+                const content = translations[currentLang];
+                document.getElementById('main-title').innerText = content.title;
+                document.getElementById('main-subtitle').innerText = content.subtitle;
+                document.getElementById('pricing-title').innerText = content.pricingTitle;
+                document.getElementById('booking-title').innerText = content.bookTitle;
+                document.getElementById('payment-text').innerText = content.paymentInstruction;
+                document.getElementById('confirm-label').innerText = content.confirmCheckbox;
+                
+                const navbar = document.querySelector('my-navbar');
+                if (navbar && navbar.updateLanguageDisplay) {
+                    navbar.updateLanguageDisplay();
+                }
+
+                const grid = document.getElementById('pricing-grid');
+                grid.innerHTML = '';
+
+                content.services.forEach((s, index) => {
+                    const isPopular = index === 1; 
+                    grid.innerHTML += `
+                    <div class="relative bg-neutral-900 border ${isPopular ? 'border-blue-500 shadow-[0_0_20px_rgba(59,130,246,0.2)]' : 'border-neutral-800'} p-8 rounded-2xl hover:border-blue-500 transition duration-300 flex flex-col justify-between h-full">
+                        ${isPopular ? `<div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-blue-600 text-white text-[10px] font-bold uppercase tracking-widest py-1 px-3 rounded-full shadow-lg">Most Popular</div>` : ''}
+                        <div class="flex flex-col h-full">
+                            <div>
+                                <h3 class="text-xl font-bold text-white mb-4 min-h-[64px]">${s.name}</h3>
+                                <ul class="text-neutral-400 text-sm mb-6 space-y-2">
+                                    ${Array.isArray(s.desc) ? s.desc.map(f => `
+                                        <li class="flex items-start gap-2">
+                                            <span class="text-blue-500 font-bold mt-[2px]">✔</span>
+                                            <span>${f}</span>
+                                        </li>
+                                    `).join('') : `<li class="flex items-start gap-2"><span class="text-blue-500 font-bold mt-[2px]">✔</span><span>${s.desc}</span></li>`}
+                                </ul>
+                            </div>
+                            <div class="text-3xl font-bold text-blue-500 mt-auto">${s.price}</div>
+                        </div>
+                    </div>`;
+                });
+
+                const select = document.getElementById('service-select');
+                const currentValue = select.value;
+                select.innerHTML = `<option value="" disabled selected>${content.formService}</option>`;
+                content.services.forEach(s => {
+                    select.innerHTML += `<option value="${s.name}">${s.name} - ${s.price}</option>`;
+                });
+                if(currentValue) select.value = currentValue;
+
+                document.getElementById('input-name').placeholder = content.formName;
+                document.getElementById('input-email').placeholder = content.formEmail;
+                document.getElementById('submit-btn').innerText = content.formButton;
+            }
+
+            function generateTimeOptions(selectId) {
+                const select = document.getElementById(selectId);
+                select.innerHTML = '<option value="">Select time</option>';
+                for (let h = 0; h <= 23; h++) {
+                    for (let m of [0, 30]) {
+                        let hour = String(h).padStart(2, '0');
+                        let min = String(m).padStart(2, '0');
+                        let value = `${hour}:${min}`;
+                        let option = document.createElement('option');
+                        option.value = value;
+                        option.textContent = value;
+                        select.appendChild(option);
+                    }
+                }
+            }
+
+            function setupServiceLogic() {
+                const serviceSelect = document.getElementById('service-select');
+                const groups = {
+                    video: document.getElementById('video-group'),
+                    availability: document.getElementById('availability-group'),
+                    time: document.getElementById('time-group'),
+                    wca: document.getElementById('wca-group')
+                };
+
+                function updateVisibility() {
+                    const selected = serviceSelect.value.toLowerCase();
+                    Object.values(groups).forEach(group => {
+                        group.classList.add('hidden');
+                        const inputs = group.querySelectorAll('input, select, textarea');
+                        inputs.forEach(input => { input.required = false; });
+                    });
+                    if (!selected) return;
+                    if (selected.includes('critique')) {
+                        groups.video.classList.remove('hidden');
+                        groups.video.querySelector('input').required = true;
+                    } else {
+                        groups.availability.classList.remove('hidden');
+                        groups.time.classList.remove('hidden');
+                        groups.wca.classList.remove('hidden');
+                        groups.wca.querySelector('select').required = true;
+                        groups.time.querySelectorAll('select').forEach(s => s.required = true);
+                    }
+                }
+                serviceSelect.addEventListener('change', updateVisibility);
+            }
+
+            document.addEventListener('DOMContentLoaded', () => {
+                render();
+                generateTimeOptions('preferred-time');
+                generateTimeOptions('secondary-time');
+                setupServiceLogic();
+                toggleSubmitButton(); // Initialize button state
+                
+                const primary = document.getElementById('preferred-time');
+                const secondary = document.getElementById('secondary-time');
+                [primary, secondary].forEach(el => {
+                    el.addEventListener('change', () => {
+                        if (primary.value && secondary.value && primary.value === secondary.value) {
+                            alert('Primary and secondary time cannot be the same');
+                            el.value = '';
+                        }
+                    });
+                });
+            });
+    </script>
+</head>
+<body class="bg-black text-white font-sans">
+
+  <my-navbar></my-navbar>
+    
+    <section class="relative pt-32 pb-24 px-6 text-center">
+        <div class="absolute inset-x-0 top-0 h-96 bg-blue-600/10 blur-[120px] rounded-full -z-10"></div>
+        <div class="max-w-4xl mx-auto">
+            <h1 id="main-title" class="text-5xl md:text-7xl font-bold tracking-tight mb-8"></h1>
+            <p id="main-subtitle" class="text-neutral-400 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed"></p>
+        </div>
+    </section>
+
+    <!-- Why Choose Me Section -->
+    <section id="why-me" class="py-24 px-6 bg-neutral-900/30">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div class="relative">
+                    <div class="absolute -inset-4 bg-blue-600/20 blur-2xl rounded-full -z-10"></div>
+                    <div class="bg-neutral-900 border border-neutral-800 p-2 rounded-3xl overflow-hidden">
+                        <img src="image/coach_profile.jpg" alt="Natthaphat Mahtani" class="w-full aspect-[4/5] object-cover rounded-2xl mb-8">
+                        <div class="p-6">
+                            <h2 class="text-3xl font-bold text-white mb-2">Natthaphat Mahtani</h2>
+                            <p class="text-blue-500 font-semibold mb-6">Thailand’s best All-rounder</p>
+                            <div class="space-y-4">
+                                <h4 class="text-sm uppercase tracking-widest text-neutral-500 font-bold">Achievement Highlights</h4>
+                                <ul class="space-y-3">
+                                    <li class="flex items-center gap-3 text-neutral-300"><span class="text-blue-500">🏆</span> 3x3 single peak ranking 9th global</li>
+                                    <li class="flex items-center gap-3 text-neutral-300"><span class="text-blue-500">🏅</span> Finalist in Continental Championship</li>
+                                    <li class="flex items-center gap-3 text-neutral-300"><span class="text-blue-500">⏱️</span> 10+ years of competing experience</li>
+                                    <li class="flex items-center gap-3 text-neutral-300"><span class="text-blue-500">📜</span> Thai record holder of multiple events</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h2 class="text-4xl md:text-5xl font-bold mb-8">Why me<span class="text-blue-500">?</span></h2>
+                    <div class="space-y-8">
+                        <div class="flex gap-6">
+                            <div class="flex-shrink-0 w-12 h-12 bg-blue-600/10 border border-blue-500/20 rounded-xl flex items-center justify-center text-blue-500 text-xl">🧩</div>
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">Multi-Event Specialist</h3>
+                                <p class="text-neutral-400">Expertise across various WCA events, providing a holistic understanding of cubing mechanics.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-6">
+                            <div class="flex-shrink-0 w-12 h-12 bg-blue-600/10 border border-blue-500/20 rounded-xl flex items-center justify-center text-blue-500 text-xl">🔍</div>
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">Identify & Strengthen</h3>
+                                <p class="text-neutral-400">Personalized analysis to pinpoint your specific weaknesses and turn them into strengths.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-12 p-6 bg-blue-600/10 border border-blue-500/30 rounded-2xl inline-block">
+                        <p class="text-blue-400 font-bold">Online / Onsite Sessions Available</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing" class="py-24 px-6">
+        <div class="max-w-6xl mx-auto">
+            <h2 id="pricing-title" class="text-3xl font-bold mb-12 text-center"></h2>
+            <div id="pricing-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8"></div>
+        </div>
+    </section>
+
+    <!-- Booking Section with Payment -->
+    <section id="book" class="py-24 px-6 bg-neutral-950 border-t border-neutral-900">
+        <div class="max-w-3xl mx-auto">
+            <h2 id="booking-title" class="text-3xl font-bold mb-12 text-center"></h2>
+            
+            <!-- Payment QR Section -->
+            <div class="bg-neutral-900 border border-neutral-800 rounded-2xl p-8 mb-12 text-center">
+                <h3 id="payment-text" class="text-xl font-bold mb-6 text-white"></h3>
+                <div class="inline-block p-4 bg-white rounded-xl mb-4">
+                    <img src="image/payment_qr.jpg" alt="Payment QR Code" class="w-48 h-48 object-contain">
+                </div>
+                <p class="text-neutral-400 text-sm">Please pay the exact amount based on your chosen package.</p>
+            </div>
+
+            <form onsubmit="handleSubmit(event)" class="space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <input type="text" id="input-name" name="name" required class="bg-neutral-900 border border-neutral-800 p-4 rounded-xl focus:outline-none focus:border-blue-500 transition" />
+                    <input type="email" id="input-email" name="email" required class="bg-neutral-900 border border-neutral-800 p-4 rounded-xl focus:outline-none focus:border-blue-500 transition" />
+                </div>
+                <select id="service-select" name="service" required class="w-full bg-neutral-900 border border-neutral-800 p-4 rounded-xl focus:outline-none focus:border-blue-500 transition"></select>
+                
+                <div id="video-group" class="hidden">
+                  <label class="block mb-2">🔗 Video Link</label>
+                  <input required type="url" id="video-link" placeholder="Paste your solve video link here" class="w-full bg-neutral-900 border border-neutral-800 p-4 rounded-xl focus:outline-none focus:border-blue-500 transition" />
+                </div>
+
+                <div id="wca-group" class="hidden">
+                  <label class="block mb-2">🏆 WCA Event</label>
+                  <select id="wca-event" class="w-full bg-neutral-900 border border-neutral-800 p-4 rounded-xl">
+                    <option value="">Select event</option>
+                    <option>3x3</option><option>2x2</option><option>4x4</option><option>5x5</option><option>OH</option><option>Megaminx</option>
+                  </select>
+                </div>
+
+                <div id="availability-group" class="hidden">
+                  <label class="block mb-3">📅 Available Day</label>
+                  <div id="available-date" class="flex flex-wrap gap-3">
+                    <label class="cursor-pointer"><input type="checkbox" value="Monday" class="hidden peer"><span class="px-4 py-2 rounded-full bg-neutral-800 peer-checked:bg-blue-600">Mon</span></label>
+                    <label class="cursor-pointer"><input type="checkbox" value="Saturday" class="hidden peer"><span class="px-4 py-2 rounded-full bg-neutral-800 peer-checked:bg-blue-600">Sat</span></label>
+                    <label class="cursor-pointer"><input type="checkbox" value="Sunday" class="hidden peer"><span class="px-4 py-2 rounded-full bg-neutral-800 peer-checked:bg-blue-600">Sun</span></label>
+                  </div>
+                </div>
+
+                <div id="time-group" class="hidden space-y-6">
+                  <div>
+                    <label class="block mb-2">⏰ Preferred Starting Time</label>
+                    <select id="preferred-time" class="w-full bg-neutral-900 border border-neutral-800 p-4 rounded-xl"></select>
+                  </div>
+                  <div>
+                    <label class="block mb-2">🕰️ Secondary Starting Time</label>
+                    <select id="secondary-time" class="w-full bg-neutral-900 border border-neutral-800 p-4 rounded-xl"></select>
+                  </div>
+                </div>
+
+                <!-- Payment QR Section -->
+                <div class="bg-neutral-900 border border-neutral-800 rounded-2xl p-8 mb-12 text-center">
+                    <h3 id="payment-text" class="text-xl font-bold mb-6 text-white"></h3>
+                    <div class="inline-block p-4 bg-white rounded-xl mb-4">
+                        <img src="image/payment_qr.jpg" alt="Payment QR Code" class="w-48 h-48 object-contain">
+                    </div>
+                    <p class="text-neutral-400 text-sm">Please pay the exact amount based on your chosen package.</p>
+                </div>
+
+                <!-- Receipt Upload -->
+                <div class="space-y-2">
+                    <label class="block text-sm font-semibold text-neutral-400">Upload Payment Receipt (Required)</label>
+                    <input type="file" id="receipt-upload" accept="image/*" required class="w-full bg-neutral-900 border border-neutral-800 p-3 rounded-xl file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-600 file:text-white hover:file:bg-blue-700 transition" />
+                </div>
+
+                <!-- Payment Confirmation Checkbox -->
+                <div class="flex items-start gap-3 p-4 bg-blue-600/5 border border-blue-500/20 rounded-xl">
+                    <input type="checkbox" id="confirm-payment" onchange="toggleSubmitButton()" class="mt-1 w-5 h-5 rounded border-neutral-800 text-blue-600 focus:ring-blue-500 bg-neutral-900" />
+                    <label for="confirm-payment" id="confirm-label" class="text-sm text-neutral-300 cursor-pointer select-none"></label>
+                </div>
+
+                <button type="submit" id="submit-btn" class="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-neutral-800 disabled:text-neutral-500 disabled:cursor-not-allowed text-white font-bold py-4 rounded-xl transition shadow-lg shadow-blue-600/20"></button>
+            </form>
+        </div>
+    </section>
+
+    <my-footer></my-footer>
+</body>
+</html>
