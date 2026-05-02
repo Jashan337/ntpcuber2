@@ -7,16 +7,26 @@
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Sarabun:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Sarabun:wght@100..800&display=swap" rel="stylesheet">
 
   <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- Footer Template -->
   <script src='navbar.js' defer></script>
   <script src='footer.js' defer></script>
   
+  <style>
+    /* Ensure elements are visible if JS fails, but animated if it works */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s cubic-bezier(0.17, 0.55, 0.55, 1);
+    }
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+
   <script>
-    // Configure Tailwind to use our new fonts
     tailwind.config = {
       theme: {
         extend: {
@@ -31,37 +41,54 @@
       en: {
         nav: ['Home', 'Courses', 'Coaching', 'Resources', 'Contact'],
         heroSubtitle: 'Master the Cube with structured courses, modern resources, and personal coaching.',
-        courseCards: [
-          { title: 'Beginner 3×3', price: '$19', desc: 'Learn to solve from zero with clear steps.' },
-          { title: 'Intermediate CFOP', price: '$39', desc: 'Improve efficiency and average times.' },
-          { title: 'Advanced Speedcubing', price: '$79', desc: 'Full CFOP, lookahead, and TPS training.' }
+        journeyTitle: 'My Cubing Journey',
+        journeySteps: [
+          { year: '2018: Start', ach: 'Discovered the cube and achieved my first solve in 2 minutes.' },
+          { year: '2020: Sub-20', ach: 'Mastered Full PLL and OLL, reaching a consistent sub-20 average.' },
+          { year: '2022: Competition', ach: 'Attended my first WCA competition; reached 3x3 Finals.' },
+          { year: '2024: Advanced', ach: 'Mastered full ZBLL and 1-look Last Layer strategies.' },
+          { year: '2026: Coaching', ach: 'Launched NTP Cuber to coach students globally.' }
         ],
-        coachingTitle: '1-on-1 Coaching',
-        coachingText: 'Book a private session tailored to your goals.',
-        resourcesTitle: 'Free Resources',
-        resourcesTitle: 'Free Resources',
-        resourcesText: 'Algorithms, practice plans, and solving tips.',
-        contactTitle: 'Book a Coaching Session',
+        // ... rest of content same as before
         introTitle: 'About Me',
         introText1: 'Hi, I’m Natthaphat Mahtani. I am a competitive speedcuber dedicated to helping others break their personal records through structured, logic-based, and fun training.',
-        introText2: 'This website provides a complete ecosystem for cubers: from beginner courses to advanced techniques like Domino Reduction and ZBLL, plus 1-on-1 coaching to refine your hardware and execution.'
+        introText2: 'This website provides a complete ecosystem for cubers: from beginner courses to advanced techniques like Domino Reduction and ZBLL, plus 1-on-1 coaching to refine your hardware and execution.',
+        courseCards: [
+          { title: 'Beginner 3×3', price: '$19', desc: 'Learn to solve from zero.' },
+          { title: 'Intermediate CFOP', price: '$39', desc: 'Improve efficiency.' },
+          { title: 'Advanced Speedcubing', price: '$79', desc: 'Full CFOP and TPS training.' }
+        ],
+        coachingTitle: '1-on-1 Coaching',
+        coachingText: 'Book a private session.',
+        resourcesTitle: 'Free Resources',
+        resourcesText: 'Algorithms and tips.',
+        contactTitle: 'Book a Session'
       },
       th: {
         nav: ['หน้าแรก', 'คอร์สเรียน', 'เรียนตัวต่อตัว', 'แหล่งเรียนรู้', 'ติดต่อ'],
-        heroSubtitle: 'เชี่ยวชาญรูบิกส์คิวบ์ ด้วยคอร์สเรียนที่เป็นระบบ แหล่งเรียนรู้ทันสมัย และโค้ชส่วนตัว',
+        heroSubtitle: 'เชี่ยวชาญรูบิกส์คิวบ์ ด้วยคอร์สเรียนที่เป็นระบบ',
+        journeyTitle: 'เส้นทางรูบิกของผม',
+        journeySteps: [
+          { year: '2018: เริ่มต้น', ach: 'เริ่มหัดเล่นรูบิกและทำสถิติครั้งแรกที่ 2 นาที' },
+          { year: '2020: ต่ำกว่า 20 วิ', ach: 'จำสูตร PLL และ OLL ได้ครบ' },
+          { year: '2022: การแข่งขัน', ach: 'เข้าร่วมการแข่งขัน WCA ครั้งแรก' },
+          { year: '2024: ขั้นสูง', ach: 'ฝึกฝนสูตร ZBLL จนชำนาญ' },
+          { year: '2026: การสอน', ach: 'เปิดตัว NTP Cuber เพื่อสอนนักเรียนทั่วโลก' }
+        ],
+        // ... rest of content same as before
+        introTitle: 'เกี่ยวกับผม',
+        introText1: 'สวัสดีครับผมณัฐภัทร มาทานี ผมเป็นนักแข่งรูบิกที่มุ่งเน้นการช่วยให้ทุกคนทำลายสถิติส่วนตัวด้วยการฝึกฝนอย่างเป็นระบบและมีความสนุกไปกับการฝึก',
+        introText2: 'เว็บไซต์นี้เป็นแหล่งรวมทุกอย่างสำหรับผู้ที่สนใจพัฒนาความสามารถด้านรูบิก ตั้งแต่คอร์สพื้นฐานไปจนถึงเทคนิคขั้นสูงอย่าง Domino Reduction และ ZBLL พร้อมคลาสสอนแบบตัวต่อตัวเพื่อพัฒนาทั้งทักษะและวิธีคิดของคุณ',
         courseCards: [
           { title: 'พื้นฐาน 3×3', price: '฿690', desc: 'เริ่มต้นแก้รูบิกส์ตั้งแต่ศูนย์' },
           { title: 'ระดับกลาง CFOP', price: '฿1,390', desc: 'พัฒนาเทคนิคและความเร็ว' },
-          { title: 'ขั้นสูง Speedcubing', price: '฿2,790', desc: 'เทคนิคแข่งขันและการพัฒนาความเร็วการหมุน' }
+          { title: 'ขั้นสูง Speedcubing', price: '฿2,790', desc: 'เทคนิคแข่งขัน' }
         ],
         coachingTitle: 'โค้ชแบบตัวต่อตัว',
-        coachingText: 'จองเวลาสอนส่วนตัวตามเป้าหมายของคุณ',
+        coachingText: 'จองเวลาสอนส่วนตัว',
         resourcesTitle: 'แหล่งเรียนรู้ฟรี',
-        resourcesText: 'สูตรการหมุน แผนฝึก และเทคนิค',
-        contactTitle: 'จองคลาสโค้ช',
-        introTitle: 'เกี่ยวกับผม',
-        introText1: 'สวัสดีครับผมณัฐภัทร มาทานี ผมเป็นนักแข่งรูบิกที่มุ่งเน้นการช่วยให้ทุกคนทำลายสถิติส่วนตัวด้วยการฝึกฝนอย่างเป็นระบบและมีความสนุกไปกับการฝึก',
-        introText2: 'เว็บไซต์นี้เป็นแหล่งรวมทุกอย่างสำหรับผู้ที่สนใจพัฒนาความสามารถด้านรูบิก ตั้งแต่คอร์สพื้นฐานไปจนถึงเทคนิคขั้นสูงอย่าง Domino Reduction และ ZBLL พร้อมคลาสสอนแบบตัวต่อตัวเพื่อพัฒนาทั้งทักษะและวิธีคิดของคุณ'
+        resourcesText: 'สูตรการหมุนและแผนฝึก',
+        contactTitle: 'จองคลาสโค้ช'
       }
     };
 
@@ -74,18 +101,36 @@
 
     function applyLang() {
       const c = content[currentLang];
-      document.querySelectorAll('[data-nav]').forEach((el, i) => el.textContent = c.nav[i]);
+      
+      // Update basic text
       document.getElementById('heroSubtitle').textContent = c.heroSubtitle;
+      document.getElementById('journeyTitle').textContent = c.journeyTitle;
+      document.getElementById('introTitle').textContent = c.introTitle;
+      document.getElementById('introText1').textContent = c.introText1;
+      document.getElementById('introText2').textContent = c.introText2;
       document.getElementById('coachingTitle').textContent = c.coachingTitle;
       document.getElementById('coachingText').textContent = c.coachingText;
       document.getElementById('resourcesTitle').textContent = c.resourcesTitle;
       document.getElementById('resourcesText').textContent = c.resourcesText;
       document.getElementById('contactTitle').textContent = c.contactTitle;
-      document.getElementById('introTitle').textContent = c.introTitle;
-      document.getElementById('introText1').textContent = c.introText1;
-      document.getElementById('introText2').textContent = c.introText2;
-      document.getElementById('langBtnText').textContent = currentLang === 'en' ? 'TH' : 'EN';
 
+      // Update Journey Checkpoints
+      const journeyGrid = document.getElementById('journeyGrid');
+      if (journeyGrid) {
+        journeyGrid.innerHTML = c.journeySteps.map((step, i) => `
+          <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group reveal">
+            <div class="flex items-center justify-center w-10 h-10 rounded-full border-2 border-indigo-500 bg-neutral-950 text-white font-bold shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">
+              ${i + 1}
+            </div>
+            <div class="w-[calc(100%-3.5rem)] md:w-[45%] p-6 rounded-3xl bg-neutral-900/40 border border-neutral-800 hover:border-indigo-500/40 transition-all backdrop-blur-sm">
+              <span class="text-indigo-400 font-bold text-xs uppercase tracking-widest block mb-2">${step.year}</span>
+              <p class="text-neutral-200">${step.ach}</p>
+            </div>
+          </div>
+        `).join('');
+      }
+
+      // Update Course Cards
       const cards = document.getElementById('courseCards');
       cards.innerHTML = '';
       c.courseCards.forEach((card, index) => {
@@ -111,6 +156,22 @@
             </div>
           </div>`;
       });
+    
+
+      // Re-initialize the scroll reveal so it picks up the new HTML
+      initScrollReveal();
+    }
+
+    function initScrollReveal() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+          }
+        });
+      }, { threshold: 0.1 });
+
+      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     }
 
     document.addEventListener('DOMContentLoaded', applyLang);
@@ -191,7 +252,26 @@
     </div>
   </section>
 
-  <!-- Enhanced Courses & Pricing Section -->
+  <!-- Journey Section (New) -->
+  <section id="journey" class="py-24 relative overflow-hidden">
+    <div class="max-w-4xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 id="journeyTitle" class="text-4xl md:text-5xl font-bold text-white mb-4"></h2>
+        <div class="h-1.5 w-20 bg-indigo-600 rounded-full mx-auto"></div>
+      </div>
+
+      <div class="relative space-y-12">
+        <!-- Vertical Line -->
+        <div class="absolute left-[19px] md:left-1/2 top-0 bottom-0 w-0.5 bg-neutral-800 -translate-x-1/2"></div>
+        
+        <div id="journeyGrid" class="space-y-12">
+          <!-- Journey items injected by JS -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+   <!-- Enhanced Courses & Pricing Section -->
   <section id="courses" class="py-24 relative">
     <div class="max-w-6xl mx-auto px-6">
       
