@@ -1,6 +1,8 @@
 class MyNavbar extends HTMLElement {
     connectedCallback() {
         this.render();
+        // Listen for a custom event so the navbar updates when the language changes elsewhere
+        window.addEventListener('languageChanged', () => this.updateLanguageDisplay());
     }
 
     render() {
@@ -13,7 +15,7 @@ class MyNavbar extends HTMLElement {
                 
                 <nav class="hidden md:flex gap-8 text-sm font-medium">
                     <a href="/index.html" class="nav-link text-neutral-400 hover:text-indigo-400 transition-colors" data-en="Home" data-th="หน้าแรก">Home</a>
-                    <a href="/courses.html" class="nav-link text-neutral-400 hover:text-indigo-400 transition-colors" data-en="Courses (Coming Soon)" data-th="คอร์สเรียน (เร็ว ๆ นี้)">Courses</a>
+                    <a href="/courses.html" class="nav-link text-neutral-400 hover:text-indigo-400 transition-colors" data-en="Courses (Coming Soon)" data-th="คอร์สเรียน (เร็ว ๆ นี้)">Courses (Coming Soon)</a>
                     <a href="/coaching.html" class="nav-link text-neutral-400 hover:text-indigo-400 transition-colors" data-en="Coaching" data-th="เรียนตัวต่อตัว">Coaching</a>
                     <a href="/resources.html" class="nav-link text-neutral-400 hover:text-indigo-400 transition-colors" data-en="Resources" data-th="แหล่งเรียนรู้">Resources</a>
                 </nav>
@@ -47,10 +49,12 @@ class MyNavbar extends HTMLElement {
 
     // Helper to update the navbar text based on the current global language variable
     updateLanguageDisplay() {
-        const lang = (typeof currentLang !== 'undefined') ? currentLang : 'en';
+        //const lang = (typeof currentLang !== 'undefined') ? currentLang : 'en';
+        const lang = (window.currentLang) ? window.currentLang : 'en';
         const links = this.querySelectorAll('.nav-link');
         links.forEach(link => {
             link.textContent = link.getAttribute(`data-${lang}`);
+            if (translation) link.textContent = translation;
         });
         const langText = this.querySelector('#lang-text-nav');
         if (langText) {

@@ -92,11 +92,21 @@
       }
     };
 
-    let currentLang = 'en';
+    //let currentLang = 'en';
+    window.currentLang = 'en';
 
-    function switchLang() {
-      currentLang = currentLang === 'en' ? 'th' : 'en';
+    function toggleLang() {
+      window.currentLang = window.currentLang === 'en' ? 'th' : 'en';
       applyLang();
+      // Update the Page Content (Everything with class "lang-text")
+      const pageElements = document.querySelectorAll('[data-en]');
+      pageElements.forEach(el => {
+          const translation = el.getAttribute(`data-${window.currentLang}`);
+          if (translation) {
+              el.textContent = translation;
+          }
+      });
+      window.dispatchEvent(new CustomEvent('languageChanged'))
     }
 
     function applyLang() {
@@ -174,7 +184,7 @@
       document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     }
 
-    document.addEventListener('DOMContentLoaded', applyLang);
+    document.addEventListener('DOMContentLoaded', toggleLang);
   </script>
 </head>
 <body class="bg-neutral-950 text-neutral-100 font-sans tracking-tight">
