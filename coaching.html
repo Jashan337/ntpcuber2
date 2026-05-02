@@ -295,6 +295,17 @@
             generateTimeOptions('secondary-time');
             setupServiceLogic();
             toggleSubmitButton();
+            // Prevent same time selection
+            const primary = document.getElementById('preferred-time');
+            const secondary = document.getElementById('secondary-time');
+            [primary, secondary].forEach(el => {
+                el.addEventListener('change', () => {
+                    if (primary.value && secondary.value && primary.value === secondary.value) {
+                        alert('Primary and secondary time cannot be the same');
+                        el.value = '';
+                    }
+                });
+            });
         });
     </script>
 </head>
