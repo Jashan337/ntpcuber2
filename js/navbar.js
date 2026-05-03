@@ -39,10 +39,10 @@ class MyNavbar extends HTMLElement {
             <!-- Mobile Menu Drawer (Hidden by Default) -->
             <div id="mobile-menu" class="hidden md:hidden bg-neutral-900 border-b border-neutral-800">
                 <nav class="flex flex-col px-6 py-4 gap-4 text-sm font-medium">
-                    <a href="/index.html" class="nav-link text-neutral-400" data-en="Home" data-th="หน้าแรก">Home</a>
-                    <a href="/courses.html" class="nav-link text-neutral-400" data-en="Courses" data-th="คอร์สเรียน">Courses</a>
-                    <a href="/coaching.html" class="nav-link text-neutral-400" data-en="Coaching" data-th="เรียนตัวต่อตัว">Coaching</a>
-                    <a href="/resources.html" class="nav-link text-neutral-400" data-en="Resources" data-th="แหล่งเรียนรู้">Resources</a>
+                    <a href="index.html" class="nav-link text-neutral-400" data-en="Home" data-th="หน้าแรก">Home</a>
+                    <a href="courses.html" class="nav-link text-neutral-400" data-en="Courses" data-th="คอร์สเรียน">Courses</a>
+                    <a href="coaching.html" class="nav-link text-neutral-400" data-en="Coaching" data-th="เรียนตัวต่อตัว">Coaching</a>
+                    <a href="resources.html" class="nav-link text-neutral-400" data-en="Resources" data-th="แหล่งเรียนรู้">Resources</a>
                 </nav>
             </div>
         </header>
