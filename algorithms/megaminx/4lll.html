@@ -10,85 +10,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Sarabun:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
 
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Footer Template -->
-  <script src='/navbar.js' defer></script>
-  <script src='/footer.js' defer></script>
+  <!-- Import script -->
+  <script src='../../js/alg.js' defer></script>
+  <script src='../../js/navbar.js' defer></script>
+  <script src='../../js/footer.js' defer></script>
+  <script src='../../js/langswitch.js' defer></script>
   
-  <script>
-    // Configure Tailwind to use our new fonts
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['Inter', 'Sarabun', 'ui-sans-serif', 'system-ui'],
-          },
-        },
-      },
-    }
-
-    const content = {
-      en: {
-        nav: ['Home', 'Courses', 'Coaching', 'Resources', 'Contact'],
-        heroSubtitle: 'Master the Cube with structured courses, modern resources, and personal coaching.',
-        courseCards: [
-          { title: 'Beginner 3×3', price: '$19', desc: 'Learn to solve from zero with clear steps.' },
-          { title: 'Intermediate CFOP', price: '$39', desc: 'Improve efficiency and average times.' },
-          { title: 'Advanced Speedcubing', price: '$79', desc: 'Full CFOP, lookahead, and TPS training.' }
-        ],
-        coachingTitle: '1-on-1 Coaching',
-        coachingText: 'Book a private session tailored to your goals.',
-        resourcesTitle: 'Free Resources',
-        resourcesText: 'Algorithms, practice plans, and solving tips.',
-        contactTitle: 'Book a Coaching Session'
-      },
-      th: {
-        nav: ['หน้าแรก', 'คอร์สเรียน', 'เรียนตัวต่อตัว', 'แหล่งเรียนรู้', 'ติดต่อ'],
-        heroSubtitle: 'เชี่ยวชาญรูบิกส์คิวบ์ ด้วยคอร์สเรียนที่เป็นระบบ แหล่งเรียนรู้ทันสมัย และโค้ชส่วนตัว',
-        courseCards: [
-          { title: 'พื้นฐาน 3×3', price: '฿690', desc: 'เริ่มต้นแก้รูบิกส์ตั้งแต่ศูนย์' },
-          { title: 'ระดับกลาง CFOP', price: '฿1,390', desc: 'พัฒนาเทคนิคและความเร็ว' },
-          { title: 'ขั้นสูง Speedcubing', price: '฿2,790', desc: 'เทคนิคแข่งขันและการพัฒนาความเร็วการหมุน' }
-        ],
-        coachingTitle: 'โค้ชแบบตัวต่อตัว',
-        coachingText: 'จองเวลาสอนส่วนตัวตามเป้าหมายของคุณ',
-        resourcesTitle: 'แหล่งเรียนรู้ฟรี',
-        resourcesText: 'สูตรการหมุน แผนฝึก และเทคนิค',
-        contactTitle: 'จองคลาสโค้ช'
-      }
-    };
-
-    let currentLang = 'en';
-
-    function switchLang() {
-      currentLang = currentLang === 'en' ? 'th' : 'en';
-      applyLang();
-    }
-
-    function applyLang() {
-      const c = content[currentLang];
-      document.querySelectorAll('[data-nav]').forEach((el, i) => el.textContent = c.nav[i]);
-      document.getElementById('heroSubtitle').textContent = c.heroSubtitle;
-      document.getElementById('coachingTitle').textContent = c.coachingTitle;
-      document.getElementById('coachingText').textContent = c.coachingText;
-      document.getElementById('resourcesTitle').textContent = c.resourcesTitle;
-      document.getElementById('resourcesText').textContent = c.resourcesText;
-      document.getElementById('contactTitle').textContent = c.contactTitle;
-      document.getElementById('langBtnText').textContent = currentLang === 'en' ? 'TH' : 'EN';
-
-      const cards = document.getElementById('courseCards');
-      cards.innerHTML = '';
-      c.courseCards.forEach(card => {
-        cards.innerHTML += `
-          <div class="bg-neutral-900 rounded-xl p-6 border border-neutral-800 hover:border-indigo-500 transition-all duration-300 flex flex-col h-full">
-            <h3 class="text-xl font-semibold mb-2">${card.title}</h3>
-            <p class="text-neutral-400 mb-4 flex-grow">${card.desc}</p>
-            <div class="text-2xl font-bold text-indigo-400 mt-auto">${card.price}</div>
-          </div>`;
-      });
-    }
-
-    document.addEventListener('DOMContentLoaded', applyLang);
-  </script>
 </head>
 <body class="bg-neutral-950 text-neutral-100 font-sans">
 
@@ -120,7 +47,7 @@
     <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center gap-12">
       <div class="md:w-1/2">
         <h1 class="text-4xl md:text-6xl font-bold mb-6">Megaminx 4 Look Last Layer</h1>
-        <p class="text-neutral-400 max-w-2xl text-lg">Solving last layer effectively using 4 steps.</p>
+        <p class="text-neutral-400 max-w-2xl text-lg" data-en="Solving last layer effectively using 4 steps." data-th="แก้แถวสุดท้ายของรูบิก megaminx 4 ขั้นตอนอย่างมีระบบ">Solving last layer effectively using 4 steps.</p>
       </div>
       <div class="md:w-1/2 flex justify-center">
         <img src="../../image/mega4lll-page hero_transparent.png" alt="Megaminx 4LLL Case diagram" class="max-w-full rounded-xl shadow-lg" />
@@ -131,7 +58,7 @@
   <!-- Mega EO -->
   <section id="eo" class="py-20">
     <div class="max-w-6xl mx-auto px-6">
-      <h2 class="text-3xl font-semibold mb-10">EO (Edge Orientation)</h2>
+      <h2 class="text-3xl font-semibold mb-10" data-en="EO (Edge Orientation)" data-th="EO (การพลิกชิ้นขอบ)">EO (Edge Orientation)</h2>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         <!-- Card 1 -->
         <div class="group bg-neutral-900 rounded-xl border border-neutral-800 overflow-hidden hover:border-indigo-500 transition flex flex-col h-full">
@@ -167,9 +94,9 @@
   <!-- Mega CO -->
   <section id="co" class="py-20 bg-neutral-900">
     <div class="max-w-6xl mx-auto px-6">
-      <h2 class="text-3xl font-semibold mb-10">CO (Corner Orientation)</h2>
+      <h2 class="text-3xl font-semibold mb-10" data-en="CO (Corner Orientation)" data-th="CO (การพลิกชิ้นมุม)">CO (Corner Orientation)</h2>
 
-      <h3 class="text-2xl font-semibold mb-6">2 Corners</h3>
+      <h3 class="text-2xl font-semibold mb-6" data-en="2 Corners" data-th="พลิก 2 มุม">2 Corners</h3>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
         <div class="group bg-neutral-900 rounded-xl border border-neutral-800 overflow-hidden hover:border-indigo-500 transition flex flex-col h-full">
           <div class="bg-neutral-950 aspect-square flex items-center justify-center shrink-0">
@@ -207,7 +134,7 @@
         </div>
       </div>
 
-      <h3 class="text-2xl font-semibold mb-6">3 Corners</h3>
+      <h3 class="text-2xl font-semibold mb-6" data-en="3 Corners" data-th="พลิก 3 มุม">3 Corners</h3>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
         <div class="group bg-neutral-900 rounded-xl border border-neutral-800 overflow-hidden hover:border-indigo-500 transition flex flex-col h-full">
           <div class="bg-neutral-950 aspect-square flex items-center justify-center shrink-0">
@@ -247,7 +174,7 @@
         </div>
       </div>
 
-      <h3 class="text-2xl font-semibold mb-6">4 Corners</h3>
+      <h3 class="text-2xl font-semibold mb-6" data-en="4 Corners" data-th="พลิก 4 มุม">4 Corners</h3>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
         <div class="group bg-neutral-900 rounded-xl border border-neutral-800 overflow-hidden hover:border-indigo-500 transition flex flex-col h-full">
           <div class="bg-neutral-950 aspect-square flex items-center justify-center shrink-0">
@@ -301,7 +228,7 @@
         </div>
       </div>
 
-      <h3 class="text-2xl font-semibold mb-6">5 Corners</h3>
+      <h3 class="text-2xl font-semibold mb-6" data-en="5 Corners" data-th="พลิก 5 มุม">5 Corners</h3>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
         <div class="group bg-neutral-900 rounded-xl border border-neutral-800 overflow-hidden hover:border-indigo-500 transition flex flex-col h-full">
           <div class="bg-neutral-950 aspect-square flex items-center justify-center shrink-0">
@@ -326,8 +253,8 @@
   <!-- Mega EP -->
   <section id="ep" class="py-20">
     <div class="max-w-6xl mx-auto px-6">
-      <h2 class="text-3xl font-semibold mb-10">EP (Edge Permutation)</h2>
-      <h3 class="text-2xl font-semibold mb-6">3 Edges</h3>
+      <h2 class="text-3xl font-semibold mb-10" data-en="EP (Edge Orientation)" data-th="EP (การย้ายชิ้นขอบ)">EP (Edge Permutation)</h2>
+      <h3 class="text-2xl font-semibold mb-6" data-en="3 Edges" data-th="ย้ายขอบ 3 ชิ้น">3 Edges</h3>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
         <div class="group bg-neutral-900 rounded-xl border border-neutral-800 overflow-hidden hover:border-indigo-500 transition flex flex-col h-full">
           <div class="bg-neutral-950 aspect-square flex items-center justify-center shrink-0">
@@ -364,7 +291,7 @@
         </div>
       </div>
 
-      <h3 class="text-2xl font-semibold mb-6">4 Edges</h3>
+      <h3 class="text-2xl font-semibold mb-6" data-en="4 Edges" data-th="ย้ายขอบ 4 ชิ้น">4 Edges</h3>
       <div class="grid grid-cols-1 gap-6">
         <div class="group bg-neutral-900 rounded-xl border border-neutral-800 overflow-hidden hover:border-indigo-500 transition flex flex-col h-full">
           <div class="bg-neutral-950 aspect-video flex items-center justify-center shrink-0">
@@ -382,8 +309,8 @@
   <!-- Mega CP -->
   <section id="cp" class="py-20 bg-neutral-900">
     <div class="max-w-6xl mx-auto px-6">
-      <h2 class="text-3xl font-semibold mb-10">CP (Corner Permutation)</h2>
-      <h3 class="text-2xl font-semibold mb-6">3 Corners</h3>
+      <h2 class="text-3xl font-semibold mb-10" data-en="CP (Corner Permutation)" data-th="CP (การย้ายชิ้นมุม)">CP (Corner Permutation)</h2>
+      <h3 class="text-2xl font-semibold mb-6" data-en="3 Corners" data-th="ย้ายมุม 3 ชิ้น">3 Corners</h3>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
         <div class="group bg-neutral-900 rounded-xl border border-neutral-800 overflow-hidden hover:border-indigo-500 transition flex flex-col h-full">
           <div class="bg-neutral-950 aspect-square flex items-center justify-center shrink-0">
@@ -419,7 +346,7 @@
         </div>
       </div>
 
-      <h3 class="text-2xl font-semibold mb-6">4 Corners</h3>
+      <h3 class="text-2xl font-semibold mb-6" data-en="4 Corners" data-th="ย้ายมุม 4 ชิ้น">4 Corners</h3>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
         <div class="group bg-neutral-900 rounded-xl border border-neutral-800 overflow-hidden hover:border-indigo-500 transition flex flex-col h-full">
           <div class="bg-neutral-950 aspect-square flex items-center justify-center shrink-0">
@@ -447,7 +374,7 @@
         </div>
       </div>
 
-      <h3 class="text-2xl font-semibold mb-6">5 Corners</h3>
+      <h3 class="text-2xl font-semibold mb-6" data-en="5 Corners" data-th="ย้ายมุม 5 ชิ้น">5 Corners</h3>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         <div class="group bg-neutral-900 rounded-xl border border-neutral-800 overflow-hidden hover:border-indigo-500 transition flex flex-col h-full">
           <div class="bg-neutral-950 aspect-square flex items-center justify-center shrink-0">
