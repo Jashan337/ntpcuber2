@@ -1,5 +1,24 @@
 class MyNavbar extends HTMLElement {
     connectedCallback() {
+        // 1. Determine the path to the root
+        const isGitHub = window.location.hostname.includes('github.io');
+        const isLocalServer = window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost';
+        
+        this.rootPath = '';
+
+        if (isGitHub) {
+            // Change 'your-repo-name' to your actual GitHub repository name
+            this.rootPath = '/ntpcuber2/'; 
+        } else if (isLocalServer) {
+            // Live Server treats the project folder as root
+            this.rootPath = '/'; 
+        } else {
+            // Fallback for double-clicking: calculates levels to go up
+            // This counts how many folders deep you are and adds ../ for each
+            const depth = window.location.pathname.split('/').filter(Boolean).length;
+            this.rootPath = '../'.repeat(Math.max(0, depth - 1));
+        }
+        
         this.render();
         // Listen for a custom event so the navbar updates when the language changes elsewhere
         window.addEventListener('languageChanged', () => this.updateLanguageDisplay());
@@ -14,10 +33,10 @@ class MyNavbar extends HTMLElement {
                 </div>
                 
                 <nav class="hidden md:flex gap-8 text-sm font-medium">
-                    <a href="index.html" class="nav-link text-neutral-400 hover:text-indigo-400 transition-colors" data-en="Home" data-th="หน้าแรก">Home</a>
-                    <a href="courses.html" class="nav-link text-neutral-400 hover:text-indigo-400 transition-colors" data-en="Courses (Coming Soon)" data-th="คอร์สเรียน (เร็ว ๆ นี้)">Courses (Coming Soon)</a>
-                    <a href="coaching.html" class="nav-link text-neutral-400 hover:text-indigo-400 transition-colors" data-en="Coaching" data-th="เรียนตัวต่อตัว">Coaching</a>
-                    <a href="resources.html" class="nav-link text-neutral-400 hover:text-indigo-400 transition-colors" data-en="Resources" data-th="แหล่งเรียนรู้">Resources</a>
+                    <a href="${this.rootPath}index.html" class="nav-link text-neutral-400 hover:text-indigo-400 transition-colors" data-en="Home" data-th="หน้าแรก">Home</a>
+                    <a href="${this.rootPath}courses.html" class="nav-link text-neutral-400 hover:text-indigo-400 transition-colors" data-en="Courses (Coming Soon)" data-th="คอร์สเรียน (เร็ว ๆ นี้)">Courses (Coming Soon)</a>
+                    <a href="${this.rootPath}coaching.html" class="nav-link text-neutral-400 hover:text-indigo-400 transition-colors" data-en="Coaching" data-th="เรียนตัวต่อตัว">Coaching</a>
+                    <a href="${this.rootPath}resources.html" class="nav-link text-neutral-400 hover:text-indigo-400 transition-colors" data-en="Resources" data-th="แหล่งเรียนรู้">Resources</a>
                 </nav>
                 
                 <div class="flex items-center gap-4">
@@ -39,10 +58,10 @@ class MyNavbar extends HTMLElement {
             <!-- Mobile Menu Drawer (Hidden by Default) -->
             <div id="mobile-menu" class="hidden md:hidden bg-neutral-900 border-b border-neutral-800">
                 <nav class="flex flex-col px-6 py-4 gap-4 text-sm font-medium">
-                    <a href="index.html" class="nav-link text-neutral-400" data-en="Home" data-th="หน้าแรก">Home</a>
-                    <a href="courses.html" class="nav-link text-neutral-400" data-en="Courses" data-th="คอร์สเรียน">Courses</a>
-                    <a href="coaching.html" class="nav-link text-neutral-400" data-en="Coaching" data-th="เรียนตัวต่อตัว">Coaching</a>
-                    <a href="resources.html" class="nav-link text-neutral-400" data-en="Resources" data-th="แหล่งเรียนรู้">Resources</a>
+                    <a href="${this.rootPath}index.html" class="nav-link text-neutral-400" data-en="Home" data-th="หน้าแรก">Home</a>
+                    <a href="${this.rootPath}courses.html" class="nav-link text-neutral-400" data-en="Courses" data-th="คอร์สเรียน">Courses</a>
+                    <a href="${this.rootPath}coaching.html" class="nav-link text-neutral-400" data-en="Coaching" data-th="เรียนตัวต่อตัว">Coaching</a>
+                    <a href="${this.rootPath}resources.html" class="nav-link text-neutral-400" data-en="Resources" data-th="แหล่งเรียนรู้">Resources</a>
                 </nav>
             </div>
         </header>
