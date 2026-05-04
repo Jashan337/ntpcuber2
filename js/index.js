@@ -8,6 +8,8 @@ tailwind.config = {
     },
 }
 
+window.currentLang = localStorage.getItem('preferredLang') || 'en';
+
 const content = {
     en: {
     nav: ['Home', 'Courses', 'Coaching', 'Resources', 'Contact'],
@@ -29,8 +31,8 @@ const content = {
         { title: 'Intermediate CFOP', price: '$39', desc: 'Improve efficiency.' },
         { title: 'Advanced Speedcubing', price: '$79', desc: 'Full CFOP and TPS training.' }
     ],
-    coachingTitle: '1-on-1 Coaching',
-    coachingText: 'Book a private session.',
+    coachingTitle: 'Coaching & Services',
+    coachingText: 'Improve your skill with advice from experienced cuber.',
     resourcesTitle: 'Free Resources',
     resourcesText: 'Algorithms and tips.',
     contactTitle: 'Book a Session'
@@ -55,8 +57,8 @@ const content = {
         { title: 'ระดับกลาง CFOP', price: '฿1,390', desc: 'พัฒนาเทคนิคและความเร็ว' },
         { title: 'ขั้นสูง Speedcubing', price: '฿2,790', desc: 'เทคนิคแข่งขัน' }
     ],
-    coachingTitle: 'โค้ชแบบตัวต่อตัว',
-    coachingText: 'จองเวลาสอนส่วนตัว',
+    coachingTitle: 'โค้ช & บริการอื่น ๆ',
+    coachingText: 'พัฒนาทักษะตามคำแนะนำของนักแข่งรูบิกมากประสบการณ์',
     resourcesTitle: 'แหล่งเรียนรู้ฟรี',
     resourcesText: 'สูตรการหมุนและแผนฝึก',
     contactTitle: 'จองคลาสโค้ช'
@@ -138,4 +140,4 @@ function initScrollReveal() {
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 }
 
-document.addEventListener('DOMContentLoaded', toggleLang);
+document.addEventListener('DOMContentLoaded', applyLang);

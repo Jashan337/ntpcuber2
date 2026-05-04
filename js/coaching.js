@@ -286,6 +286,7 @@ function render() {
 
 function setupServiceLogic() {
     const serviceSelect = document.getElementById('service-select');
+    const qrImage = document.getElementById('qr-code-display');  // for dynamic qr display
     const groups = {
         video: document.getElementById('video-group'),
         availability: document.getElementById('availability-group'),
@@ -315,6 +316,23 @@ function setupServiceLogic() {
             groups.wca.classList.remove('hidden');
             groups.wca.querySelector('select').required = true;
             groups.time.querySelectorAll('select').forEach(s => s.required = true);
+        }
+
+        // Implementing custom qr payment 
+        const selectedName = serviceSelect.value;
+        const lang = window.currentLang || 'en';
+        // Find the selected service object to get its price
+        const serviceData = translations[lang].services.find(s => s.name === selectedName);
+        
+        if (serviceData) {
+            // Extract numbers from price (e.g., "฿1,440" -> "1440")
+            const priceAmount = serviceData.price.replace(/[^0-9]/g, '');
+            
+            // Update the QR code source dynamically
+            qrImage.src = `https://promptpay.io/0868545948/${priceAmount}.png`;
+        } else {
+            // Fallback to default QR if no service is selected
+            qrImage.src = "image/qr_payment.jpeg";
         }
     });
 }
