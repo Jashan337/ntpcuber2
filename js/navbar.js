@@ -36,7 +36,46 @@ class MyNavbar extends HTMLElement {
                     <a href="${this.rootPath}index.html" class="nav-link text-neutral-400 hover:text-indigo-400 transition-colors" data-en="Home" data-th="หน้าแรก">Home</a>
                     <a href="${this.rootPath}courses.html" class="nav-link text-neutral-400 hover:text-indigo-400 transition-colors" data-en="Courses (Coming Soon)" data-th="คอร์สเรียน (เร็ว ๆ นี้)">Courses (Coming Soon)</a>
                     <a href="${this.rootPath}coaching.html" class="nav-link text-neutral-400 hover:text-indigo-400 transition-colors" data-en="Coaching" data-th="เรียนตัวต่อตัว">Coaching</a>
-                    <a href="${this.rootPath}resources.html" class="nav-link text-neutral-400 hover:text-indigo-400 transition-colors" data-en="Resources" data-th="แหล่งเรียนรู้">Resources</a>
+                    
+                    <!-- Resources Dropdown Container -->
+                    <div class="relative group flex items-center">
+                        <!-- Main Link -->
+                        <a href="${this.rootPath}resources.html" 
+                        class="nav-link text-neutral-400 group-hover:text-indigo-400 transition-colors" 
+                        data-en="Resources" data-th="แหล่งเรียนรู้">
+                            Resources
+                            <svg class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </a>
+                        
+                        <!-- Main Submenu: CRITICAL - Removed 'overflow-hidden' here -->
+                        <div class="absolute top-full left-0 hidden group-hover:block pt-2 min-w-[200px] z-50">
+                            <div class="bg-neutral-900 border border-neutral-800 rounded-xl shadow-2xl py-2 backdrop-blur-xl">
+                                
+                                <!-- 2x2 Container -->
+                                <div class="relative group/sub w-full">
+                                    <a href="${this.rootPath}resources.html#2x2-title" 
+                                    class="nav-link w-full flex items-center justify-between px-5 py-3 text-neutral-400 hover:bg-neutral-800 hover:text-indigo-400 transition-colors">
+                                        <span>2x2</span>
+                                        <!-- Arrow pointing right -->
+                                        <svg class="w-4 h-4 -rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                                    </a>
+
+                                    <!-- 2x2 Sub-submenu: Positioned to the right -->
+                                    <!-- We add 'pl-1' to create an invisible bridge so the menu stays open while moving the mouse -->
+                                    <div class="absolute left-full top-0 hidden group-hover/sub:block pl-1 min-w-[180px] z-50">
+                                        <div class="bg-neutral-900 border border-neutral-800 rounded-xl shadow-2xl py-2 backdrop-blur-xl">
+                                            <a href="${this.rootPath}algorithms/2x2/cll.html" class="nav-link block px-5 py-3 text-neutral-400 hover:bg-neutral-800 hover:text-indigo-400 transition-colors">CLL</a>
+                                            <a href="${this.rootPath}algorithms/2x2/eg1.html" class="nav-link block px-5 py-3 text-neutral-400 hover:bg-neutral-800 hover:text-indigo-400 transition-colors">EG-1</a>
+                                            <a href="${this.rootPath}algorithms/2x2/eg2.html" class="nav-link block px-5 py-3 text-neutral-400 hover:bg-neutral-800 hover:text-indigo-400 transition-colors">EG-2</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <a href="${this.rootPath}resources.html#3x3-title" class="nav-link block px-5 py-3 text-neutral-400 hover:bg-neutral-800 hover:text-indigo-400 transition-colors">3x3</a>
+                                <a href="${this.rootPath}resources.html#mega-title" class="nav-link block px-5 py-3 text-neutral-400 hover:bg-neutral-800 hover:text-indigo-400 transition-colors">Megaminx</a>
+                            </div>
+                        </div>
+                    </div>
                 </nav>
                 
                 <div class="flex items-center gap-4">
