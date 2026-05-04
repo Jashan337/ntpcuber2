@@ -9,37 +9,6 @@ tailwind.config = {
     },
 }
 
-const content = {
-    en: {
-    nav: ['Home', 'Courses', 'Coaching', 'Resources', 'Contact'],
-    heroSubtitle: 'Master the Cube with structured courses, modern resources, and personal coaching.',
-    courseCards: [
-        { title: 'Beginner 3×3', price: '$19', desc: 'Learn to solve from zero with clear steps.' },
-        { title: 'Intermediate CFOP', price: '$39', desc: 'Improve efficiency and average times.' },
-        { title: 'Advanced Speedcubing', price: '$79', desc: 'Full CFOP, lookahead, and TPS training.' }
-    ],
-    coachingTitle: '1-on-1 Coaching',
-    coachingText: 'Book a private session tailored to your goals.',
-    resourcesTitle: 'Free Resources',
-    resourcesText: 'Algorithms, practice plans, and solving tips.',
-    contactTitle: 'Book a Coaching Session'
-    },
-    th: {
-    nav: ['หน้าแรก', 'คอร์สเรียน', 'เรียนตัวต่อตัว', 'แหล่งเรียนรู้', 'ติดต่อ'],
-    heroSubtitle: 'เชี่ยวชาญรูบิกส์คิวบ์ ด้วยคอร์สเรียนที่เป็นระบบ แหล่งเรียนรู้ทันสมัย และโค้ชส่วนตัว',
-    courseCards: [
-        { title: 'พื้นฐาน 3×3', price: '฿690', desc: 'เริ่มต้นแก้รูบิกส์ตั้งแต่ศูนย์' },
-        { title: 'ระดับกลาง CFOP', price: '฿1,390', desc: 'พัฒนาเทคนิคและความเร็ว' },
-        { title: 'ขั้นสูง Speedcubing', price: '฿2,790', desc: 'เทคนิคแข่งขันและการพัฒนาความเร็วการหมุน' }
-    ],
-    coachingTitle: 'โค้ชแบบตัวต่อตัว',
-    coachingText: 'จองเวลาสอนส่วนตัวตามเป้าหมายของคุณ',
-    resourcesTitle: 'แหล่งเรียนรู้ฟรี',
-    resourcesText: 'สูตรการหมุน แผนฝึก และเทคนิค',
-    contactTitle: 'จองคลาสโค้ช'
-    }
-};
-
 function applyLang() {
     const c = content[window.currentLang];
     document.querySelectorAll('[data-nav]').forEach((el, i) => el.textContent = c.nav[i]);
