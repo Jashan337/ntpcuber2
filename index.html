@@ -66,9 +66,9 @@
         <div class="relative aspect-square md:aspect-auto md:h-[500px] bg-neutral-900 rounded-3xl border border-neutral-800 overflow-hidden group">
           <!-- SVG Placeholder for when image is missing -->
           <div class="absolute inset-0 flex items-center justify-center bg-neutral-900 group-hover:scale-105 transition-transform duration-700">
-            <span class="text-neutral-700 font-bold uppercase tracking-widest">Action Shot Placeholder</span>
+            <!-- <span class="text-neutral-700 font-bold uppercase tracking-widest">Action Shot Placeholder</span> -->
             <!-- Replace the div above with an <img> tag when ready -->
-            <!-- <img src="path/to/your-action-photo.jpg" class="w-full h-full object-cover" /> -->
+            <img src="image/action_profile.jpg" class="w-full h-full object-cover" />
           </div>
           <!-- Decorative Border Overlay -->
           <div class="absolute inset-0 border-2 border-indigo-500/20 rounded-3xl pointer-events-none"></div>
@@ -86,16 +86,29 @@
             <p id="introText2"></p>
           </div>
 
-          <!-- Mini Stats/Features -->
+          <!-- Mini Stats/Links -->
           <div class="grid grid-cols-2 gap-4 pt-4">
-            <div class="p-4 bg-neutral-900/50 border border-neutral-800 rounded-xl">
-              <span class="block text-indigo-400 font-bold text-xl">Expert</span>
-              <span class="text-sm text-neutral-500 uppercase tracking-wide">Instruction</span>
-            </div>
-            <div class="p-4 bg-neutral-900/50 border border-neutral-800 rounded-xl">
-              <span class="block text-indigo-400 font-bold text-xl">Modern</span>
-              <span class="text-sm text-neutral-500 uppercase tracking-wide">Resources</span>
-            </div>
+              <!-- WCA Profile Link -->
+              <a href="https://www.worldcubeassociation.org/persons/2011MAHT02" target="_blank" 
+                class="p-4 bg-neutral-900/50 border border-neutral-800 rounded-xl hover:border-indigo-500 hover:bg-neutral-800/50 transition-all group">
+                  <div class="flex items-center gap-3 mb-1">
+                      <!-- WCA Logo (SVG from Simple Icons) -->
+                      <img src="https://thailandcube.vercel.app/img/wca.svg" class="w-5 h-5" alt="WCA Logo">
+                      <span class="block text-indigo-400 font-bold text-xl group-hover:text-indigo-300">My WCA Profile</span>
+                  </div>
+                  <span class="text-xs text-neutral-500 uppercase tracking-wide" data-en="Official Results" data-th="ผลการแข่งขันทางการ">Official Profile</span>
+              </a>
+
+              <!-- YouTube Link -->
+              <a href="https://www.youtube.com/@NTPCuber" target="_blank" 
+                class="p-4 bg-neutral-900/50 border border-neutral-800 rounded-xl hover:border-red-500 hover:bg-neutral-800/50 transition-all group">
+                  <div class="flex items-center gap-3 mb-1">
+                      <!-- YouTube Logo -->
+                      <img src="https://cdn.simpleicons.org/youtube/ff0000" class="w-5 h-5" alt="YouTube Logo">
+                      <span class="block text-indigo-400 font-bold text-xl group-hover:text-red-400">My Channel</span>
+                  </div>
+                  <span class="text-xs text-neutral-500 uppercase tracking-wide" data-en="Cubing Videos" data-th="คลิปเกี่ยวกับรูบิก">Cubing Videos</span>
+              </a>
           </div>
         </div>
 
