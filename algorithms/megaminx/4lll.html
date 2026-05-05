@@ -33,14 +33,26 @@
   <my-navbar></my-navbar>
 
   <!-- Quick Section Nav -->
-    <nav class="sticky top-[64px] z-40 bg-neutral-950/80 backdrop-blur-md border-b border-neutral-800">
-    <div class="max-w-6xl mx-auto px-6 py-3 flex gap-6 overflow-x-auto no-scrollbar text-sm font-medium">
-        <a href="#eo" class="text-neutral-400 hover:text-indigo-400 transition whitespace-nowrap">EO (Edges)</a>
-        <a href="#co" class="text-neutral-400 hover:text-indigo-400 transition whitespace-nowrap">CO (Corners)</a>
-        <a href="#ep" class="text-neutral-400 hover:text-indigo-400 transition whitespace-nowrap">EP (Edges)</a>
-        <a href="#cp" class="text-neutral-400 hover:text-indigo-400 transition whitespace-nowrap">CP (Corners)</a>
+  <nav class="sticky top-[60px] z-40 bg-neutral-950/90 backdrop-blur-md border-b border-neutral-800 shadow-sm">
+    <div class="max-w-6xl mx-auto px-4 md:px-6 py-3 flex gap-4 md:gap-8 overflow-x-auto no-scrollbar items-center">
+        <!-- Added min-w-fit and py-1 for better mobile hit-targets -->
+        <a href="#eo" class="text-neutral-400 hover:text-indigo-400 transition whitespace-nowrap text-xs md:text-sm font-semibold uppercase tracking-wider py-1">EO (Edges)</a>
+        <a href="#co" class="text-neutral-400 hover:text-indigo-400 transition whitespace-nowrap text-xs md:text-sm font-semibold uppercase tracking-wider py-1">CO (Corners)</a>
+        <a href="#ep" class="text-neutral-400 hover:text-indigo-400 transition whitespace-nowrap text-xs md:text-sm font-semibold uppercase tracking-wider py-1">EP (Edges)</a>
+        <a href="#cp" class="text-neutral-400 hover:text-indigo-400 transition whitespace-nowrap text-xs md:text-sm font-semibold uppercase tracking-wider py-1">CP (Corners)</a>
     </div>
-    </nav>
+</nav>
+
+<style>
+    /* Ensure the horizontal scroll is smooth on mobile and hides the scrollbar */
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+    .no-scrollbar {
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  /* Firefox */
+    }
+</style>
 
   <!-- Hero -->
   <section class="pt-32 pb-20">

@@ -72,8 +72,27 @@ class MyNavbar extends HTMLElement {
                                 </div>
                                 
                                 <a href="${this.rootPath}resources.html#3x3-title" class="nav-link block px-5 py-3 text-neutral-400 hover:bg-neutral-800 hover:text-indigo-400 transition-colors">3x3</a>
-                                <a href="${this.rootPath}resources.html#mega-title" class="nav-link block px-5 py-3 text-neutral-400 hover:bg-neutral-800 hover:text-indigo-400 transition-colors">Megaminx</a>
-                            </div>
+                                
+                                <!-- Megaminx Container -->
+                                <div class="relative group/sub w-full">
+                                    <a href="${this.rootPath}resources.html#mega-title" 
+                                    class="nav-link w-full flex items-center justify-between px-5 py-3 text-neutral-400 hover:bg-neutral-800 hover:text-indigo-400 transition-colors">
+                                        <span>Megaminx</span>
+                                        <!-- Arrow pointing right -->
+                                        <svg class="w-4 h-4 -rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                                    </a>
+
+                                    <!-- Megaminx Sub-submenu: Positioned to the right -->
+                                    <!-- We add 'pl-1' to create an invisible bridge so the menu stays open while moving the mouse -->
+                                    <div class="absolute left-full top-0 hidden group-hover/sub:block pl-1 min-w-[180px] z-50">
+                                        <div class="bg-neutral-900 border border-neutral-800 rounded-xl shadow-2xl py-2 backdrop-blur-xl">
+                                            <a href="${this.rootPath}algorithms/megaminx/4lll.html#eo" class="nav-link block px-5 py-3 text-neutral-400 hover:bg-neutral-800 hover:text-indigo-400 transition-colors">4LLL - EO</a>
+                                            <a href="${this.rootPath}algorithms/megaminx/4lll.html#co" class="nav-link block px-5 py-3 text-neutral-400 hover:bg-neutral-800 hover:text-indigo-400 transition-colors">4LLL - CO</a>
+                                            <a href="${this.rootPath}algorithms/megaminx/4lll.html#ep" class="nav-link block px-5 py-3 text-neutral-400 hover:bg-neutral-800 hover:text-indigo-400 transition-colors">4LLL - EP</a>
+                                            <a href="${this.rootPath}algorithms/megaminx/4lll.html#cp" class="nav-link block px-5 py-3 text-neutral-400 hover:bg-neutral-800 hover:text-indigo-400 transition-colors">4LLL - CP</a>
+                                        </div>
+                                    </div>
+                                </div>
                         </div>
                     </div>
                 </nav>
@@ -95,12 +114,53 @@ class MyNavbar extends HTMLElement {
             </div>
 
             <!-- Mobile Menu Drawer (Hidden by Default) -->
-            <div id="mobile-menu" class="hidden md:hidden bg-neutral-900 border-b border-neutral-800">
-                <nav class="flex flex-col px-6 py-4 gap-4 text-sm font-medium">
-                    <a href="${this.rootPath}index.html" class="nav-link text-neutral-400" data-en="Home" data-th="หน้าแรก">Home</a>
-                    <a href="${this.rootPath}courses.html" class="nav-link text-neutral-400" data-en="Courses" data-th="คอร์สเรียน">Courses</a>
-                    <a href="${this.rootPath}coaching.html" class="nav-link text-neutral-400" data-en="Coaching" data-th="เรียนตัวต่อตัว">Coaching</a>
-                    <a href="${this.rootPath}resources.html" class="nav-link text-neutral-400" data-en="Resources" data-th="แหล่งเรียนรู้">Resources</a>
+            <div id="mobile-menu" class="hidden md:hidden bg-neutral-900 border-b border-neutral-800 max-h-[80vh] overflow-y-auto">
+                <nav class="flex flex-col px-6 py-4 gap-2 text-sm font-medium">
+                    <a href="${this.rootPath}index.html" class="nav-link text-neutral-400 py-2 border-b border-neutral-800/50" data-en="Home" data-th="หน้าแรก">Home</a>
+                    <a href="${this.rootPath}courses.html" class="nav-link text-neutral-400 py-2 border-b border-neutral-800/50" data-en="Courses (Coming Soon)" data-th="คอร์สเรียน (เร็ว ๆ นี้)">Courses (Coming Soon)</a>
+                    <a href="${this.rootPath}coaching.html" class="nav-link text-neutral-400 py-2 border-b border-neutral-800/50" data-en="Coaching" data-th="เรียนตัวต่อตัว">Coaching</a>
+                    
+                    <!-- Resources Section with Mobile Toggle -->
+                    <div class="flex flex-col border-b border-neutral-800/50">
+                        <div class="flex items-center justify-between py-2">
+                            <a href="${this.rootPath}resources.html" class="nav-link text-neutral-400" data-en="Resources" data-th="แหล่งเรียนรู้">Resources</a>
+                            <button class="submenu-toggle p-2 text-neutral-500" data-target="mobile-res-list">
+                                <svg class="w-4 h-4 transition-transform pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </button>
+                        </div>
+                        
+                        <!-- Resources Sub-list -->
+                        <div id="mobile-res-list" class="hidden flex flex-col pl-4 pb-2 gap-1">
+                            <!-- 2x2 Toggle -->
+                            <div class="flex items-center justify-between py-2">
+                                <a href="${this.rootPath}resources.html#2x2-title" class="nav-link text-neutral-500">2x2</a>
+                                <button class="submenu-toggle p-2 text-neutral-500" data-target="mobile-2x2-list">
+                                    <svg class="w-4 h-4 transition-transform pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                                </button>
+                            </div>
+                            <div id="mobile-2x2-list" class="hidden flex flex-col pl-4 gap-2 pb-2">
+                                <a href="${this.rootPath}algorithms/2x2/cll.html" class="text-neutral-500 py-1">CLL</a>
+                                <a href="${this.rootPath}algorithms/2x2/eg1.html" class="text-neutral-500 py-1">EG-1</a>
+                                <a href="${this.rootPath}algorithms/2x2/eg2.html" class="text-neutral-500 py-1">EG-2</a>
+                            </div>
+
+                            <a href="${this.rootPath}resources.html#3x3-title" class="text-neutral-500 py-2">3x3</a>
+
+                            <!-- Megaminx Toggle -->
+                            <div class="flex items-center justify-between py-2">
+                                <a href="${this.rootPath}resources.html#mega-title" class="nav-link text-neutral-500">Megaminx</a>
+                                <button class="submenu-toggle p-2 text-neutral-500" data-target="mobile-mega-list">
+                                    <svg class="w-4 h-4 transition-transform pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                                </button>
+                            </div>
+                            <div id="mobile-mega-list" class="hidden flex flex-col pl-4 gap-2 pb-2">
+                                <a href="${this.rootPath}algorithms/megaminx/4lll.html#eo" class="text-neutral-500 py-1">4LLL - EO</a>
+                                <a href="${this.rootPath}algorithms/megaminx/4lll.html#co" class="text-neutral-500 py-1">4LLL - CO</a>
+                                <a href="${this.rootPath}algorithms/megaminx/4lll.html#ep" class="text-neutral-500 py-1">4LLL - EP</a>
+                                <a href="${this.rootPath}algorithms/megaminx/4lll.html#cp" class="text-neutral-500 py-1">4LLL - CP</a>
+                            </div>
+                        </div>
+                    </div>
                 </nav>
             </div>
         </header>
@@ -133,6 +193,23 @@ class MyNavbar extends HTMLElement {
         menuBtn.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
             // Optional: Change icon to an "X" when open
+        });
+        
+        // Handle Nested Submenu Toggles
+        const toggles = this.querySelectorAll('.submenu-toggle');
+        toggles.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation(); // Prevents clicks from bubbling up
+                const targetId = btn.getAttribute('data-target');
+                const targetEl = this.querySelector(`#${targetId}`);
+                const icon = btn.querySelector('svg');
+
+                if (targetEl) {
+                    const isHidden = targetEl.classList.toggle('hidden');
+                    // Rotate the arrow icon when expanded
+                    icon.style.transform = isHidden ? 'rotate(0deg)' : 'rotate(180deg)';
+                }
+            });
         });
 
         // Language Toggle
