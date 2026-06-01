@@ -118,7 +118,8 @@ const translations = {
     }
 };
 
-const SCRIPT_URL = window.SCRIPT_URL || 'APP_SCRIPT_URL_PLACEHOLDER';
+const SCRIPT_URLL = window.SCRIPT_URL || 'APP_SCRIPT_URL_PLACEHOLDER';
+console.log(window.SCRIPT_URL)
 
 let cachedReceiptBase64 = "";
 
@@ -240,7 +241,7 @@ async function handleSubmit(event) {
         }
 
         console.time('fetch');
-        fetch(SCRIPT_URL, {
+        fetch(SCRIPT_URLL, {
             method: 'POST',
             mode: 'no-cors', 
             //cache: 'no-cache',
