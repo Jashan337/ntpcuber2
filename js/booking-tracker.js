@@ -61,7 +61,8 @@ function scrapeFormData() {
   // Look up the selected service's price from the option's data attribute or text
   const serviceEl  = document.getElementById('service-select');
   const serviceText = serviceEl?.options[serviceEl.selectedIndex]?.text || val('service-select');
-  const priceMatch  = serviceText.match(/฿(\d+)/);
+  // FIX: Match digits AND commas
+  const priceMatch  = serviceText.match(/฿([\d,]+)/); 
 
   return {
     name:           val('input-name'),
@@ -73,7 +74,7 @@ function scrapeFormData() {
     preferred_time: val('preferred-time'),
     secondary_time: val('secondary-time'),
     goal:           val('input-goal'),
-    amount_thb:     priceMatch ? parseInt(priceMatch[1]) : null,
+    amount_thb:     priceMatch ? parseInt(priceMatch[1].replace(/,/g, '')) : null,
   };
 }
 
