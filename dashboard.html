@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Dashboard | NTP Cuber</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Config MUST come before auth.js -->
+  <script src="js/supabase-config.js"></script>
+
+  <style>
+    body { font-family: Inter, ui-sans-serif, system-ui; }
+
+    @keyframes blob-pulse {
+      0%,100% { opacity:.3; transform:scale(1); }
+      50%      { opacity:.5; transform:scale(1.05); }
+    }
+    .blob   { animation: blob-pulse 7s ease-in-out infinite; }
+    .blob-2 { animation-duration:9s; animation-delay:3s; }
+
+    .course-card { transition: transform .2s ease, border-color .2s; }
+    .course-card:hover { transform: translateY(-2px); }
+
+    .stat-pill {
+      background:rgba(99,102,241,.08);
+      border:1px solid rgba(99,102,241,.2);
+    }
+
+    #loading-state { transition: opacity .3s; }
+  </style>
+</head>
+<body class="bg-neutral-950 text-white min-h-screen relative overflow-x-hidden">
+
+  <!-- Background blobs -->
+  <div class="blob absolute top-[-8rem] right-[-6rem] w-[26rem] h-[26rem] bg-indigo-600/20 rounded-full blur-[100px] -z-10"></div>
+  <div class="blob blob-2 absolute bottom-0 left-[-6rem] w-[22rem] h-[22rem] bg-purple-600/10 rounded-full blur-[100px] -z-10"></div>
+
+  <!-- ── HEADER ── -->
+  <header class="border-b border-neutral-800/60 px-6 py-4">
+    <div class="max-w-5xl mx-auto flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-2.5">
+        <div class="w-8 h-8 bg-indigo-600/15 border border-indigo-500/30 rounded-lg flex items-center justify-center">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10"/>
+          </svg>
+        </div>
+        <span class="font-extrabold tracking-tight text-sm">NTP Cuber</span>
+      </a>
+
+      <button onclick="window.NTPAuth && window.NTPAuth.signOut()"
+        class="flex items-center gap-1.5 text-xs text-neutral-500 hover:text-red-400 transition">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h6a2 2 0 012 2v1"/>
+        </svg>
+        Sign Out
+      </button>
+    </div>
+  </header>
+
+  <!-- ── LOADING STATE ── -->
+  <div id="loading-state" class="flex flex-col items-center justify-center py-40 gap-4">
+    <div class="w-8 h-8 border-2 border-indigo-500 border-t-transparent rounded-full animate-spin"></div>
+    <p class="text-sm text-neutral-500">Loading your dashboard…</p>
+  </div>
+
+  <!-- ── MAIN CONTENT (hidden until auth resolved) ── -->
+  <main id="main-content" class="hidden max-w-5xl mx-auto px-6 py-12 space-y-12">
+
+    <!-- Profile row -->
+    <div class="flex flex-col sm:flex-row items-start sm:items-center gap-5">
+      <div id="user-avatar" class="w-16 h-16 rounded-2xl bg-gradient-to-br from-indigo-600 to-violet-600 flex items-center justify-center text-2xl font-black shrink-0"></div>
+      <div>
+        <h1 id="user-name" class="text-2xl font-extrabold tracking-tight"></h1>
+        <p id="user-email" class="text-sm text-neutral-500 mt-0.5"></p>
+        <div class="flex flex-wrap gap-2 mt-3">
+          <span id="member-since" class="stat-pill text-xs text-indigo-300 font-semibold px-3 py-1 rounded-full"></span>
+          <span id="courses-owned" class="stat-pill text-xs text-indigo-300 font-semibold px-3 py-1 rounded-full"></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Divider -->
+    <div class="h-px bg-neutral-800"></div>
+
+    <!-- My Courses -->
+    <section>
+      <h2 class="text-lg font-bold mb-6 flex items-center gap-2">
+        <span class="w-5 h-5 bg-indigo-500/20 rounded-md flex items-center justify-center text-indigo-400 text-xs">📚</span>
+        My Courses
+      </h2>
+      <div id="courses-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"></div>
+      <div id="no-courses" class="hidden text-center py-16 border border-dashed border-neutral-800 rounded-2xl">
+        <div class="text-4xl mb-3">📭</div>
+        <p class="text-neutral-400 font-semibold mb-1">No courses yet</p>
+        <p class="text-neutral-600 text-sm mb-6">Your purchased courses will appear here.</p>
+        <a href="course.html"
+          class="inline-block bg-indigo-600 hover:bg-indigo-500 transition px-6 py-3 rounded-xl font-bold text-sm">
+          Browse Courses
+        </a>
+      </div>
+    </section>
+
+    <!-- Divider -->
+    <div class="h-px bg-neutral-800"></div>
+
+    <!-- Quick links -->
+    <section>
+      <h2 class="text-lg font-bold mb-5">Quick Links</h2>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+        <a href="coaching.html" class="flex flex-col items-center gap-2 bg-neutral-900/60 border border-neutral-800 hover:border-indigo-500/50 rounded-2xl p-5 transition text-center group">
+          <span class="text-2xl group-hover:scale-110 transition-transform">🎯</span>
+          <span class="text-xs font-bold text-neutral-300">Book Coaching</span>
+        </a>
+        <a href="resources.html" class="flex flex-col items-center gap-2 bg-neutral-900/60 border border-neutral-800 hover:border-indigo-500/50 rounded-2xl p-5 transition text-center group">
+          <span class="text-2xl group-hover:scale-110 transition-transform">📋</span>
+          <span class="text-xs font-bold text-neutral-300">Algorithms</span>
+        </a>
+        <a href="course.html" class="flex flex-col items-center gap-2 bg-neutral-900/60 border border-neutral-800 hover:border-indigo-500/50 rounded-2xl p-5 transition text-center group">
+          <span class="text-2xl group-hover:scale-110 transition-transform">🎓</span>
+          <span class="text-xs font-bold text-neutral-300">All Courses</span>
+        </a>
+        <a href="https://www.youtube.com/@NTPCuber" target="_blank" class="flex flex-col items-center gap-2 bg-neutral-900/60 border border-neutral-800 hover:border-red-500/50 rounded-2xl p-5 transition text-center group">
+          <span class="text-2xl group-hover:scale-110 transition-transform">📺</span>
+          <span class="text-xs font-bold text-neutral-300">YouTube</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Divider -->
+    <div class="h-px bg-neutral-800"></div>
+
+    <!-- Booking History -->
+    <section>
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="text-lg font-bold flex items-center gap-2">
+          <span class="w-5 h-5 bg-indigo-500/20 rounded-md flex items-center justify-center text-xs">🎯</span>
+          Coaching Bookings
+        </h2>
+        <a href="/coaching.html"
+          class="text-xs font-bold text-indigo-400 hover:text-indigo-300 transition flex items-center gap-1">
+          Book Again
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+          </svg>
+        </a>
+      </div>
+      <div id="bookings-list" class="space-y-3"></div>
+      <div id="no-bookings" class="hidden text-center py-14 border border-dashed border-neutral-800 rounded-2xl">
+        <div class="text-4xl mb-3">📭</div>
+        <p class="text-neutral-400 font-semibold mb-1">No bookings yet</p>
+        <p class="text-neutral-600 text-sm mb-6">Your coaching session history will appear here.</p>
+        <a href="/coaching.html"
+          class="inline-block bg-indigo-600 hover:bg-indigo-500 transition px-6 py-3 rounded-xl font-bold text-sm">
+          Book a Session
+        </a>
+      </div>
+    </section>
+
+    <!-- Divider -->
+    <div class="h-px bg-neutral-800"></div>
+
+    <!-- Profile settings -->
+    <section>
+      <h2 class="text-lg font-bold mb-5">Account Settings</h2>
+      <div class="bg-neutral-900/60 border border-neutral-800 rounded-2xl p-6 space-y-5">
+        <div>
+          <label class="block text-xs font-bold text-neutral-500 uppercase tracking-widest mb-2">Display Name</label>
+          <div class="flex gap-3">
+            <input id="settings-name" type="text"
+              class="flex-1 bg-neutral-800 border border-neutral-700 focus:border-indigo-500 outline-none px-4 py-3 rounded-xl text-sm text-white placeholder-neutral-500 transition"/>
+            <button onclick="saveName()"
+              class="px-5 py-3 bg-indigo-600 hover:bg-indigo-500 rounded-xl text-sm font-bold transition active:scale-95">
+              Save
+            </button>
+          </div>
+          <p id="name-saved" class="text-xs text-green-400 mt-2 hidden">Name updated ✓</p>
+        </div>
+
+        <div class="pt-4 border-t border-neutral-800">
+          <p class="text-xs font-bold text-neutral-500 uppercase tracking-widest mb-2">Password</p>
+          <button onclick="sendReset()"
+            class="text-sm text-indigo-400 hover:text-indigo-300 transition font-semibold">
+            Send password reset email →
+          </button>
+          <p id="reset-sent" class="text-xs text-green-400 mt-2 hidden">Reset email sent — check your inbox ✓</p>
+        </div>
+      </div>
+    </section>
+
+    <p class="text-center text-xs text-neutral-700 pb-4">© 2026 NTP Cuber</p>
+  </main>
+
+  <script type="module">
+    import NTPAuth from './js/auth.js';
+    window.NTPAuth = NTPAuth;
+
+    /* ── Boot ─────────────────────────────────────────── */
+    async function boot() {
+      const user = await NTPAuth.getUser();
+
+      if (!user) {
+        location.href = '/login.html?next=/dashboard.html';
+        return;
+      }
+
+      // If user is an admin and didn't specifically ask for the dashboard, 
+      // send them to the admin panel
+      if (user.app_metadata?.is_admin === true && !location.search.includes('force=user')) {
+        location.href = '/admin.html';
+        return;
+      }
+
+      /* Hide loader, show content */
+      document.getElementById('loading-state').style.opacity = '0';
+      setTimeout(() => {
+        document.getElementById('loading-state').style.display = 'none';
+        document.getElementById('main-content').classList.remove('hidden');
+      }, 300);
+
+      populateProfile(user);
+      await Promise.all([loadCourses(user), loadBookings(user)]);
+    }
+
+    /* ── Profile ──────────────────────────────────────── */
+    function populateProfile(user) {
+      const name     = user.user_metadata?.full_name || user.email.split('@')[0];
+      const initials = name.slice(0,2).toUpperCase();
+      const joined   = new Date(user.created_at).toLocaleDateString('en-US', { month:'short', year:'numeric' });
+      const avatar   = user.user_metadata?.avatar_url;
+
+      const avatarEl = document.getElementById('user-avatar');
+      if (avatar) {
+        avatarEl.innerHTML = `<img src="${avatar}" class="w-full h-full rounded-2xl object-cover">`;
+      } else {
+        avatarEl.textContent = initials;
+      }
+
+      document.getElementById('user-name').textContent  = name;
+      document.getElementById('user-email').textContent = user.email;
+      document.getElementById('member-since').textContent = `Member since ${joined}`;
+      document.getElementById('settings-name').value = name;
+    }
+
+    /* ── Courses ──────────────────────────────────────── */
+    async function loadCourses(user) {
+      const sb = NTPAuth._client;
+
+      const { data: purchases } = await sb
+        .from('course_purchases')
+        .select('course_slug, purchased_at')
+        .eq('user_id', user.id)
+        .order('purchased_at', { ascending: false });
+
+      const count = purchases?.length || 0;
+      document.getElementById('courses-owned').textContent =
+        `${count} Course${count !== 1 ? 's' : ''} Owned`;
+
+      if (!count) {
+        document.getElementById('no-courses').classList.remove('hidden');
+        return;
+      }
+
+      /* Optionally fetch course metadata from a 'courses' table */
+      const grid = document.getElementById('courses-grid');
+      grid.innerHTML = purchases.map(p => courseCard(p)).join('');
+    }
+
+    function courseCard({ course_slug, purchased_at }) {
+      const label = course_slug.replace(/-/g,' ').replace(/\b\w/g, c => c.toUpperCase());
+      const date  = new Date(purchased_at).toLocaleDateString('en-US', { month:'short', day:'numeric', year:'numeric' });
+      return `
+        <div class="course-card bg-neutral-900/60 border border-neutral-800 hover:border-indigo-500/60 rounded-2xl p-5">
+          <div class="w-10 h-10 bg-indigo-600/15 rounded-xl flex items-center justify-center text-indigo-400 mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10"/>
+            </svg>
+          </div>
+          <h3 class="font-bold text-sm text-white mb-1">${label}</h3>
+          <p class="text-xs text-neutral-600 mb-4">Purchased ${date}</p>
+          <a href="/learning-page.html?course=${course_slug}"
+            class="block text-center text-xs font-bold py-2.5 rounded-xl bg-indigo-600/15 hover:bg-indigo-600 border border-indigo-500/30 hover:border-indigo-500 text-indigo-300 hover:text-white transition">
+            Continue Learning →
+          </a>
+        </div>`;
+    }
+
+    /* ── Bookings ─────────────────────────────────────── */
+    async function loadBookings(user) {
+      const sb = NTPAuth._client;
+
+      const { data: bookings } = await sb
+        .from('coaching_bookings')
+        .select('*')
+        .eq('user_id', user.id)
+        .order('booked_at', { ascending: false });
+
+      if (!bookings?.length) {
+        document.getElementById('no-bookings').classList.remove('hidden');
+        return;
+      }
+
+      document.getElementById('bookings-list').innerHTML =
+        bookings.map(b => bookingCard(b)).join('');
+    }
+
+    function bookingCard(b) {
+      const statusStyles = {
+        pending:   { dot: 'bg-amber-400',  badge: 'bg-amber-400/10 text-amber-300 border-amber-500/30',  label: 'Pending'   },
+        confirmed: { dot: 'bg-blue-400',   badge: 'bg-blue-400/10  text-blue-300  border-blue-500/30',   label: 'Confirmed' },
+        completed: { dot: 'bg-green-400',  badge: 'bg-green-400/10 text-green-300 border-green-500/30',  label: 'Completed' },
+        cancelled: { dot: 'bg-neutral-500',badge: 'bg-neutral-500/10 text-neutral-400 border-neutral-700',label: 'Cancelled'},
+      };
+      const s    = statusStyles[b.status] || statusStyles.pending;
+      const date = new Date(b.booked_at).toLocaleDateString('en-US', {
+        weekday: 'short', month: 'short', day: 'numeric', year: 'numeric'
+      });
+
+      const details = [
+        b.wca_event      && `<span class="inline-flex items-center gap-1">🏆 ${b.wca_event}</span>`,
+        b.available_days?.length && `<span class="inline-flex items-center gap-1">📅 ${b.available_days.join(', ')}</span>`,
+        b.preferred_time && `<span class="inline-flex items-center gap-1">⏰ ${b.preferred_time}</span>`,
+        b.amount_thb     && `<span class="inline-flex items-center gap-1">💳 ฿${b.amount_thb}</span>`,
+      ].filter(Boolean).join('');
+
+      return `
+        <div class="bg-neutral-900/60 border border-neutral-800 rounded-2xl p-5 flex flex-col sm:flex-row sm:items-center gap-4">
+          <!-- Icon -->
+          <div class="w-10 h-10 shrink-0 bg-indigo-600/10 border border-indigo-500/20 rounded-xl flex items-center justify-center text-lg">🎯</div>
+
+          <!-- Main info -->
+          <div class="flex-1 min-w-0">
+            <div class="flex flex-wrap items-center gap-2 mb-1">
+              <span class="font-bold text-sm text-white truncate">${b.service}</span>
+              <span class="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full border ${s.badge}">
+                <span class="w-1.5 h-1.5 rounded-full ${s.dot} ${b.status === 'pending' ? 'animate-pulse' : ''}"></span>
+                ${s.label}
+              </span>
+            </div>
+            <p class="text-xs text-neutral-500 mb-2">${date}</p>
+            ${details ? `<div class="flex flex-wrap gap-3 text-xs text-neutral-500">${details}</div>` : ''}
+            ${b.goal ? `<p class="mt-2 text-xs text-neutral-600 italic line-clamp-1">"${b.goal}"</p>` : ''}
+          </div>
+
+          <!-- Video link if present -->
+          ${b.video_link ? `
+          <a href="${b.video_link}" target="_blank"
+            class="shrink-0 text-xs font-bold text-indigo-400 hover:text-indigo-300 transition flex items-center gap-1">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            Video
+          </a>` : ''}
+        </div>`;
+    }
+
+    /* ── Settings ─────────────────────────────────────── */
+    window.saveName = async function() {
+      const name = document.getElementById('settings-name').value.trim();
+      if (!name) return;
+      const { error } = await NTPAuth._client.auth.updateUser({ data: { full_name: name } });
+      if (!error) {
+        document.getElementById('name-saved').classList.remove('hidden');
+        document.getElementById('user-name').textContent = name;
+        setTimeout(() => document.getElementById('name-saved').classList.add('hidden'), 3000);
+      }
+    };
+
+    window.sendReset = async function() {
+      const user = await NTPAuth.getUser();
+      if (!user) return;
+      await NTPAuth._client.auth.resetPasswordForEmail(user.email, {
+        redirectTo: `${location.origin}/login.html`
+      });
+      document.getElementById('reset-sent').classList.remove('hidden');
+      setTimeout(() => document.getElementById('reset-sent').classList.add('hidden'), 5000);
+    };
+
+    boot();
+  </script>
+
+</body>
+</html>

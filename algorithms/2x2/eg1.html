@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NTP Cuber | Rubik's Cube Course & Coaching</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Sarabun:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Import script -->
+  <script src='../../js/alg.js' defer></script>
+  <script src="../../js/supabase-config.js"></script>
+  <script src='../../js/navbar.js' defer></script>
+  <script src='../../js/footer.js' defer></script>
+  <script src='../../js/langswitch.js' defer></script>
+  
+  <!-- NEW: EG-1 JSON-driven renderer -->
+  <script type="module" src="../../js/eg1-render.js"></script>
+
+  <!-- <script>
+  if (location.pathname.endsWith('.html')) {
+    location.replace(location.pathname.replace('.html', ''));
+  }
+  </script> -->
+</head>
+  
+<body class="bg-neutral-950 text-neutral-100 font-sans">
+
+  <!-- Gradient Accent -->
+  <div class="absolute inset-x-0 top-[-12rem] h-[32rem] bg-gradient-to-br from-indigo-600/30 via-purple-600/20 to-cyan-500/20 blur-3xl -z-10"></div>
+
+  <!-- Navbar -->
+  <my-navbar></my-navbar>
+
+  <!-- Hero -->
+  <section class="pt-32 pb-20">
+    <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center gap-12">
+      <!-- Left: Text -->
+      <div class="md:w-1/2">
+        <h1 class="text-4xl md:text-6xl font-bold mb-6">2x2 EG-1</h1>
+        <p class="text-neutral-400 max-w-2xl text-lg mb-6" data-en="A Last Layer algorithm set where the 2 pieces of the solved face are adjacently swapped."
+                                                           data-th="สูตรสำหรับแก้แถวสูตรท้ายเมื่อสีแรกมี 2 ชิ้นที่ติดกันสลับที่กัน"
+        >
+          A last layer algorithm set where the 2 pieces of the solved face are adjacently swapped.
+        </p>
+        <h2 class="text-3xl md:text-4xl font-bold mb-6">
+          Where to keep the solved bar?
+        </h2>
+        <p class="text-neutral-400 max-w-2xl text-lg">
+          Mostly, the solved bar should be on the back, only for some cases the bar must be held on left (AKA 'LEG-1').
+        </p>
+      </div>
+      <!-- Right: Image -->
+      <div class="md:w-1/2 flex justify-center">
+        <img
+          src="../../image/eg1-page hero.png"
+          alt="2x2 EG-1 case diagram"
+          class="max-w-full rounded-xl shadow-lg"
+        />
+      </div>
+  </div>
+</section>
+
+  
+  <!-- Filter UI right below Hero -->
+  <section class="pb-8">
+    <div class="max-w-6xl mx-auto px-6">
+      <div id="subset-nav"></div>
+    </div>
+  </section>
+
+  <!-- Render target -->
+  <div id="alg-sections">
+    <div class="max-w-6xl mx-auto px-6 py-20 text-neutral-500">
+      Loading algorithms...
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <my-footer></my-footer>
+
+</body>
+</html>

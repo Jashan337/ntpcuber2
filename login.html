@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sign In | NTP Cuber</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Load config FIRST, then auth -->
+  <script src="js/supabase-config.js"></script>
+
+  <style>
+    body { font-family: Inter, ui-sans-serif, system-ui; }
+
+    @keyframes blob-pulse {
+      0%,100% { opacity:.35; transform:scale(1); }
+      50%      { opacity:.55; transform:scale(1.06); }
+    }
+    .blob { animation: blob-pulse 7s ease-in-out infinite; }
+    .blob-2 { animation-duration:9s; animation-delay:2s; }
+
+    /* tab underline transition */
+    .tab-line { transition: transform .2s ease, opacity .2s; }
+
+    input:focus { outline:none; }
+
+    .btn-primary {
+      background:#4f46e5;
+      transition:background .15s, transform .1s;
+    }
+    .btn-primary:hover  { background:#6366f1; }
+    .btn-primary:active { transform:scale(.98); }
+
+    .input-field {
+      background:#111113;
+      border:1px solid #27272a;
+      color:#f3f4f6;
+      transition:border-color .15s;
+    }
+    .input-field:focus { border-color:#6366f1; }
+    .input-field::placeholder { color:#52525b; }
+
+    #error-msg { display:none; }
+    #success-msg { display:none; }
+  </style>
+</head>
+<body class="bg-neutral-950 text-white min-h-screen flex items-center justify-center px-4 py-16 relative overflow-x-hidden">
+
+  <!-- Background blobs matching site style -->
+  <div class="blob absolute top-[-8rem] left-[-6rem] w-[28rem] h-[28rem] bg-indigo-600/20 rounded-full blur-[100px] -z-10"></div>
+  <div class="blob blob-2 absolute bottom-[-6rem] right-[-6rem] w-[24rem] h-[24rem] bg-purple-600/15 rounded-full blur-[100px] -z-10"></div>
+
+  <div class="w-full max-w-md">
+
+    <!-- Back -->
+    <a href="index.html" class="inline-flex items-center gap-1.5 text-xs text-neutral-500 hover:text-neutral-300 transition mb-8">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/>
+      </svg>
+      Back to Home
+    </a>
+
+    <!-- Card -->
+    <div class="bg-neutral-900/60 border border-neutral-800 rounded-3xl p-8 backdrop-blur-sm">
+
+      <!-- Logo / brand -->
+      <div class="flex items-center gap-3 mb-8">
+        <div class="w-9 h-9 bg-indigo-600/15 border border-indigo-500/30 rounded-xl flex items-center justify-center">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10"/>
+          </svg>
+        </div>
+        <span class="font-extrabold tracking-tight text-white">NTP Cuber</span>
+      </div>
+
+      <!-- Tabs -->
+      <div class="flex gap-6 mb-8 border-b border-neutral-800">
+        <button id="tab-login" onclick="switchTab('login')"
+          class="pb-3 text-sm font-bold text-white relative">
+          Sign In
+          <div id="line-login" class="tab-line absolute bottom-0 left-0 right-0 h-0.5 bg-indigo-500 rounded-full"></div>
+        </button>
+        <button id="tab-signup" onclick="switchTab('signup')"
+          class="pb-3 text-sm font-bold text-neutral-500 hover:text-neutral-300 relative">
+          Create Account
+          <div id="line-signup" class="tab-line absolute bottom-0 left-0 right-0 h-0.5 bg-indigo-500 rounded-full opacity-0"></div>
+        </button>
+      </div>
+
+      <!-- Error / success banners -->
+      <div id="error-msg" class="mb-4 p-3 bg-red-500/10 border border-red-500/30 rounded-xl text-red-400 text-sm"></div>
+      <div id="success-msg" class="mb-4 p-3 bg-green-500/10 border border-green-500/30 rounded-xl text-green-400 text-sm"></div>
+
+      <!-- ── LOGIN FORM ── -->
+      <form id="login-form" class="space-y-4" onsubmit="handleLogin(event)">
+        <input type="email" id="login-email" required placeholder="Email address"
+          class="input-field w-full px-4 py-3 rounded-xl text-sm"/>
+        <div class="relative">
+          <input type="password" id="login-password" required placeholder="Password"
+            class="input-field w-full px-4 py-3 rounded-xl text-sm pr-10"/>
+          <button type="button" onclick="togglePw('login-password')"
+            class="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-500 hover:text-neutral-300">
+            <svg id="eye-login" xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+            </svg>
+          </button>
+        </div>
+        <div class="text-right">
+          <button type="button" onclick="handleReset()"
+            class="text-xs text-indigo-400 hover:text-indigo-300 transition">Forgot password?</button>
+        </div>
+        <button type="submit" id="login-btn"
+          class="btn-primary w-full py-3.5 rounded-xl font-bold text-sm text-white">
+          Sign In
+        </button>
+      </form>
+
+      <!-- ── SIGNUP FORM ── -->
+      <form id="signup-form" class="hidden space-y-4" onsubmit="handleSignup(event)">
+        <input type="text" id="signup-name" required placeholder="Full name"
+          class="input-field w-full px-4 py-3 rounded-xl text-sm"/>
+        <input type="email" id="signup-email" required placeholder="Email address"
+          class="input-field w-full px-4 py-3 rounded-xl text-sm"/>
+        <div class="relative">
+          <input type="password" id="signup-password" required placeholder="Password (min 6 chars)"
+            class="input-field w-full px-4 py-3 rounded-xl text-sm pr-10" minlength="6"/>
+          <button type="button" onclick="togglePw('signup-password')"
+            class="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-500 hover:text-neutral-300">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+            </svg>
+          </button>
+        </div>
+        <button type="submit" id="signup-btn"
+          class="btn-primary w-full py-3.5 rounded-xl font-bold text-sm text-white">
+          Create Account
+        </button>
+      </form>
+
+      <!-- Divider -->
+      <div class="flex items-center gap-3 my-5">
+        <div class="flex-1 h-px bg-neutral-800"></div>
+        <span class="text-xs text-neutral-600">or continue with</span>
+        <div class="flex-1 h-px bg-neutral-800"></div>
+      </div>
+
+      <!-- Google -->
+      <button onclick="handleGoogle()"
+        class="w-full flex items-center justify-center gap-2.5 bg-neutral-800 hover:bg-neutral-700 border border-neutral-700 py-3 rounded-xl text-sm font-semibold transition active:scale-95">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" class="w-4 h-4">
+          <path fill="#FFC107" d="M43.6 20H24v8h11.3C33.6 33.7 29.3 37 24 37c-7.2 0-13-5.8-13-13s5.8-13 13-13c3.1 0 5.9 1.1 8.1 2.9L38 8C34.3 4.8 29.4 3 24 3 11.8 3 2 12.8 2 25s9.8 22 22 22c11 0 21-8 21-22 0-1.3-.2-2.7-.4-5z"/>
+          <path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.6 15.1 19 12 24 12c3.1 0 5.9 1.1 8.1 2.9L38 8C34.3 4.8 29.4 3 24 3c-7.7 0-14.4 4.4-17.7 11.7z"/>
+          <path fill="#4CAF50" d="M24 47c5.2 0 10-1.9 13.6-5l-6.3-5.2C29.5 38.6 26.9 39.5 24 39.5c-5.2 0-9.6-3.2-11.4-7.8l-6.5 5C9.5 43 16.3 47 24 47z"/>
+          <path fill="#1976D2" d="M43.6 20H24v8h11.3c-.9 2.6-2.6 4.7-4.8 6.3l6.3 5.2C41 35.9 44 31.2 44 24c0-1.3-.2-2.7-.4-4z"/>
+        </svg>
+        Continue with Google
+      </button>
+
+    </div>
+
+    <p class="text-center text-xs text-neutral-600 mt-6">
+      © 2026 NTP Cuber — Your account data is secure and private.
+    </p>
+  </div>
+
+  <script type="module">
+    import NTPAuth from './js/auth.js';
+    window._NTPAuth = NTPAuth;
+
+    /* Redirect if already logged in */
+    NTPAuth.getUser().then(user => {
+      if (user) {
+        const params = new URLSearchParams(location.search);
+        location.href = params.get('next') || '/dashboard.html';
+      }
+    });
+
+    window.handleLogin = async function(e) {
+      e.preventDefault();
+      setLoading('login-btn', true);
+      clearMessages();
+      try {
+        // FIX: Changed { data } to just data
+        const data = await _NTPAuth.signIn(
+          document.getElementById('login-email').value.trim(),
+          document.getElementById('login-password').value
+        );
+
+        const user = data.user;
+        const isAdmin = user?.app_metadata?.is_admin === true;
+        
+        const params = new URLSearchParams(location.search);
+        const nextPath = params.get('next');
+
+        // Redirect logic
+        if (nextPath) {
+          location.href = nextPath;
+        } else if (isAdmin) {
+          location.href = '/admin.html';
+        } else {
+          location.href = '/dashboard.html';
+        }
+
+      } catch(err) {
+        showError(err.message);
+      } finally {
+        setLoading('login-btn', false);
+      }
+    };
+
+    window.handleSignup = async function(e) {
+      e.preventDefault();
+      setLoading('signup-btn', true);
+      clearMessages();
+      try {
+        await _NTPAuth.signUp(
+          document.getElementById('signup-email').value.trim(),
+          document.getElementById('signup-password').value,
+          document.getElementById('signup-name').value.trim()
+        );
+        showSuccess('Account created! Please check your email to confirm your address, then sign in.');
+        document.getElementById('signup-form').reset();
+      } catch(err) {
+        showError(err.message);
+      } finally {
+        setLoading('signup-btn', false);
+      }
+    };
+
+    window.handleGoogle = async function() {
+      clearMessages();
+      try { await _NTPAuth.signInWithGoogle(); }
+      catch(err) { showError(err.message); }
+    };
+
+    window.handleReset = async function() {
+      const email = document.getElementById('login-email').value.trim();
+      if (!email) { showError('Enter your email address first.'); return; }
+      const { createClient } = await import('https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm');
+      const sb = createClient(SUPABASE_URL, SUPABASE_ANON);
+      const { error } = await sb.auth.resetPasswordForEmail(email, {
+        redirectTo: `${location.origin}/login.html`
+      });
+      if (error) showError(error.message);
+      else showSuccess('Password reset email sent — check your inbox.');
+    };
+
+    /* helpers */
+    function setLoading(id, on) {
+      const btn = document.getElementById(id);
+      btn.disabled = on;
+      btn.textContent = on ? 'Please wait…' : (id === 'login-btn' ? 'Sign In' : 'Create Account');
+    }
+    function showError(msg) {
+      const el = document.getElementById('error-msg');
+      el.textContent = msg; el.style.display = 'block';
+    }
+    function showSuccess(msg) {
+      const el = document.getElementById('success-msg');
+      el.textContent = msg; el.style.display = 'block';
+    }
+    function clearMessages() {
+      document.getElementById('error-msg').style.display = 'none';
+      document.getElementById('success-msg').style.display = 'none';
+    }
+  </script>
+
+  <script>
+    /* Tab switching (non-module) */
+    function switchTab(tab) {
+      const isLogin = tab === 'login';
+      document.getElementById('login-form').classList.toggle('hidden', !isLogin);
+      document.getElementById('signup-form').classList.toggle('hidden', isLogin);
+      document.getElementById('tab-login').classList.toggle('text-white', isLogin);
+      document.getElementById('tab-login').classList.toggle('text-neutral-500', !isLogin);
+      document.getElementById('tab-signup').classList.toggle('text-white', !isLogin);
+      document.getElementById('tab-signup').classList.toggle('text-neutral-500', isLogin);
+      document.getElementById('line-login').style.opacity  = isLogin ? '1' : '0';
+      document.getElementById('line-signup').style.opacity = isLogin ? '0' : '1';
+      document.getElementById('error-msg').style.display = 'none';
+      document.getElementById('success-msg').style.display = 'none';
+    }
+
+    function togglePw(id) {
+      const input = document.getElementById(id);
+      input.type = input.type === 'password' ? 'text' : 'password';
+    }
+  </script>
+
+</body>
+</html>
