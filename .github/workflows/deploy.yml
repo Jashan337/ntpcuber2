@@ -1,0 +1,25 @@
+name: Deploy with Secrets
+
+on:
+  push:
+    branches:
+      - main  # or 'master' depending on your branch name
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Inject Google Script URL
+        run: |
+          # This command finds 'APP_SCRIPT_URL_PLACEHOLDER' 
+          # and replaces it with your secret URL in coaching.js
+          sed -i "s|APP_SCRIPT_URL_PLACEHOLDER|${{ secrets.G_SCRIPT_URL }}|g" js/coaching.js
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./

@@ -118,7 +118,7 @@ const translations = {
     }
 };
 
-const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwwqbpCMgiHXTgaCYfqt2z3WWfIdE6AEpUcf5pvsYHh5ZMF7a5lzWJYP8W0NFjsT4B0/exec';
+const SCRIPT_URL = window.SCRIPT_URL || 'APP_SCRIPT_URL_PLACEHOLDER';
 
 let cachedReceiptBase64 = "";
 
