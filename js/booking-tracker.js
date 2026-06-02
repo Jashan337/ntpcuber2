@@ -102,11 +102,11 @@ function patchHandleSubmit() {
         // Collect form data BEFORE the original clears the form
         const formData = scrapeFormData();
 
+        // FIX: Fire the Supabase save IMMEDIATELY (Do not await it)
+        saveBookingToSupabase(formData);
+        
         // Run the original (sends to Google Apps Script, shows success msg)
         await original(event);
-
-        // Now save to Supabase (fire-and-forget, non-blocking)
-        saveBookingToSupabase(formData);
       };
 
     } else if (elapsed >= MAX_WAIT) {
